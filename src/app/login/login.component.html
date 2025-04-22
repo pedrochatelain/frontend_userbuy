@@ -1,0 +1,27 @@
+<div class="container">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="username" name="username" (keyup)="updateUsername()">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="password" name="password" (keyup)="updatePassword()">
+          </mat-form-field>
+        
+        </form>
+        <button class="btn-login" (click)="login()" [disabled]="loading" mat-flat-button>
+            @if (! loading) {
+                Login
+            } @else {
+                <div>Logging in</div>
+            }        
+        </button>
+        @if (loggedIn) {
+            <div>Logged in!</div>
+        }
+        <!-- <button class="btn-login" login mat-flat-button>Login</button> -->
+        
+    </div>
+  
