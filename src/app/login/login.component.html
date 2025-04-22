@@ -15,13 +15,13 @@
             @if (! loading) {
                 Login
             } @else {
-                <div>Logging in</div>
+                Logging in
             }        
         </button>
-        @if (loggedIn) {
-            <div>Logged in!</div>
+        @if (error) {
+            <mat-error>{{error}}</mat-error>
+
         }
-        <!-- <button class="btn-login" login mat-flat-button>Login</button> -->
         
     </div>
   
