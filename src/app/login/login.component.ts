@@ -37,6 +37,7 @@ export class LoginComponent {
       next: response => {
         console.log('Success:', response);
         this.router.navigate(['home'])
+        localStorage.setItem('token', response.token);
       },
       error: error => {
         setTimeout(() => this.error = error.error.error, 1000);
