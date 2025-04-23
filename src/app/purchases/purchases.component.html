@@ -1,11 +1,13 @@
-<h1>My purchases</h1>
-<div class="products-container">
-@if (purchases) {
-    @for (purchase of purchases; track purchase._id) {
-        <h2>{{purchase._id}}</h2>
-        @for (product of purchase.products; track product._id) {
-        <app-card-product [product] = product></app-card-product>
-        }
-    }   
-}
+<div class="container">
+    <h1>My purchases</h1>
+    <div class="products-container">
+    @if (purchases) {
+        @for (purchase of purchases; track purchase._id) {
+            <h2>{{purchase._id}}</h2>
+            @for (product of purchase.products; track product._id) {
+            <app-card-product [product] = product></app-card-product>
+            }
+        }   
+    }
+    </div>
 </div>
