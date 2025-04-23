@@ -26,14 +26,6 @@ export class LoginComponent {
 
   constructor(private router: Router) {}
 
-  updateUsername(): void {
-    console.log(this.username)
-  }
-
-  updatePassword(): void {
-    console.log(this.password)
-  }
-
   login(): void {
     this.loading = true
     this.error = null
