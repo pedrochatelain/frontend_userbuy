@@ -1,8 +1,29 @@
-@if (loading) {
-    <div>Loading...</div>
-}
-@if (products) {
-    @for (product of products; track product.name) {
-        <app-card-product [product] = product></app-card-product>
-    }   
-}
+<div class="nav-bar">
+    <button class="selected btn-nav-bar" mat-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="local_mall"></mat-icon>
+        <p>Products</p>
+    </button>
+    <button class="btn-nav-bar" mat-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
+        <p>My purchases</p>
+    </button>
+    <button class="btn-nav-bar-logout" mat-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
+        <p>Logout</p>
+    </button>
+</div>
+<div class="container">
+    <h1>Products</h1>
+    @if (loading) {
+        <div>Loading...</div>
+    }
+    <div class="products-container">
+        @if (products) {
+        
+            @for (product of products; track product.name) {
+                <app-card-product [product] = product></app-card-product>
+            }   
+        }
+
+    </div>
+</div>

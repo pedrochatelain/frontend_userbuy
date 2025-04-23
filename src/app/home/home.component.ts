@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, Injectable, OnInit } from '@angular/core';
 import {CardProductComponent} from '../card-product/card-product.component'
-
+import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
-  imports: [CardProductComponent],
+  imports: [CardProductComponent, MatIconModule, MatButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
