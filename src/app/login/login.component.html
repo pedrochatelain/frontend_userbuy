@@ -4,28 +4,7 @@
         <p>The place where you can buy stuff right away and without any problems</p>
     </div>
     <div class="right-content">
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Username</mat-label>
-              <input matInput [(ngModel)]="username" name="username">
-            </mat-form-field>
-          
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input matInput [(ngModel)]="password" name="password">
-              </mat-form-field>
-            
-        </form>
-        <button class="btn-login" (click)="login()" [disabled]="loading" mat-flat-button>
-        @if (! loading) {
-            Login
-        } @else {
-            Logging in
-        }        
-        </button>
-        @if (error) {
-        <mat-error>{{error}}</mat-error>
-        }        
+      <app-login-form></app-login-form>
     </div>
           
 </div>
