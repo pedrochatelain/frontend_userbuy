@@ -1,14 +1,20 @@
-<mat-card class="example-card" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>{{product.name}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{product.category}}</p>
-    </mat-card-content>
-    <mat-card-footer class="example-card-footer">
-      <mat-chip-set aria-label="Chihuahua traits">
-        <mat-chip>{{product.price}}</mat-chip>
-        <mat-chip>{{product.currency}}</mat-chip>
-      </mat-chip-set>
-    </mat-card-footer>
+<mat-card appearance="outlined">
+  <ng-container *ngIf="product.image; else noImage">
+    <img mat-card-image [src]="product.image" [alt]="product.name" />
+  </ng-container>
+  <ng-template #noImage>
+    <img mat-card-image src="../assets/product_image_not_available.png" alt="Image not available" />
+  </ng-template>
+
+  <mat-card-content>
+    <div class="category">
+      {{ product.category }}
+    </div>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <div class="price">
+      {{ product.currency }} {{ product.price }}
+    </div>
+    <button mat-stroked-button>Purchase</button>
+  </mat-card-content>
+
 </mat-card>
