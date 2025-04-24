@@ -1,4 +1,4 @@
-import {Component, inject, Injectable} from '@angular/core';
+import {Component, inject, Injectable, OnInit} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
 })
 @Injectable({providedIn: 'root'})
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private http = inject(HttpClient);
   username = ""
   password = ""
@@ -25,6 +25,10 @@ export class LoginComponent {
   error = null
 
   constructor(private router: Router) {}
+  ngOnInit(): void {
+    this.username = ""
+    this.password = ""
+  }
 
   login(): void {
     this.loading = true
