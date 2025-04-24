@@ -40,13 +40,13 @@ export class LoginComponent {
         localStorage.setItem('token', response.token);
       },
       error: error => {
-        setTimeout(() => this.error = error.error.error, 1000);
+        this.error = error.error.error
         console.error('Errore:', error);
       },
       complete: () => {
         console.log('Request complete');
       }
     });
-    setTimeout(() => this.loading = false, 1000);
+    this.loading = false
   }
 }

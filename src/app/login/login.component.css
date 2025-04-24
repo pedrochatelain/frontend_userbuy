@@ -11,11 +11,30 @@
 .container {
     height: 100%;
     display: grid;
-    justify-content: center;
-    align-content: center;
+    grid-auto-flow: column;
+}
+
+.left-content {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--mat-sys-on-primary-container);
+}
+
+.left-content h1, .left-content p {
+  color: white;
+}
+
+.left-content p {
+  width: 80%;
+}
+
+.right-content {
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .btn-login {
-    justify-self: center;
     width: 30%;
 }
