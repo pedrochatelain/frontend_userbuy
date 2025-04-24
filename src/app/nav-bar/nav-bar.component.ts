@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-  selectedButton: string = 'products'; // Default to the "Products" button.
+  selectedButton: string = 'home';
 
   constructor(private router: Router) {}
 
@@ -25,6 +25,17 @@ export class NavBarComponent {
       } else {
         console.error('User ID not found in the token.');
       }
+    } else {
+      console.error('No token found in localStorage.');
+      this.router.navigate(['/login']);
+    }
+  }
+
+  navigateToHome(): void {
+    const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
+    if (token) {
+      this.selectedButton = 'home'; // Set the selected button.
+      this.router.navigate(['home']);
     } else {
       console.error('No token found in localStorage.');
       this.router.navigate(['/login']);
