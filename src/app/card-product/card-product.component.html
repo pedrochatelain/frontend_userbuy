@@ -14,7 +14,10 @@
     <div class="price">
       {{ product.currency }} {{ product.price }}
     </div>
-    <button mat-stroked-button>Purchase</button>
+    <button (click)="purchase()" [disabled]="isPurchased" mat-stroked-button>
+      <p *ngIf=" ! isPurchased">Purchase</p>
+      <p *ngIf="isPurchased" class="purchased">Purchased</p>
+    </button>
   </mat-card-content>
 
 </mat-card>

@@ -35,3 +35,8 @@ img {
     font-weight: lighter;
     margin-bottom: 10px;
 }
+
+.purchased {
+    color: green;
+    opacity: .5;
+}
