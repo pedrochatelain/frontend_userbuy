@@ -25,10 +25,7 @@ export class PurchasesComponent {
     this.userId = this.route.snapshot.paramMap.get('id_user');
     this.http.get<Purchase[]>(`http://192.168.0.149:3000/api/purchases/${this.userId}`, { headers }).subscribe({
       next: (response) => {
-        setTimeout(() => {
-          this.purchases = response;
-          console.log('Success:', response);
-        }, 2000);
+        this.purchases = response;
       },
       error: (error) => {
         console.error('Error:', error);
