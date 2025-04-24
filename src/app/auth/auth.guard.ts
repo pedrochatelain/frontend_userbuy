@@ -10,19 +10,24 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const token = localStorage.getItem('token');
+
     if (token) {
       try {
         const decoded: any = jwtDecode(token);
 
-        // Ensure token is valid and user matches route parameter
-        if (Date.now() / 1000 < decoded.exp && decoded.id === route.params['id_user']) {
-          return true;
+        // Check if the token is still valid
+        if (Date.now() / 1000 < decoded.exp) {
+          // Check if route has `id_user` parameter and validate it, if applicable
+          if (!route.params['id_user'] || decoded.id === route.params['id_user']) {
+            return true;
+          }
         }
       } catch (e) {
         console.error('Invalid token:', e);
       }
     }
 
+    // If no valid token, navigate to login
     this.router.navigate(['login']);
     return false;
   }
