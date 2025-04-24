@@ -31,6 +31,11 @@ export class NavBarComponent {
     }
   }
 
+  logout() {
+    localStorage.removeItem('token'); // or sessionStorage
+    this.router.navigate(['/login']); // Redirect to login page
+  }  
+
   navigateToHome(): void {
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
     if (token) {
