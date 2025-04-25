@@ -20,8 +20,10 @@ mat-card-content button {
 }
 
 img {
-    height: 220px;
-    width: 220px;
+    border-radius: 10%;
+    padding: 20px;
+    height: 200px;
+    width: 200px;
 }
 
 .mdc-card__media {

@@ -1,6 +1,6 @@
 <mat-card appearance="outlined">
   <ng-container *ngIf="product.image; else noImage">
-    <img mat-card-image [src]="product.image" [alt]="product.name" />
+    <img  [src]="product.image" [alt]="product.name" />
   </ng-container>
   <ng-template #noImage>
     <img mat-card-image src="../assets/product_image_not_available.png" alt="Image not available" />
@@ -14,7 +14,7 @@
     <div class="price">
       {{ product.currency }} {{ product.price }}
     </div>
-    <button (click)="purchase()" [disabled]="isPurchased" mat-stroked-button>
+    <button (click)="purchase()" [disabled]="isPurchased" mat-flat-button>
       <p *ngIf=" ! isPurchased">Purchase</p>
       <p *ngIf="isPurchased" class="purchased">Purchased</p>
     </button>
