@@ -5,11 +5,12 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 170px;
+    width: 200px;
     color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     color: var(--mat-sys-on-primary-container);
+    padding-top: 30px;
 }
 
 .btn-nav-bar {
@@ -19,6 +20,11 @@
 .btn-nav-bar-logout {
     margin-bottom: 40px;
     align-self: end;
+}
+
+button {
+    justify-self: center;
+    width: 170px;
 }
 
 .selected {
