@@ -1,11 +1,15 @@
 <div class="container">
-    <div class="left-content">
-        <h1>Welcome to Userbuy</h1>
-        <p>The place where you can buy stuff right away and without any problems</p>
-    </div>
-    <div class="right-content">
-      <app-login-form></app-login-form>
-    </div>
-          
+  <div class="left-content">
+    <h1>Welcome to Userbuy</h1>
+    <p>The place where you can buy stuff right away and without any problems</p>
+  </div>
+  <div class="right-content">
+    <app-login-form [class.hidden]="!showLoginForm"></app-login-form>
+    <app-create-account-form [class.hidden]="showLoginForm"></app-create-account-form>
+    @if (showLoginForm) {
+      <button class="btn-toggle" mat-button (click)="toggleForms()">I don't have an account</button>
+    } @else {
+      <button class="btn-toggle" mat-button (click)="toggleForms()">Go back to Login</button>
+    }
+  </div>
 </div>
-  
