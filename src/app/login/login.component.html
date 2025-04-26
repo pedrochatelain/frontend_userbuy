@@ -4,8 +4,8 @@
     <p>The place where you can buy stuff right away and without any problems</p>
   </div>
   <div class="right-content">
-    <app-login-form [class.hidden]="!showLoginForm"></app-login-form>
-    <app-create-account-form [class.hidden]="showLoginForm"></app-create-account-form>
+    <app-login-form *ngIf="isCreateUserHidden"></app-login-form>
+    <app-create-account-form [disabled]="isCreateUserHidden"></app-create-account-form>
     @if (showLoginForm) {
       <button class="btn-toggle" mat-button (click)="toggleForms()">I don't have an account</button>
     } @else {

@@ -15,7 +15,7 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
   styleUrl: './create-account-form.component.css'
 })
 @Injectable({providedIn: 'root'})
-export class CreateAccountFormComponent implements OnInit {
+export class CreateAccountFormComponent {
   private http = inject(HttpClient);
   username = ""
   password = ""
@@ -24,9 +24,9 @@ export class CreateAccountFormComponent implements OnInit {
   loggedIn = false;
   error = null
   private _snackBar = inject(MatSnackBar);
+  @Input() disabled = true
 
-  constructor(private router: Router) {}
-  ngOnInit(): void {
+  emptyForm(): void {
     this.username = ""
     this.password = ""
     this.repeat_password = ""
