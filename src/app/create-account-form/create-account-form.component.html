@@ -11,11 +11,11 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Repeat password</mat-label>
-      <input matInput [(ngModel)]="password" name="password">
+      <input matInput [(ngModel)]="repeat_password" name="password">
     </mat-form-field>
     
 </form>
-<button class="btn-create-account" (click)="createAccount()" [disabled]="loading" mat-flat-button>
+<button class="btn-create-account" (click)="createAccount()" mat-flat-button>
 @if (! loading) {
     Create account
 } @else {
