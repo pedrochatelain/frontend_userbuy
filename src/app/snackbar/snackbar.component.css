@@ -1,0 +1,26 @@
+.container {
+    display: grid;
+    grid-auto-flow: column;
+    align-content: center;
+    height: 30px;
+    width: 340px;
+}
+
+mat-icon {
+    border-radius: 100%;
+    background-color: green;
+    padding: 3px;
+    align-self: center;
+    color: var(--mat-sys-on-primary);
+    width: fit-content;
+}
+
+p {
+    margin-bottom: 13px;
+}
+
+button {
+    align-self: center;
+    justify-self: end;
+    color: var(--mat-sys-on-primary) !important;
+}
