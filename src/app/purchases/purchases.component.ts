@@ -2,10 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../card-product/card-product.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-purchases',
-  imports: [CardProductComponent],
+  imports: [CardProductComponent, CommonModule],
   templateUrl: './purchases.component.html',
   styleUrl: './purchases.component.css'
 })
@@ -41,6 +42,7 @@ export class PurchasesComponent {
 interface Purchase {
   _id: string;
   products: Product[];
+  purchaseDate: Date
 }
 
 interface Product {
