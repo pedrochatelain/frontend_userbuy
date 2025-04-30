@@ -4,7 +4,7 @@
         <ng-container *ngIf="purchases?.length">
             <ng-container *ngFor="let purchase of purchases; trackBy: trackByPurchase">
                 <ng-container *ngIf="isNewDate(purchase.purchaseDate)">
-                    <h2>{{ purchase.purchaseDate | date: 'fullDate' }}</h2>
+                    <p class="date-purchase">{{ purchase.purchaseDate | date: 'fullDate' }}</p>
                 </ng-container>
                 <ng-container *ngFor="let product of purchase.products; trackBy: trackByProduct">
                     <app-card-product 

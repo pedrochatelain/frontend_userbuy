@@ -6,3 +6,19 @@
 h1 {
     color: var(--mat-sys-primary);
 }
+
+.products-container {
+    display: grid;
+    /* gap: 25px; */
+}
+
+.date-purchase {
+    margin-top: 20px;
+    font-size: larger;
+    font-weight: 500;
+    /* margin-bottom: 40px; */
+}
+
+app-card-product {
+    margin-bottom: 25px
+}
