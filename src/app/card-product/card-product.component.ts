@@ -15,6 +15,7 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 @Injectable({providedIn: 'root'})
 export class CardProductComponent {
   @Input() product!: any
+  @Input() isBtnPurchaseDisabled: boolean = false
   private http = inject(HttpClient);
   isPurchased: boolean = false
   private _snackBar = inject(MatSnackBar);

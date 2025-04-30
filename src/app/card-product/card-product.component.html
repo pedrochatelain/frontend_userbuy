@@ -14,10 +14,12 @@
     <div class="price">
       {{ product.currency }} {{ product.price }}
     </div>
-    <button (click)="purchase()" [disabled]="isPurchased" mat-flat-button>
-      <p *ngIf=" ! isPurchased">Purchase</p>
-      <p *ngIf="isPurchased" class="purchased">Purchased</p>
-    </button>
+    <ng-container *ngIf=" ! isBtnPurchaseDisabled">
+      <button ng (click)="purchase()" [disabled]="isPurchased" mat-flat-button>
+        <p *ngIf=" ! isPurchased">Purchase</p>
+        <p *ngIf="isPurchased" class="purchased">Purchased</p>
+      </button>
+    </ng-container>
   </mat-card-content>
 
 </mat-card>
