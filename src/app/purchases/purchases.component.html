@@ -1,13 +1,18 @@
 <div class="container">
-    <h1>My purchases</h1>
+    <h1>My Purchases</h1>
     <div class="products-container">
-    @if (purchases) {
-        @for (purchase of purchases; track purchase._id) {
-            <h2>{{purchase.purchaseDate | date: 'fullDate'}}</h2>
-            @for (product of purchase.products; track product._id) {
-            <app-card-product [product] = product [isBtnPurchaseDisabled] = true ></app-card-product>
-            }
-        }   
-    }
+        <ng-container *ngIf="purchases?.length">
+            <ng-container *ngFor="let purchase of purchases; trackBy: trackByPurchase">
+                <ng-container *ngIf="isNewDate(purchase.purchaseDate)">
+                    <h2>{{ purchase.purchaseDate | date: 'fullDate' }}</h2>
+                </ng-container>
+                <ng-container *ngFor="let product of purchase.products; trackBy: trackByProduct">
+                    <app-card-product 
+                        [product]="product" 
+                        [isBtnPurchaseDisabled]="true">
+                    </app-card-product>
+                </ng-container>
+            </ng-container>
+        </ng-container>
     </div>
 </div>

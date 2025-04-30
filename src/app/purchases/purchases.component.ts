@@ -15,6 +15,7 @@ export class PurchasesComponent {
   private http = inject(HttpClient);
   purchases: Purchase[] = []; // Updated to an array
   userId: string | null = null;
+  private lastRenderedDate: string | null = null;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -26,8 +27,10 @@ export class PurchasesComponent {
     this.userId = this.route.snapshot.paramMap.get('id_user');
     this.http.get<Purchase[]>(`http://192.168.0.149:3000/api/purchases/${this.userId}`, { headers }).subscribe({
       next: (response) => {
-        this.purchases = response;
-      },
+        this.purchases = response.map(purchase => ({
+          ...purchase,
+          purchaseDate: new Date(purchase.purchaseDate), // Convert string to Date
+        }));      },
       error: (error) => {
         console.error('Error:', error);
       },
@@ -36,7 +39,27 @@ export class PurchasesComponent {
       },
     });
   }
+
+  isNewDate(date: Date): boolean {
+    const formattedDate = date.toDateString(); // Ensure the parameter is a Date
+    if (formattedDate !== this.lastRenderedDate) {
+      this.lastRenderedDate = formattedDate;
+      return true;
+    }
+    return false;
+  }  
+
+  trackByPurchase(index: number, purchase: any): string {
+    return purchase._id;
+  }
+
+  trackByProduct(index: number, product: any): string {
+    return product._id;
+  }
+
+
 }
+
 
 
 interface Purchase {
