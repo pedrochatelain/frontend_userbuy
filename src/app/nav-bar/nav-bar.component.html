@@ -3,7 +3,7 @@
       class="btn-nav-bar"
       [class.selected]="selectedButton === 'home'"
       (click)="navigateToHome()"
-      mat-button
+      mat-flat-button
     >
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="local_mall"></mat-icon>
       <p>Products</p>
@@ -12,7 +12,7 @@
       class="btn-nav-bar"
       [class.selected]="selectedButton === 'purchases'"
       (click)="navigateToPurchases()"
-      mat-button
+      mat-flat-button
     >
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
       <p>My purchases</p>
@@ -21,7 +21,7 @@
       class="btn-nav-bar-logout"
       [class.selected]="selectedButton === 'logout'"
       (click)="logout()"
-      mat-button
+      mat-flat-button
     >
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
       <p>Logout</p>

@@ -6,14 +6,14 @@
     left: 0;
     height: 100%;
     width: 200px;
-    color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    color: var(--mat-sys-on-primary-container);
+    background-color: var(--mat-sys-primary);
     padding-top: 30px;
 }
 
-.btn-nav-bar {
+button {
+    background-color: var(--mat-sys-on-primary);
     margin-bottom: 10px;
 }
 
@@ -28,5 +28,5 @@ button {
 }
 
 .selected {
-    background-color: var(--mat-sys-primary-fixed);
+    background-color: var(--mat-sys-on-primary-fixed);
 }
