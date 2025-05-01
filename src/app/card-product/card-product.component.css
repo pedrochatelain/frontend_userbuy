@@ -1,4 +1,5 @@
 mat-card {
+    border-color: var(--mat-sys-primary-fixed);
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr 3fr;
