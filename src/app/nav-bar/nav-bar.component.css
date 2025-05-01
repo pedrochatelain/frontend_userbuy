@@ -28,5 +28,5 @@ button {
 }
 
 .selected {
-    background-color: var(--mat-sys-on-primary-fixed);
+    background-color: var(--mat-sys-on-primary-fixed) !important;
 }
