@@ -3,6 +3,7 @@ mat-card {
     grid-auto-flow: column;
     grid-template-columns: 1fr 3fr;
     width: 80%;
+    background-color: transparent;
 }
 
 mat-card-content {
@@ -20,8 +21,8 @@ mat-card-content button {
 }
 
 img {
-    border-radius: 10%;
-    padding: 20px;
+    border-radius: 6%;
+    padding: 10px;
     height: 200px;
     width: 200px;
 }
