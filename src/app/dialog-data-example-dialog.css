@@ -1,3 +1,35 @@
+.container {
+    display: grid;
+}
+
 mat-dialog-content {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: min-content;
+}
+
+.container-btn-add-product {
+    display: grid;
+    justify-self: center;
+    width: 50%;
+}
+
+.form-field-name, .form-field-stock {
+    margin-left: 20px;
+}
+
+mat-error, .success {
+    padding-left: 30px;
+    padding-right: 30px;
+    /* width: 90%; */
+}
+
+
+mat-error p {
+    font-weight: 300;
+}
+
+.success {
+    color: green;
+    font-weight: 500;
 }
