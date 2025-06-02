@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../card-product/card-product.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-purchases',
@@ -17,10 +17,11 @@ export class PurchasesComponent {
   userId: string | null = null;
   private lastRenderedDate: string | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key used to store your token
+    this.viewportScroller.scrollToPosition([0, 0]);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
     });
