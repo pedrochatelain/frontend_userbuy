@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,7 @@ export interface DialogData {
   selector: 'dialog-data-example-dialog',
   templateUrl: './dialog-data-example-dialog.html',
   styleUrl: './dialog-data-example-dialog.css',
-  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule],
+  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, CommonModule],
 })
 export class DialogDataExampleDialog {
   data = inject(MAT_DIALOG_DATA);
@@ -60,38 +61,55 @@ export class DialogDataExampleDialog {
   stock = ""
   currency = ""
   price = ""
+  btnTitle = "Add Product"
   private http = inject(HttpClient);
+  error = ""
+  errorName = ""
+  errorCategory = ""
+  success = ""
+  isBtnDisabled = false
 
   addProduct(): void {
-  const product = {
-    "category": this.category,
-    "price": this.price,
-    "name": this.name,
-    "stock_quantity": this.stock,
-    "currency": this.currency
-  };
+    this.btnTitle = "Loading"
+    this.error = ""
+    this.errorName = ""
+    this.errorCategory = ""
+    const product = {
+      "category": this.category,
+      "price": this.price,
+      "name": this.name,
+      "stock_quantity": this.stock,
+      "currency": this.currency
+    };
 
-  // Retrieve the token from local storage
-  const token = localStorage.getItem('token');
+    // Retrieve the token from local storage
+    const token = localStorage.getItem('token');
 
-  // Set up headers with the token
-  const headers = { 
-    'Authorization': `Bearer ${token}` 
-  };
+    // Set up headers with the token
+    const headers = { 
+      'Authorization': `Bearer ${token}` 
+    };
 
-  // Make the HTTP POST request with headers
-  this.http.post<any>('http://192.168.0.149:3000/api/products', product, { headers }).subscribe({
-    next: response => {
-      // this.openSnackBar("User created successfully", "Close", false)
-      console.log(response);
-    },
-    error: error => {
-      console.error('Error:', error);
-    },
-    complete: () => {
-      console.log('Request complete');
-    }
-  });
-}
+    // Make the HTTP POST request with headers
+    this.http.post<any>('http://192.168.0.149:3000/api/products', product, { headers }).subscribe({
+      next: response => {
+        console.log(response);
+        this.success = "Product added successfully"
+        this.btnTitle = "Add Product"
+        this.isBtnDisabled = true
+      },
+      error: error => {
+        console.error('Error:', error);
+        this.error = error.error.error
+        this.errorName = error.error.issues.name
+        this.errorCategory = error.error.issues.category
+        this.btnTitle = "Add Product"
+
+      },
+      complete: () => {
+        console.log('Request complete');
+      }
+    });
+  }
 
 }
