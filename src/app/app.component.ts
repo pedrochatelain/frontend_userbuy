@@ -15,10 +15,11 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { AuthGuard } from './auth/auth.guard';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, MatIconModule, NavBarComponent],
+  imports: [RouterOutlet, MatButtonModule, MatIconModule, NavBarComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -26,7 +27,7 @@ export class AppComponent {
   showNavBar: boolean = true;
   dialog = inject(MatDialog);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authGuard: AuthGuard) {
     // Subscribe to route changes to show/hide the nav-bar
     this.router.events.subscribe(() => {
       const currentRoute = this.router.url;
@@ -40,6 +41,10 @@ export class AppComponent {
         animal: 'panda',
       },
     });
+  }
+
+  get isAdmin(): boolean {
+    return this.authGuard.isAdmin();
   }
 
 }

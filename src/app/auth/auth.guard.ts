@@ -31,4 +31,21 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['login']);
     return false;
   }
+
+  isAdmin(): boolean {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+
+        // Check if the role is ADMIN
+        return decoded.role === 'ADMIN';
+      } catch (e) {
+        console.error('Invalid token:', e);
+      }
+    }
+
+    return false;
+  }
 }
