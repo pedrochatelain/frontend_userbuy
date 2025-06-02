@@ -1,4 +1,9 @@
 @if (showNavBar) {
 <app-nav-bar></app-nav-bar>
+    <button mat-fab extended (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        Add product
+    </button>
+
 }
 <router-outlet />

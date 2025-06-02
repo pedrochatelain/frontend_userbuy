@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Adding new product</h2>
+<mat-dialog-content>
+
+	<mat-form-field>
+		<mat-label>Category</mat-label>
+      	<input matInput [(ngModel)]="category" name="category">
+    </mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Name</mat-label>
+      	<input matInput [(ngModel)]="name" name="nam">
+    </mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Price</mat-label>
+      	<input matInput [(ngModel)]="price" name="price">
+    </mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Stock quantity</mat-label>
+      	<input matInput [(ngModel)]="stock" name="stock">
+    </mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Currency</mat-label>
+      	<input matInput [(ngModel)]="currency" name="currency">
+    </mat-form-field>
+
+    <button class="btn-add-product" mat-flat-button (click)="addProduct()">Add product</button>
+
+</mat-dialog-content>
