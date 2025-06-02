@@ -35,8 +35,8 @@ export class CardProductComponent {
       const decodedToken = this.decodeToken(token);
       const userId = decodedToken?.id; // Replace 'user_id' with the actual key in the payload.
       const data = {
-        "userID": userId,
-        "productsID": [this.product._id]
+        "idUser": userId,
+        "idProduct": this.product._id
       }
       this.http.post<any>('http://192.168.0.149:3000/api/purchases', data).subscribe({
         next: response => {

@@ -6,12 +6,10 @@
                 <ng-container *ngIf="isNewDate(purchase.purchaseDate)">
                     <p class="date-purchase">{{ purchase.purchaseDate | date: 'fullDate' }}</p>
                 </ng-container>
-                <ng-container *ngFor="let product of purchase.products; trackBy: trackByProduct">
-                    <app-card-product 
-                        [product]="product" 
-                        [isBtnPurchaseDisabled]="true">
-                    </app-card-product>
-                </ng-container>
+                <app-card-product 
+                    [product]="purchase.product" 
+                    [isBtnPurchaseDisabled]="true">
+                </app-card-product>
             </ng-container>
         </ng-container>
     </div>

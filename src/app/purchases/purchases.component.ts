@@ -26,7 +26,7 @@ export class PurchasesComponent {
       'Authorization': `Bearer ${token}`,
     });
     this.userId = this.route.snapshot.paramMap.get('id_user');
-    this.http.get<Purchase[]>(`http://192.168.0.149:3000/api/purchases/${this.userId}`, { headers }).subscribe({
+    this.http.get<Purchase[]>(`http://192.168.0.149:3000/api/users/${this.userId}/purchases`, { headers }).subscribe({
       next: (response) => {
         this.purchases = response.map(purchase => ({
           ...purchase,
@@ -65,7 +65,7 @@ export class PurchasesComponent {
 
 interface Purchase {
   _id: string;
-  products: Product[];
+  product: Product;
   purchaseDate: Date
 }
 

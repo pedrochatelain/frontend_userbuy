@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.http.get<any>('http://192.168.0.149:3000/api/products').subscribe({
       next: response => {
         this.loading = false
-        this.products = response
+        this.products = response.products
         console.log('Success:', response);
       },
       error: error => {
