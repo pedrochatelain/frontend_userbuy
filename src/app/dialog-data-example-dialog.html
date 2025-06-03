@@ -1,6 +1,6 @@
 <div class="container">
-<h2 mat-dialog-title>Add Product</h2>
-	<mat-dialog-content>
+<h2 *ngIf=" ! productAdded" mat-dialog-title>Add Product</h2>
+	<mat-dialog-content *ngIf=" ! productAdded">
 
 		<mat-form-field>
 			<mat-label>Category</mat-label>
@@ -33,12 +33,32 @@
 	<div class="container-btn-add-product" *ngIf="isBtnDisabled == false">
 		<button  mat-flat-button (click)="addProduct()">{{btnTitle}}</button>
 	</div>
-	<mat-error>
+	<mat-error *ngIf=" ! productAdded">
 		<h4>{{error}}</h4>
 		<p>{{errorName}}</p>
 		<p>{{errorCategory}}</p>
 	</mat-error>
-	<div class="success">
-		<p>{{success}}</p>
+	<div class="success" *ngIf="productAdded">
+		<div class="message-product-added">
+			<mat-icon class="check-icon" fontIcon="check"></mat-icon>
+			<p>{{success}}</p>
+		</div>
+		<div class="product-added">
+			<div class="keys">
+				<p>Category</p>
+				<p>Name</p>
+				<p>Price</p>
+				<p>Currency</p>
+				<p>Stock quantity</p>
+			</div>
+			<div class="values">
+				<p>{{ product.category }}</p>
+				<p>{{ product.name }}</p>
+				<p>{{ product.price }}</p>
+				<p>{{ product.currency }}</p>
+				<p>{{ product.stock_quantity }}</p>
+			</div>
+		</div>
+		<button class="btn-add-image" mat-flat-button>Add image</button>
 	</div>
 </div>

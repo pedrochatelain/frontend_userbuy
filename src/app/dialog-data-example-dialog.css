@@ -30,6 +30,41 @@ mat-error p {
 }
 
 .success {
-    color: green;
+    display: grid;
     font-weight: 500;
+    font-size: x-large;
+    padding: 20px;
+}
+
+.check-icon {
+    color: white;
+    background-color: green;
+    border-radius: 100%;
+    padding: 6px;
+    margin-right: 20px;
+}
+
+.message-product-added {
+    color: green;
+    display: flex;
+    align-items: center;
+}
+
+.product-added {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.product-added .keys {
+    font-weight: 300;
+}
+
+.product-added .keys p, .product-added .values p{
+    margin: 10px;
+}
+
+.btn-add-image {
+    width: 80%;
+    justify-self: center;
+    margin-top: 30px;
 }

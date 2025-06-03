@@ -57,7 +57,7 @@ export interface DialogData {
   selector: 'dialog-data-example-dialog',
   templateUrl: './dialog-data-example-dialog.html',
   styleUrl: './dialog-data-example-dialog.css',
-  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, CommonModule],
+  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, CommonModule, MatIconModule],
 })
 export class DialogDataExampleDialog {
   data = inject(MAT_DIALOG_DATA);
@@ -73,6 +73,8 @@ export class DialogDataExampleDialog {
   errorCategory = ""
   success = ""
   isBtnDisabled = false
+  productAdded = false;
+  product!: Product;
 
   addProduct(): void {
     this.btnTitle = "Loading"
@@ -86,6 +88,7 @@ export class DialogDataExampleDialog {
       "stock_quantity": this.stock,
       "currency": this.currency
     };
+    this.productAdded = false
 
     // Retrieve the token from local storage
     const token = localStorage.getItem('token');
@@ -98,7 +101,8 @@ export class DialogDataExampleDialog {
     // Make the HTTP POST request with headers
     this.http.post<any>('http://192.168.0.149:3000/api/products', product, { headers }).subscribe({
       next: response => {
-        console.log(response);
+        this.product = response.product
+        this.productAdded = true
         this.success = "Product added successfully"
         this.btnTitle = "Add Product"
         this.isBtnDisabled = true
@@ -117,4 +121,12 @@ export class DialogDataExampleDialog {
     });
   }
 
+}
+
+interface Product {
+  category: String,
+  price: String,
+  name: String,
+  stock_quantity: String,
+  currency: String
 }
