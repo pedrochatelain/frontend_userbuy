@@ -42,6 +42,28 @@ data = inject(MAT_DIALOG_DATA);
   productAdded = false;
   product!: Product;
   loading = false
+stockError = '';
+
+validateStock() {
+  const stockValue = this.stock; // Get the current stock value as a string
+
+  // Check if the stock is empty
+  if (!stockValue) {
+    this.stockError = 'Stock is required';
+    return;
+  }
+
+  // Check if the stock is a positive integer using a regular expression
+  const positiveIntegerPattern = /^[1-9]\d*$/;
+  if (!positiveIntegerPattern.test(stockValue)) {
+    this.stockError = 'Stock must be a positive integer';
+    return;
+  }
+
+  // Clear the error if the input is valid
+  this.stockError = '';
+}
+
 
   addProduct(): void {
     this.loading = true

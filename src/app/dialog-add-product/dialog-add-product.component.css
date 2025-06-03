@@ -18,10 +18,9 @@ mat-dialog-content {
     margin-left: 20px;
 }
 
-mat-error, .success {
+.container-btn-add-product mat-error, .success {
     padding-left: 30px;
     padding-right: 30px;
-    /* width: 90%; */
 }
 
 
