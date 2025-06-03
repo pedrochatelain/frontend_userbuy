@@ -31,7 +31,8 @@
 	</mat-dialog-content>
 	
 	<div class="container-btn-add-product" *ngIf="isBtnDisabled == false">
-		<button  mat-flat-button (click)="addProduct()">{{btnTitle}}</button>
+		<mat-spinner *ngIf="loading"></mat-spinner>
+		<button *ngIf=" ! loading" mat-flat-button (click)="addProduct()">{{btnTitle}}</button>
 	</div>
 	<mat-error *ngIf=" ! productAdded">
 		<h4>{{error}}</h4>

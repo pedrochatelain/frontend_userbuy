@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './auth/auth.guard';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -57,7 +58,7 @@ export interface DialogData {
   selector: 'dialog-data-example-dialog',
   templateUrl: './dialog-data-example-dialog.html',
   styleUrl: './dialog-data-example-dialog.css',
-  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, CommonModule, MatIconModule],
+  imports: [MatDialogTitle, MatDialogContent, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, CommonModule, MatIconModule, MatProgressSpinnerModule],
 })
 export class DialogDataExampleDialog {
   data = inject(MAT_DIALOG_DATA);
@@ -75,9 +76,10 @@ export class DialogDataExampleDialog {
   isBtnDisabled = false
   productAdded = false;
   product!: Product;
+  loading = false
 
   addProduct(): void {
-    this.btnTitle = "Loading"
+    this.loading = true
     this.error = ""
     this.errorName = ""
     this.errorCategory = ""
@@ -106,6 +108,7 @@ export class DialogDataExampleDialog {
         this.success = "Product added successfully"
         this.btnTitle = "Add Product"
         this.isBtnDisabled = true
+        this.loading = false
       },
       error: error => {
         console.error('Error:', error);
@@ -113,10 +116,9 @@ export class DialogDataExampleDialog {
         this.errorName = error.error.issues.name
         this.errorCategory = error.error.issues.category
         this.btnTitle = "Add Product"
-
+        this.loading = false
       },
       complete: () => {
-        console.log('Request complete');
       }
     });
   }
