@@ -15,7 +15,7 @@ export class ProductService {
    * @param product The product details to add.
    * @returns An Observable of the server response.
    */
-  addProduct(product: Product): Observable<any> {
+  addProduct(product: any): Observable<any> {
     // Retrieve the token from local storage
     const token = localStorage.getItem('token');
 
@@ -26,6 +26,20 @@ export class ProductService {
 
     return this.http.post<any>(this.apiUrl, product, { headers });
   }
+
+  uploadProductImage(productId: string, file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+    const token = localStorage.getItem('token'); // Assuming you're using tokens
+    const headers = { Authorization: `Bearer ${token}` };
+
+    return this.http.post(
+      `http://192.168.0.149:3000/api/products/${productId}/images`,
+      formData,
+      { headers }
+    );
+  }
+
 }
 
 /**

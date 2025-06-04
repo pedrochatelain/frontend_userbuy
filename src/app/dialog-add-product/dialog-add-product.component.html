@@ -70,6 +70,17 @@
 				<p>{{ product.stock_quantity }}</p>
 			</div>
 		</div>
-		<button class="btn-add-image" mat-flat-button>Add image</button>
+		<input
+			type="file"
+			accept="image/*"
+			#fileInput
+			hidden
+			(change)="onImageSelected($event)"
+		/>
+		<button
+			class="btn-add-image"
+			mat-flat-button
+			(click)="fileInput.click()"
+		>Add Image</button>
 	</div>
 </div>

@@ -39,7 +39,7 @@ data = inject(MAT_DIALOG_DATA);
   success = ""
   isBtnDisabled = false
   productAdded = false;
-  product!: Product;
+  product!: any;
   loading = false
   private productService = inject(ProductService);
 
@@ -76,4 +76,25 @@ data = inject(MAT_DIALOG_DATA);
       },
     });
   }
+
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.uploadImage(this.product._id, file);
+    }
+  }
+
+  uploadImage(productId: string, file: File): void {
+    this.productService.uploadProductImage(productId, file).subscribe({
+      next: () => {
+        this.success = 'Image uploaded successfully!';
+      },
+      error: (error) => {
+        console.error('Error uploading image:', error);
+        this.error = 'Failed to upload image.';
+      },
+    });
+  }
+
 }
