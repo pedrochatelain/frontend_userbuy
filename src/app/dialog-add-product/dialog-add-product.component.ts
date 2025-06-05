@@ -66,6 +66,9 @@ data = inject(MAT_DIALOG_DATA);
         this.btnTitle = 'Add Product';
         this.isBtnDisabled = true;
         this.loading = false;
+        // Emit the added product
+        this.productService.productAdded.emit(response.product);
+
       },
       error: (error) => {
         console.error('Error:', error);

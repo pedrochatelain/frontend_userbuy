@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, Injectable, OnInit } from '@angular/core';
 import {CardProductComponent} from '../card-product/card-product.component'
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-home',
@@ -15,18 +16,29 @@ export class HomeComponent implements OnInit {
   loading = true;
   products: any[] = [];
 
+  constructor(private productService: ProductService) {}
+
+
   ngOnInit(): void {
-    this.http.get<any>('http://192.168.0.149:3000/api/products').subscribe({
-      next: response => {
-        this.loading = false
-        this.products = response.products
-        console.log('Success:', response);
+    this.fetchProducts();
+
+    // Listen for productAdded events
+    this.productService.productAdded.subscribe((newProduct) => {
+      this.products.push(newProduct); // Add new product to the list
+    });
+
+  }
+
+  fetchProducts(): void {
+    this.loading = true;
+    this.productService.getProducts().subscribe({
+      next: (response) => {
+        this.products = response.products;
+        this.loading = false;
       },
-      error: error => {
-        console.error('Errore:', error);
-      },
-      complete: () => {
-        console.log('Request complete');
+      error: (error) => {
+        console.error('Error fetching products:', error);
+        this.loading = false;
       }
     });
   }

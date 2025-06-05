@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   private apiUrl = 'http://192.168.0.149:3000/api/products';
+  productAdded = new EventEmitter<any>();
 
   constructor(private http: HttpClient) {}
 
@@ -38,6 +39,10 @@ export class ProductService {
       formData,
       { headers }
     );
+  }
+
+  getProducts(): Observable<any> {
+    return this.http.get<any>('http://192.168.0.149:3000/api/products');
   }
 
 }
