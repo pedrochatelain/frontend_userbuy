@@ -14,6 +14,26 @@ export class NavBarComponent {
 
   constructor(private router: Router) {}
 
+  ngOnInit(): void {
+    // Set the initial button based on the current route
+    this.updateSelectedButton(this.router.url);
+
+    // Listen to router navigation events for updates
+    this.router.events.subscribe(() => {
+      this.updateSelectedButton(this.router.url);
+    });
+  }
+
+  private updateSelectedButton(url: string): void {
+    if (url.includes('/purchases')) {
+      this.selectedButton = 'purchases';
+    } else if (url.includes('/home')) {
+      this.selectedButton = 'home';
+    } else {
+      this.selectedButton = ''; // Default or no selection
+    }
+  }
+
   navigateToPurchases(): void {
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
     if (token) {
