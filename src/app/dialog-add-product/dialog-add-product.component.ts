@@ -37,6 +37,7 @@ data = inject(MAT_DIALOG_DATA);
   errorName = ""
   errorCategory = ""
   success = ""
+  uploadingImage = false
   isBtnDisabled = false
   productAdded = false;
   product!: any;
@@ -86,13 +87,18 @@ data = inject(MAT_DIALOG_DATA);
   }
 
   uploadImage(productId: string, file: File): void {
+    this.success = ""
+    this.error = ""
+    this.uploadingImage = true
     this.productService.uploadProductImage(productId, file).subscribe({
       next: () => {
         this.success = 'Image uploaded successfully!';
+        this.uploadingImage = false
       },
       error: (error) => {
         console.error('Error uploading image:', error);
         this.error = 'Failed to upload image.';
+        this.uploadingImage = false
       },
     });
   }

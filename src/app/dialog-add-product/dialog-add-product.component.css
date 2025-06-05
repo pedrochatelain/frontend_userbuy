@@ -30,28 +30,37 @@ mat-error p {
 
 .success {
     display: grid;
-    font-weight: 500;
-    font-size: x-large;
     padding: 20px;
 }
 
 .check-icon {
+    scale: .8;
     color: white;
     background-color: green;
     border-radius: 100%;
     padding: 6px;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.error-icon {
+    scale: .8;
+    color: white;
+    background-color: red;
+    border-radius: 100%;
+    padding: 6px;
+    margin-right: 10px;
 }
 
 .message-product-added {
-    color: green;
     display: flex;
     align-items: center;
+    font-size: large;
 }
 
 .product-added {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    font-size: medium;
 }
 
 .product-added .keys {
@@ -71,4 +80,25 @@ mat-error p {
 mat-spinner {
     justify-self: center;
     scale: .4;
+}
+
+.success-uploading-image, .error-uploading-image, .loading-image {
+    display: flex;
+    align-items: center;
+}
+
+.success-uploading-image {
+    color: green;
+}
+
+.error-uploading-image {
+    color: red;
+}
+
+.loading-image mat-spinner {
+    scale: .3;
+}
+
+.loading-image p {
+    margin-right: 30px;
 }

@@ -51,8 +51,18 @@
 	</mat-error>
 	<div class="success" *ngIf="productAdded">
 		<div class="message-product-added">
-			<mat-icon class="check-icon" fontIcon="check"></mat-icon>
-			<p>{{success}}</p>
+			<div class="success-uploading-image" *ngIf="success">
+				<mat-icon class="check-icon" fontIcon="check"></mat-icon>
+				<p>{{success}}</p>
+			</div>
+			<div class="error-uploading-image" *ngIf="error">
+				<mat-icon class="error-icon" fontIcon="error"></mat-icon>
+				<p>{{error}}</p>
+			</div>
+			<div class="loading-image" *ngIf="uploadingImage">
+				<mat-spinner></mat-spinner>
+				<p>Uploading image...</p>
+			</div>
 		</div>
 		<div class="product-added">
 			<div class="keys">
@@ -78,6 +88,7 @@
 			(change)="onImageSelected($event)"
 		/>
 		<button
+			disabled="{{uploadingImage}}"
 			class="btn-add-image"
 			mat-flat-button
 			(click)="fileInput.click()"
