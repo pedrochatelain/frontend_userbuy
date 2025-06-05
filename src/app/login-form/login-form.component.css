@@ -7,3 +7,7 @@
 button {
     width: 30%;
 }
+
+mat-form-field button {
+    width: auto;
+}

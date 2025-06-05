@@ -3,14 +3,21 @@
     <mat-label>Username</mat-label>
     <input matInput [(ngModel)]="username" name="username">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+
+  <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput [(ngModel)]="password" name="password">
+    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password">
+    <button matSuffix mat-icon-button aria-label="Toggle password visibility" (click)="togglePasswordVisibility()">
+      <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+    </button>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <mat-label>Repeat password</mat-label>
-    <input matInput [(ngModel)]="repeat_password" name="repeat_password">
+    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="repeat_password" name="repeat_password">
+    <button matSuffix mat-icon-button aria-label="Toggle password visibility" (click)="togglePasswordVisibility()">
+      <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+    </button>
   </mat-form-field>
   
   <button class="btn-create-account" (click)="createAccount()" mat-flat-button>

@@ -8,6 +8,10 @@ button {
     width: 40%;
 }
 
+mat-form-field button {
+    width: auto;
+}
+
 .display-none {
     display: none;
 }
