@@ -3,6 +3,20 @@
     margin-top: 30px;
 }
 
-h1 {
+.title {
     color: var(--mat-sys-primary);
+}
+
+.balances span {
+    align-self: top;
+    margin-top: 10px;
+    margin-right: 20px;
+    font-size: x-large;
+    /* font-weight: 100; */
+}
+
+.balances {
+    display: flex;
+    font-weight: 500;
+    font-size: xxx-large;
 }
