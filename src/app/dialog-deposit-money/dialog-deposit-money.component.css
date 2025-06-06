@@ -1,0 +1,10 @@
+.container {
+    display: grid;
+    padding: 10px;
+}
+
+.button-deposit {
+    justify-self: center;
+    width: 80%;
+    margin-bottom: 20px;
+}

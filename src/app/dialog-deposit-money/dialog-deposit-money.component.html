@@ -1,0 +1,12 @@
+<div class="container">
+    <h2 mat-dialog-title>Deposit Money</h2>
+    <mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Deposit</mat-label>
+            <input type="number" matInput [(ngModel)]="deposit" name="deposit">
+        </mat-form-field>
+    </mat-dialog-content>	
+    <button mat-flat-button class="button-deposit" (click)="depositMoney()">
+      <p>Deposit Money</p>
+    </button>
+</div>
