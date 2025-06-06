@@ -18,6 +18,15 @@
       <p>My purchases</p>
     </button>
     <button
+      class="btn-nav-bar"
+      [class.selected]="selectedButton === 'wallet'"
+      (click)="navigateToWallet()"
+      mat-flat-button
+    >
+      <mat-icon fontIcon="wallet"></mat-icon>
+      <p>My Wallet</p>
+    </button>
+    <button
       class="btn-nav-bar-logout"
       [class.selected]="selectedButton === 'logout'"
       (click)="logout()"

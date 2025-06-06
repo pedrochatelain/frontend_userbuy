@@ -1,6 +1,6 @@
 .nav-bar {
     display: grid;
-    grid-auto-rows: max-content auto;
+    grid-auto-rows: 1fr 1fr 1fr 7fr;
     position: fixed;
     top: 0;
     left: 0;
