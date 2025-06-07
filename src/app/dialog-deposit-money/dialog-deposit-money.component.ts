@@ -28,7 +28,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class DialogDepositMoneyComponent {
   data = inject(MAT_DIALOG_DATA);
-  deposit:number = 0
+  deposit:number | null = null
   userId: string | null = null;
 
   constructor(private userService: UserService, private snackbar: MatSnackBar) {}
@@ -38,7 +38,7 @@ export class DialogDepositMoneyComponent {
   }
   
   depositMoney(): void {
-    this.userService.depositMoney(this.userId!, this.deposit).subscribe({
+    this.userService.depositMoney(this.userId!, this.deposit!).subscribe({
       next: (response) => {
         this.userService.depositAdded.emit(response.response.balances);
         let config = new MatSnackBarConfig();
