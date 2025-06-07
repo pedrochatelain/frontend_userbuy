@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddProductComponent } from '../dialog-add-product/dialog-add-product.component';
 import { AuthGuard } from '../../../../auth/auth.guard';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -21,11 +21,11 @@ export class HomeComponent implements OnInit {
   products: any[] = [];
   dialog = inject(MatDialog);
 
-  constructor(private productService: ProductService, private authGuard: AuthGuard) {}
+  constructor(private productService: ProductService, private authGuard: AuthGuard, private viewportScroller: ViewportScroller) {}
 
   ngOnInit(): void {
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.fetchProducts();
-
     // Listen for productAdded events
     this.productService.productAdded.subscribe((newProduct) => {
       this.products.push(newProduct); // Add new product to the list
