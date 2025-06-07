@@ -1,6 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../../../../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogDepositMoneyComponent } from '../dialog-deposit-money/dialog-deposit-money.component';

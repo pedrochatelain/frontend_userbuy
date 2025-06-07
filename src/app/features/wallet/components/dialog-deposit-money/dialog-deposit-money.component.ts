@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../../../../user.service';
 import { MAT_DIALOG_DATA, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
