@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardProductComponent } from '../card-product/card-product.component';
+import { CardProductComponent } from '../features/product/components/card-product/card-product.component';
 import { CommonModule, ViewportScroller } from '@angular/common';
 
 @Component({

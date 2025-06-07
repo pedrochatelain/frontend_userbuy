@@ -7,7 +7,7 @@ import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './auth/auth.guard';
-import { DialogAddProductComponent } from './dialog-add-product/dialog-add-product.component';
+import { DialogAddProductComponent } from './features/product/components/dialog-add-product/dialog-add-product.component';
 
 @Component({
   selector: 'app-root',

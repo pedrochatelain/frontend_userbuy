@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, Injectable, OnInit } from '@angular/core';
-import {CardProductComponent} from '../card-product/card-product.component'
-import { ProductService } from '../product.service';
+import {CardProductComponent} from '../components/card-product/card-product.component'
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-home',
