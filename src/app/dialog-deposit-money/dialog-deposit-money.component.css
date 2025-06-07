@@ -8,3 +8,7 @@
     width: 80%;
     margin-bottom: 20px;
 }
+
+mat-form-field {
+    padding-bottom: 40px;
+}

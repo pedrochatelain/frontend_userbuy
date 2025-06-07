@@ -3,7 +3,22 @@
     <mat-dialog-content>
         <mat-form-field>
             <mat-label>Deposit</mat-label>
-            <input type="number" matInput [(ngModel)]="deposit" name="deposit">
+            <input
+                type="number"
+                inputmode="decimal"
+                matInput
+                [(ngModel)]="deposit"
+                name="deposit"
+                #depositCtrl="ngModel"
+                required
+                pattern="^\d+(\.\d+)?$"
+            />
+            <mat-error *ngIf="depositCtrl.errors?.['required']">
+                Deposit is mandatory
+            </mat-error>
+            <mat-error *ngIf="depositCtrl.errors?.['pattern']">
+                Deposit must be a <strong>positive number</strong> and use a <strong>. (dot)</strong> as the decimal separator
+            </mat-error>
         </mat-form-field>
     </mat-dialog-content>	
     <button mat-flat-button class="button-deposit" (click)="depositMoney()">
