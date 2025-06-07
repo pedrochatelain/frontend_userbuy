@@ -3,7 +3,7 @@ import { HomeComponent } from './features/product/components/home/home.component
 import { LoginComponent } from './features/login/components/login/login.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { AuthGuard } from './auth/auth.guard';
-import { WalletComponent } from './wallet/wallet.component';
+import { WalletComponent } from './features/wallet/components/wallet/wallet.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route redirects to login
