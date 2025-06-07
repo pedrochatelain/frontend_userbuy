@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { inject } from '@angular/core';

@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
-import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
