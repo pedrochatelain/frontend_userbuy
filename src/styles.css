@@ -7,3 +7,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error);
     --mat-snack-bar-button-color: var(--mat-sys-on-error);  
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none;  /* Safari and Chrome */
+  appearance: none; /* Modern browsers */
+}
