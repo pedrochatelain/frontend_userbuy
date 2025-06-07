@@ -13,12 +13,18 @@ mat-card-content {
 
 mat-card-content button {
     margin-top: 60px;
+    border-color: var(--mat-sys-primary-fixed) !important;
+
+}
+
+mat-card-title {
+    font-weight: 100;
 }
 
 .price {
     padding-top: 10px;
-    font-weight: bold;
-    font-size: large;
+    font-weight: 500;
+    font-size: x-large;
 }
 
 img {
