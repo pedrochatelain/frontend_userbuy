@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
   private apiUrl = 'http://192.168.0.149:3000/api/products';
   productAdded = new EventEmitter<any>();
+  cache: any
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +43,12 @@ export class ProductService {
   }
 
   getProducts(): Observable<any> {
-    return this.http.get<any>('http://192.168.0.149:3000/api/products');
+    if (this.cache) {
+      return of(this.cache); // Wrap the cached data in an Observable
+    }
+    return this.http.get<any>('http://192.168.0.149:3000/api/products').pipe(
+      tap(data => this.cache = data) // Cache the data
+    );
   }
 
 }
