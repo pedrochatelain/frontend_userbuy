@@ -1,6 +1,9 @@
 <div class="container">
     <h1 class="title">My Wallet</h1>
-    <h1 class="balances"><span>$</span> {{balances}}</h1>
+    <h1 class="balances">
+        <span>$</span>
+        {{ balances | number: '1.2-2' }}
+    </h1>
     <button mat-flat-button (click)="openDialog()">
       <p>Deposit Money</p>
     </button>

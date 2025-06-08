@@ -1,4 +1,4 @@
-import { ViewportScroller } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../../../../user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-wallet',
-  imports: [MatButtonModule],
+  imports: [ MatButtonModule, CommonModule ],
   templateUrl: './wallet.component.html',
   styleUrl: './wallet.component.css'
 })
