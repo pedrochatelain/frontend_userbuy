@@ -51,6 +51,14 @@ export class ProductService {
     );
   }
 
+  searchProduct(product: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`http://localhost:3000/api/products?name=${product}`, { headers });
+  }
+
 }
 
 /**

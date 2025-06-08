@@ -10,6 +10,15 @@
     </button>
     <button
       class="btn-nav-bar"
+      [class.selected]="selectedButton === 'search'"
+      (click)="navigateToSearch()"
+      mat-flat-button
+    >
+      <mat-icon fontIcon="search"></mat-icon>
+      <p>Search</p>
+    </button>
+    <button
+      class="btn-nav-bar"
       [class.selected]="selectedButton === 'purchases'"
       (click)="navigateToPurchases()"
       mat-flat-button

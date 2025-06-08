@@ -1,0 +1,21 @@
+h1 {
+    color: var(--mat-sys-primary);
+}
+
+.container {
+    margin-left: 300px; /* Matches the width of .nav-bar */
+    margin-top: 30px;
+}
+
+input {
+    font-size: xx-large !important;
+}
+
+mat-form-field {
+    width: 70%;
+}
+
+mat-spinner {
+    scale: .3;
+    justify-self: left;
+}
