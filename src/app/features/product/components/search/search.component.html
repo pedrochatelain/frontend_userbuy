@@ -8,12 +8,12 @@
         <mat-spinner></mat-spinner>
         <p>Searching product</p>
     </div>
-    <div *ngIf="products && products.length > 0">
+    <div *ngIf="products && products.length > 0 && ! loading">
         <div *ngFor="let product of products" class="product-card">
             <app-card-product [product]="product"></app-card-product>
         </div>
     </div>
-    <div *ngIf="noProductsFound">
+    <div *ngIf="noProductsFound && ! loading" class="no-products-found">
         <p>No products found.</p>
     </div>
 </div>
