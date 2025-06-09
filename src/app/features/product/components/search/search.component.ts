@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -22,7 +22,7 @@ export class SearchComponent {
   noProductsFound = false;
   private searchSubject = new Subject<string>();
 
-  constructor(private productService: ProductService, private viewportScroller: ViewportScroller) {
+  constructor(private productService: ProductService, private viewportScroller: ViewportScroller, private renderer: Renderer2) {
     // Subscribe to searchSubject to handle debounced and switched search requests
     this.searchSubject
       .pipe(
@@ -54,6 +54,11 @@ export class SearchComponent {
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
+  }
+
+  ngAfterViewInit(): void {
+    const inputElement = this.renderer.selectRootElement('input[matInput]');
+    inputElement.focus();
   }
 
   searchProduct(product: string): void {
