@@ -19,3 +19,7 @@ input[type="number"] {
   -webkit-appearance: none;  /* Safari and Chrome */
   appearance: none; /* Modern browsers */
 }
+
+h1 {
+  font-weight: 300;
+}
