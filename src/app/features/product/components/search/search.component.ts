@@ -5,6 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Product, ProductService } from '../../services/product.service';
 import { CardProductComponent } from '../card-product/card-product.component';
+import { Subject } from 'rxjs';
+import { debounceTime, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -14,35 +17,48 @@ import { CardProductComponent } from '../card-product/card-product.component';
 })
 export class SearchComponent {
   inputProductName=""
-  timeout: any
   loading = false
   products: Product[] = []
   noProductsFound = false;
+  private searchSubject = new Subject<string>();
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {
+    // Subscribe to searchSubject to handle debounced and switched search requests
+    this.searchSubject
+      .pipe(
+        debounceTime(300), // Wait 300ms after the last input
+        switchMap((productName) => {
+          if (!productName || productName.trim() === '') {
+            this.resetResults();
+            return of(null); // Return a null observable to reset results
+          }
 
-  searchProduct(product: string): void {
-    if (!product || product.trim() === "") {
-      return
-    }
-    this.products = []
-    this.noProductsFound = false
-    this.inputProductName = product
-    this.loading = true
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      this.productService.searchProduct(product).subscribe({
-      next: (response) => {
-        this.products = response.products
-        this.products.length == 0 ? this.noProductsFound = true : this.noProductsFound = false
-      },
-      error: (error) => {
-        console.error('Error uploading image:', error);
-        
-      },
-    });
-      this.loading = false
-    }, 1000);
+          this.loading = true;
+          return this.productService.searchProduct(productName).pipe(
+            catchError((error) => {
+              console.error('Error searching products:', error);
+              this.resetResults();
+              return of(null); // Return a null observable on error
+            })
+          );
+        })
+      )
+      .subscribe((response: any) => {
+        this.loading = false;
+        if (response && response.products) {
+          this.products = response.products;
+          this.noProductsFound = this.products.length === 0;
+        }
+      });
   }
 
+  searchProduct(product: string): void {
+    this.searchSubject.next(product);
+  }
+
+  private resetResults(): void {
+    this.products = [];
+    this.noProductsFound = false;
+    this.loading = false;
+  }
 }
