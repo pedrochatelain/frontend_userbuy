@@ -44,7 +44,7 @@
 		<mat-spinner *ngIf="loading"></mat-spinner>
 		<button *ngIf=" ! loading" mat-flat-button (click)="addProduct()">{{btnTitle}}</button>
 	</div>
-	<mat-error *ngIf=" ! productAdded">
+	<mat-error class="container-error" *ngIf=" ! productAdded">
 		<h4>{{error}}</h4>
 		<p>{{errorName}}</p>
 		<p>{{errorCategory}}</p>
