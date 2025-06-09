@@ -16,6 +16,13 @@ mat-form-field {
 }
 
 mat-spinner {
-    scale: .3;
+    scale: .4;
     justify-self: left;
+}
+
+.searching, .no-products-found {
+    display: flex;
+    font-size: larger;
+    font-weight: 300;
+    align-items: center;
 }

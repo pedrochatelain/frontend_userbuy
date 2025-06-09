@@ -4,9 +4,9 @@
         <mat-label>Product name</mat-label>
         <input matInput [(ngModel)]="inputProductName" name="inputProductName" (ngModelChange)="searchProduct($event)">
     </mat-form-field>
-    <div *ngIf="loading">
+    <div *ngIf="loading" class="searching">
         <mat-spinner></mat-spinner>
-        <p>Searching product with name <span>"{{ inputProductName }}"</span></p>
+        <p>Searching product</p>
     </div>
     <div *ngIf="products && products.length > 0">
         <div *ngFor="let product of products" class="product-card">
