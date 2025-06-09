@@ -8,11 +8,15 @@ h1 {
 }
 
 input {
-    font-size: xx-large !important;
+    font-size: x-large !important;
 }
 
 mat-form-field {
     width: 70%;
+}
+
+mat-label {
+    font-size: large !important;
 }
 
 mat-spinner {
@@ -25,4 +29,26 @@ mat-spinner {
     font-size: larger;
     font-weight: 300;
     align-items: center;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    height: 80px !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+    padding-top: 12px;
+}
+
+.search-icon {
+    opacity: .2;
+    margin-bottom: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+mat-icon {
+    scale: 1.5;
+}
+
+.clear-btn {
+    margin-right: 10px;
 }

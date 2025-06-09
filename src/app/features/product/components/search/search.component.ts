@@ -8,10 +8,12 @@ import { CardProductComponent } from '../card-product/card-product.component';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-search',
-  imports: [ MatInputModule, FormsModule, MatProgressSpinnerModule, CommonModule, CardProductComponent ],
+  imports: [ MatInputModule, FormsModule, MatProgressSpinnerModule, CommonModule, CardProductComponent, MatIconModule, MatButtonModule ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
@@ -65,7 +67,8 @@ export class SearchComponent {
     this.searchSubject.next(product);
   }
 
-  private resetResults(): void {
+  resetResults(): void {
+    this.inputProductName = ""
     this.products = [];
     this.noProductsFound = false;
     this.loading = false;
