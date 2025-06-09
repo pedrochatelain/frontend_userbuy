@@ -7,6 +7,15 @@
     grid-template-columns: 1fr 1fr;
 }
 
+h1 span {
+  font-family: "Londrina Sketch", sans-serif;
+  color: var(--mat-sys-on-primary);
+  justify-self: center;
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: larger;
+}
+
 .left-content {
   display: grid;
   justify-content: center;
