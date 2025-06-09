@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -22,7 +22,7 @@ export class SearchComponent {
   noProductsFound = false;
   private searchSubject = new Subject<string>();
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private viewportScroller: ViewportScroller) {
     // Subscribe to searchSubject to handle debounced and switched search requests
     this.searchSubject
       .pipe(
@@ -50,6 +50,10 @@ export class SearchComponent {
           this.noProductsFound = this.products.length === 0;
         }
       });
+  }
+
+  ngOnInit(): void {
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   searchProduct(product: string): void {
