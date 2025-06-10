@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { environment } from '../../../../../environments/environment';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-card-product',
-  imports: [MatCardModule, MatChipsModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, MatChipsModule, MatButtonModule, CommonModule, MatProgressSpinner],
   templateUrl: './card-product.component.html',
   styleUrl: './card-product.component.css'
 })
@@ -21,6 +22,7 @@ export class CardProductComponent {
   isPurchased: boolean = false
   private _snackBar = inject(MatSnackBar);
   private apiUrl = environment.apiUrl
+  loading = false
 
   openSnackBar(message: string, action: string, hasError: boolean) {
     let config = new MatSnackBarConfig();
@@ -32,6 +34,7 @@ export class CardProductComponent {
   }
 
   purchase(): void {
+    this.loading = true
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
     if (token) {
       const decodedToken = this.decodeToken(token);
@@ -44,12 +47,14 @@ export class CardProductComponent {
         next: response => {
           this.isPurchased = true
           this.openSnackBar(`You bought ${this.product.name}!`, "Close", false)
+          this.loading = false
         },
         error: error => {
           this.openSnackBar("Error: " + error.error.error, "Close", true)
+          this.loading = false
         },
         complete: () => {
-          
+          this.loading = false
         }
       });
     }

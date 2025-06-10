@@ -50,3 +50,19 @@ img {
     color: green;
     opacity: .5;
 }
+
+.purchasing {
+    display: flex;
+    align-items: center;
+    width: 120px;
+}
+
+.purchasing mat-spinner {
+    scale: .5;
+    justify-self: start;
+}
+
+.purchasing p {
+    margin-right: 10px;
+}
+
