@@ -1,0 +1,5 @@
+- If balances is null it should display $ 0.00 (my wallet)
+
+- When app deployed, local files (like no product image available) aren't 
+
+- Products are added twice if not reloading. Once the page is reloaded it appears correctly
