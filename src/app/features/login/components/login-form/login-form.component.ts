@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { environment } from '../../../../../environments/environment.production';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-login-form',
@@ -24,8 +24,11 @@ export class LoginFormComponent implements OnInit {
   error = null
   hidePassword = true
   private apiUrl = environment.apiUrl
+  
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    console.log(this.apiUrl)
+  }
   ngOnInit(): void {
     this.username = ""
     this.password = ""
