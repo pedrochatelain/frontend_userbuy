@@ -3,6 +3,7 @@ import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../features/product/components/card-product/card-product.component';
 import { CommonModule, ViewportScroller } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-purchases',
@@ -16,6 +17,7 @@ export class PurchasesComponent {
   purchases: Purchase[] = []; // Updated to an array
   userId: string | null = null;
   private lastRenderedDate: string | null = null;
+  private apiUrl = environment.apiUrl
 
   constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller) {}
 
@@ -26,7 +28,7 @@ export class PurchasesComponent {
       'Authorization': `Bearer ${token}`,
     });
     this.userId = this.route.snapshot.paramMap.get('id_user');
-    this.http.get<Purchase[]>(`http://192.168.0.149:3000/api/users/${this.userId}/purchases`, { headers }).subscribe({
+    this.http.get<Purchase[]>(`${this.apiUrl}/api/users/${this.userId}/purchases`, { headers }).subscribe({
       next: (response) => {
         this.purchases = response.map(purchase => ({
           ...purchase,

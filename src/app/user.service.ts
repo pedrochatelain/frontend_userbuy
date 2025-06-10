@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   depositAdded = new EventEmitter<any>();
+  private apiUrl = environment.apiUrl
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +20,7 @@ export class UserService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`http://192.168.0.149:3000/api/users/${id_user}/balances`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/api/users/${id_user}/balances`, {headers});
   }
 
   depositMoney(id_user: string, money: number) {
@@ -29,7 +31,7 @@ export class UserService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.patch<any>(`http://192.168.0.149:3000/api/users/${id_user}/balances`, {amount: money}, {headers});
+    return this.http.patch<any>(`${this.apiUrl}/api/users/${id_user}/balances`, {amount: money}, {headers});
   }
 
 }

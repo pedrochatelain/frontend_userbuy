@@ -1,12 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
+import { environment } from '../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://192.168.0.149:3000/api/products';
+  private apiUrl = `${environment.apiUrl}/api/products`;
   productAdded = new EventEmitter<any>();
   cache: any
 
@@ -36,7 +37,7 @@ export class ProductService {
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.post(
-      `http://192.168.0.149:3000/api/products/${productId}/images`,
+      `${this.apiUrl}/${productId}/images`,
       formData,
       { headers }
     );
@@ -46,7 +47,7 @@ export class ProductService {
     if (this.cache) {
       return of(this.cache); // Wrap the cached data in an Observable
     }
-    return this.http.get<any>('http://192.168.0.149:3000/api/products').pipe(
+    return this.http.get<any>(this.apiUrl).pipe(
       tap(data => this.cache = data) // Cache the data
     );
   }
@@ -56,7 +57,7 @@ export class ProductService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`http://localhost:3000/api/products?name=${product}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}?name=${product}`, { headers });
   }
 
 }

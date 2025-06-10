@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../../../../shared/snackbar/snackbar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-create-account-form',
@@ -26,6 +27,7 @@ export class CreateAccountFormComponent {
   private _snackBar = inject(MatSnackBar);
   hidePassword = true
   @Input() disabled = true
+  private apiUrl = environment.apiUrl
 
   emptyForm(): void {
     this.username = ""
@@ -45,7 +47,7 @@ export class CreateAccountFormComponent {
         "username": this.username,
         "password": this.password
       }
-      this.http.post<any>('http://192.168.0.149:3000/api/users', data).subscribe({
+      this.http.post<any>(`${this.apiUrl}/api/users`, data).subscribe({
         next: response => {
           this.username = ""
           this.password = ""

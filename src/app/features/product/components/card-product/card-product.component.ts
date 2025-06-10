@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-card-product',
@@ -19,6 +20,7 @@ export class CardProductComponent {
   private http = inject(HttpClient);
   isPurchased: boolean = false
   private _snackBar = inject(MatSnackBar);
+  private apiUrl = environment.apiUrl
 
   openSnackBar(message: string, action: string, hasError: boolean) {
     let config = new MatSnackBarConfig();
@@ -38,7 +40,7 @@ export class CardProductComponent {
         "idUser": userId,
         "idProduct": this.product._id
       }
-      this.http.post<any>('http://192.168.0.149:3000/api/purchases', data).subscribe({
+      this.http.post<any>(`${this.apiUrl}/api/purchases`, data).subscribe({
         next: response => {
           this.isPurchased = true
           this.openSnackBar(`You bought ${this.product.name}!`, "Close", false)

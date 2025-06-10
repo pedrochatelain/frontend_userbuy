@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../../environments/environment.production';
 
 @Component({
   selector: 'app-login-form',
@@ -22,6 +23,7 @@ export class LoginFormComponent implements OnInit {
   loggedIn = false;
   error = null
   hidePassword = true
+  private apiUrl = environment.apiUrl
 
   constructor(private router: Router) {}
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class LoginFormComponent implements OnInit {
       "username": this.username,
       "password": this.password
     }
-    this.http.post<any>('http://192.168.0.149:3000/api/login', data).subscribe({
+    this.http.post<any>(`${this.apiUrl}/api/login`, data).subscribe({
       next: response => {
         console.log('Success:', response);
         this.router.navigate(['home'])
