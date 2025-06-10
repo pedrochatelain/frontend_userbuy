@@ -10,12 +10,14 @@
         <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>
   </mat-form-field>
-  <button mat-flat-button (click)="login()">
-  @if (! loading) {
-      Login
-  } @else {
-      Logging in
-  }        
+  <button class="btn-login" mat-flat-button (click)="login()" [disabled] = loading>
+    <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+      <p class="p-logging-in">Logging in</p>
+    </div>
+    <div *ngIf=" ! loading">
+      <p class="p-login">Login</p>
+    </div>
   </button>
   @if (error) {
   <mat-error>{{error}}</mat-error>

@@ -5,9 +5,30 @@
 }
 
 button {
-    width: 30%;
+    width: fit-content;
 }
 
 mat-form-field button {
     width: auto;
+}
+
+.btn-login div {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.btn-login mat-spinner {
+    position: absolute;
+    right: 40px;
+    scale: .2;
+}
+
+.p-logging-in {
+    margin-left: 30px;
+}
+
+.p-login {
+    padding-right: 14px;
+    padding-left: 14px;
 }

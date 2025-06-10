@@ -7,10 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../../environments/environment';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, MatProgressSpinner, CommonModule],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
 })
@@ -47,18 +49,17 @@ export class LoginFormComponent implements OnInit {
     }
     this.http.post<any>(`${this.apiUrl}/api/login`, data).subscribe({
       next: response => {
-        console.log('Success:', response);
         this.router.navigate(['home'])
         localStorage.setItem('token', response.token);
+        this.loading = false
       },
       error: error => {
         this.error = error.error.error
-        console.error('Errore:', error);
+        this.loading = false
       },
       complete: () => {
-        console.log('Request complete');
+        this.loading = false
       }
     });
-    this.loading = false
   }
 }
