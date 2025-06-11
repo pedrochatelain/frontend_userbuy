@@ -4,6 +4,16 @@
     margin-right: 90px;
 }
 
+.mobile-container {
+    display: grid;
+    padding-top: 40px;
+}
+
+.mobile-container .btn-create-account {
+    width: 200px;
+    justify-self: center;
+}
+
 button {
     width: 40%;
 }

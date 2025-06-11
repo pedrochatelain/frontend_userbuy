@@ -8,10 +8,12 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../../../../shared/snackbar/snackbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../../environments/environment';
+import { CommonModule } from '@angular/common';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-create-account-form',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, CommonModule],
   templateUrl: './create-account-form.component.html',
   styleUrl: './create-account-form.component.css'
 })
@@ -28,6 +30,17 @@ export class CreateAccountFormComponent {
   hidePassword = true
   @Input() disabled = true
   private apiUrl = environment.apiUrl
+  isMobile = false
+
+  constructor(private screenService: ScreenService) {}
+
+  ngOnInit(): void {
+    this.username = ""
+    this.password = ""
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
+  }
 
   emptyForm(): void {
     this.username = ""
@@ -64,11 +77,12 @@ export class CreateAccountFormComponent {
       });
       this.loading = false
     } else {
-      this.openSnackBar("Couldn't create user", "Close", true)
+      this.openSnackBar("Couldn't create user", "wdwdwdwd", true)
     }
   }
 
   openSnackBar(message: string, action: string, hasError: boolean) {
+    
     let config = new MatSnackBarConfig();
     config.announcementMessage = message
     config.duration = 3000;
