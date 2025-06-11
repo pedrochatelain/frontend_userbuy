@@ -12,6 +12,24 @@
     padding-top: 30px;
 }
 
+.mobile-nav-bar {
+    display: flex;
+    position: fixed;
+    height: fit-content;
+    padding: 10px;
+    padding-bottom: 0;
+    align-items: center;
+    top: auto;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    justify-content: center;
+}
+
+.mobile-nav-bar h1 {
+    display: none;
+}
+
 h1 {
     font-family: "Londrina Sketch", sans-serif;
     color: var(--mat-sys-on-primary);
@@ -23,16 +41,27 @@ h1 {
 button {
     background-color: var(--mat-sys-on-primary);
     margin-bottom: 10px;
+    justify-self: center;
+    width: 170px;
+}
+
+.mobile-btn-nav-bar {
+    width: fit-content;
+    padding-left: 30px;
+}
+
+.mobile-btn-nav-bar p {
+    display: none;
+}
+
+.mobile-btn-nav-bar mat-icon {
+    margin-right: 0px;
+    scale: 1.2;
 }
 
 .btn-nav-bar-logout {
     margin-bottom: 40px;
     align-self: end;
-}
-
-button {
-    justify-self: center;
-    width: 170px;
 }
 
 .selected {

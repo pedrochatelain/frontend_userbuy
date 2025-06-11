@@ -2,17 +2,20 @@ import { Component } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ScreenService } from '../services/screen.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatIconModule, MatButtonModule, CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
   selectedButton: string = 'home';
+  isMobile = false
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private screenService: ScreenService) {}
 
   ngOnInit(): void {
     // Set the initial button based on the current route
@@ -21,6 +24,10 @@ export class NavBarComponent {
     // Listen to router navigation events for updates
     this.router.events.subscribe(() => {
       this.updateSelectedButton(this.router.url);
+    });
+
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
   }
 

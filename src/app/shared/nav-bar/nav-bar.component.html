@@ -1,7 +1,7 @@
-<div class="nav-bar">
+<div [ngClass]="{ 'mobile-nav-bar': isMobile}" class="nav-bar">
     <h1>UserBuy</h1>
     <button
-      class="btn-nav-bar"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
       [class.selected]="selectedButton === 'home'"
       (click)="navigateToHome()"
       mat-flat-button
@@ -10,7 +10,7 @@
       <p>Products</p>
     </button>
     <button
-      class="btn-nav-bar"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
       [class.selected]="selectedButton === 'search'"
       (click)="navigateToSearch()"
       mat-flat-button
@@ -19,16 +19,16 @@
       <p>Search</p>
     </button>
     <button
-      class="btn-nav-bar"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
       [class.selected]="selectedButton === 'purchases'"
       (click)="navigateToPurchases()"
       mat-flat-button
     >
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
+      <mat-icon fontIcon="shopping_cart"></mat-icon>
       <p>My purchases</p>
     </button>
     <button
-      class="btn-nav-bar"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
       [class.selected]="selectedButton === 'wallet'"
       (click)="navigateToWallet()"
       mat-flat-button
@@ -37,7 +37,7 @@
       <p>My Wallet</p>
     </button>
     <button
-      class="btn-nav-bar-logout"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
       [class.selected]="selectedButton === 'logout'"
       (click)="logout()"
       mat-flat-button
