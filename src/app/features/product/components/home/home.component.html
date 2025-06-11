@@ -3,7 +3,7 @@
     @if (loading) {
         <div>Loading...</div>
     }
-    <div class="products-container">
+    <div [ngClass]="{ 'mobile-products-container': isMobile, 'products-container': !isMobile }">
         @if (products) {
         
             @for (product of products; track product.name) {

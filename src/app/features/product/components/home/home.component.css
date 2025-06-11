@@ -17,6 +17,10 @@
     gap: 0px;
 }
 
+.mobile-products-container {
+    padding-bottom: 150px;
+}
+
 h1 {
     color: var(--mat-sys-primary);
 }
