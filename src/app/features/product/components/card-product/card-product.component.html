@@ -1,23 +1,23 @@
-<mat-card appearance="outlined">
+<mat-card [ngClass]="{ 'mobile-mat-card': isMobile}" appearance="outlined">
   <ng-container *ngIf="product.image; else noImage">
-    <img  [src]="product.image" [alt]="product.name" />
+    <img [ngClass]="{ 'mobile-img': isMobile}" [src]="product.image" [alt]="product.name" />
   </ng-container>
   <ng-template #noImage>
-    <img mat-card-image src="../assets/product_image_not_available.png" alt="Image not available" />
+    <img [ngClass]="{ 'mobile-img': isMobile}" src="../assets/product_image_not_available.png" alt="Image not available" />    
   </ng-template>
 
   <mat-card-content>
     <div class="category">
       {{ product.category }}
     </div>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-    <div class="price">
+    <mat-card-title [ngClass]="{ 'mobile-mat-card-title': isMobile}">{{ product.name }}</mat-card-title>
+    <div [ngClass]="{ 'mobile-price': isMobile, 'price': ! isMobile}">
       {{ product.currency }} {{ product.price }}
     </div>
     <ng-container *ngIf=" ! isBtnPurchaseDisabled">
       <button ng (click)="purchase()" [disabled]="isPurchased || loading" mat-raised-button>
         <p *ngIf=" ! isPurchased && ! loading">Purchase</p>
-        <div class="purchasing" *ngIf="loading">
+        <div *ngIf="loading" [ngClass]="{ 'mobile-purchasing': isMobile, 'purchasing': ! isMobile}">
           <mat-spinner></mat-spinner>  
           <p>Purchasing</p>
         </div>

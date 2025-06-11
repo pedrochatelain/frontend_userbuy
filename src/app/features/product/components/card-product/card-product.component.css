@@ -12,9 +12,8 @@ mat-card-content {
 }
 
 mat-card-content button {
-    margin-top: 60px;
+    margin-top: 20%;
     border-color: var(--mat-sys-primary-fixed) !important;
-
 }
 
 mat-card-title {
@@ -66,3 +65,32 @@ img {
     margin-right: 10px;
 }
 
+/* mobile */
+
+.mobile-img {
+    align-self: center;
+    width: 150px;
+    height: 150px;
+}
+
+.mobile-mat-card {
+    width: 100%;
+}
+
+.mobile-mat-card-title {
+    font-size: medium;
+}
+
+.mobile-price {
+    font-weight: bold;
+}
+
+.mobile-purchasing {
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+
+.mobile-purchasing mat-spinner {
+    scale: .5;
+}

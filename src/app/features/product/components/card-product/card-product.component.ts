@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { environment } from '../../../../../environments/environment';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-card-product',
@@ -23,6 +24,15 @@ export class CardProductComponent {
   private _snackBar = inject(MatSnackBar);
   private apiUrl = environment.apiUrl
   loading = false
+  isMobile = false;
+
+  constructor(private screenService: ScreenService) {}
+
+  ngOnInit(): void {
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
+  }
 
   openSnackBar(message: string, action: string, hasError: boolean) {
     let config = new MatSnackBarConfig();
