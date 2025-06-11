@@ -7,6 +7,22 @@ h1 {
     margin-top: 30px;
 }
 
+.mobile-container {
+    margin-top: 30px;
+}
+
+.mobile-container h1 {
+    margin-left: 30px;
+}
+
+.mobile-container mat-form-field {
+    width: 100%;
+}
+
+.mobile-container .no-products-found {
+    margin-left: 20px;
+}
+
 input {
     font-size: x-large !important;
 }

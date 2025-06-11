@@ -10,6 +10,7 @@ import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-search',
@@ -23,8 +24,9 @@ export class SearchComponent {
   products: Product[] = []
   noProductsFound = false;
   private searchSubject = new Subject<string>();
+  isMobile = false
 
-  constructor(private productService: ProductService, private viewportScroller: ViewportScroller, private renderer: Renderer2) {
+  constructor(private productService: ProductService, private viewportScroller: ViewportScroller, private renderer: Renderer2, private screenService: ScreenService) {
     // Subscribe to searchSubject to handle debounced and switched search requests
     this.searchSubject
       .pipe(
@@ -56,6 +58,10 @@ export class SearchComponent {
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
+
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
   }
 
   ngAfterViewInit(): void {
