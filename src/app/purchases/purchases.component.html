@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="{ 'mobile-purchases-container': isMobile, 'container': !isMobile }">
     <h1>My Purchases</h1>
     <div class="products-container">
         <ng-container *ngIf="purchases?.length">

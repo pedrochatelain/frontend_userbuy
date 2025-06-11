@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../features/product/components/card-product/card-product.component';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { ScreenService } from '../shared/services/screen.service';
 
 @Component({
   selector: 'app-purchases',
@@ -18,8 +19,9 @@ export class PurchasesComponent {
   userId: string | null = null;
   private lastRenderedDate: string | null = null;
   private apiUrl = environment.apiUrl
+  isMobile = false
 
-  constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller) {}
+  constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key used to store your token
@@ -40,6 +42,10 @@ export class PurchasesComponent {
       complete: () => {
         console.log('Request complete');
       },
+    });
+
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
   }
 
