@@ -1,6 +1,14 @@
-.container {
+.desktop-container {
     margin-left: 300px; /* Matches the width of .nav-bar */
     margin-top: 30px;
+}
+
+.mobile-container {
+    margin-top: 30px;
+}
+
+.mobile-container h1 {
+    margin-left: 30px;
 }
 
 .products-container {
@@ -36,4 +44,19 @@ button {
     margin: 20px;
     background-color: var(--mat-sys-primary);
     color: var(--mat-sys-on-primary);
+}
+
+.mobile-btn-add-product {
+    margin-bottom: 80px;
+    z-index: 1;
+}
+
+.mobile-btn-add-product p {
+    display: none;
+}
+
+.mobile-btn-add-product mat-icon {
+    margin-right: 0;
+    padding-left: 5px;
+    /* margin-left: 1px; */
 }

@@ -7,6 +7,7 @@ import { DialogAddProductComponent } from '../dialog-add-product/dialog-add-prod
 import { AuthGuard } from '../../../../auth/auth.guard';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,9 @@ export class HomeComponent implements OnInit {
   loading = true;
   products: any[] = [];
   dialog = inject(MatDialog);
+  isMobile = false;
 
-  constructor(private productService: ProductService, private authGuard: AuthGuard, private viewportScroller: ViewportScroller) {}
+  constructor(private productService: ProductService, private authGuard: AuthGuard, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
@@ -29,6 +31,10 @@ export class HomeComponent implements OnInit {
     // Listen for productAdded events
     this.productService.productAdded.subscribe((newProduct) => {
       this.products.push(newProduct); // Add new product to the list
+    });
+
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
 
   }

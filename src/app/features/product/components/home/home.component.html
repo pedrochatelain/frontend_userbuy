@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="{ 'mobile-container': isMobile, 'desktop-container': !isMobile }">
     <h1>Products</h1>
     @if (loading) {
         <div>Loading...</div>
@@ -13,7 +13,7 @@
 
     </div>
 </div>
-<button *ngIf="isAdmin" mat-fab extended (click)="openDialog()">
+<button *ngIf="isAdmin" [ngClass]="{ 'mobile-btn-add-product': isMobile }" mat-fab extended (click)="openDialog()">
     <mat-icon>add</mat-icon>
-    Add product
+    <p>Add product</p>
 </button>
