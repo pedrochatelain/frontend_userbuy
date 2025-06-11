@@ -4,6 +4,8 @@
         <mat-form-field>
             <mat-label>Deposit</mat-label>
             <input
+                (keydown.enter)="onEnter(inputElement)"
+                #inputElement
                 type="number"
                 inputmode="decimal"
                 matInput

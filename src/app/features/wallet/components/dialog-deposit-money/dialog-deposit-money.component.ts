@@ -52,4 +52,8 @@ export class DialogDepositMoneyComponent {
     });
   }
 
+  onEnter(input: HTMLInputElement) {
+    input.blur(); // Remove focus to hide the keyboard
+  }
+
 }
