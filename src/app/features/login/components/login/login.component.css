@@ -7,6 +7,20 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.mobile-container .btn-toggle{
+  /* height: ; */
+}
+
+.mobile-container .left-content {
+  padding: 30px;
+}
+
+.mobile-container .btn-toggle {
+  margin-top: 40px;
+  margin-left: 0;
+  position: relative;
+}
+
 h1 span {
   font-family: "Londrina Sketch", sans-serif;
   color: var(--mat-sys-on-primary);

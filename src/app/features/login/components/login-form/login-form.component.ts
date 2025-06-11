@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../../environments/environment';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-login-form',
@@ -26,14 +27,18 @@ export class LoginFormComponent implements OnInit {
   error = null
   hidePassword = true
   private apiUrl = environment.apiUrl
+  isMobile = false
   
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private screenService: ScreenService) {
     console.log(this.apiUrl)
   }
   ngOnInit(): void {
     this.username = ""
     this.password = ""
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
   }
 
   togglePasswordVisibility(): void {

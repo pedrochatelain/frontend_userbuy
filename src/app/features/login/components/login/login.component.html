@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
   <div class="left-content">
     <h1>Welcome to <span>UserBuy</span></h1>
     <p>The place where you can buy stuff right away and without any problems</p>
