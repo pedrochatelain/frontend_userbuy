@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogDepositMoneyComponent } from '../dialog-deposit-money/dialog-deposit-money.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ScreenService } from '../../../../shared/services/screen.service';
 
 @Component({
   selector: 'app-wallet',
@@ -15,8 +16,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class WalletComponent {
   balances = ""
   dialog = inject(MatDialog);
+  isMobile = false
 
-  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private userService: UserService, private screenService: ScreenService) {}
 
   ngOnInit():void {
     this.viewportScroller.scrollToPosition([0, 0]);
@@ -25,6 +27,10 @@ export class WalletComponent {
     this.userService.depositAdded.subscribe((deposit: any) => {
       console.log("deposit", deposit)
       this.balances = deposit; // Add new product to the list
+    });
+    
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
   }
 
