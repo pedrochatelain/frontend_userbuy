@@ -3,7 +3,7 @@
     <mat-form-field>
         <mat-label>Product name</mat-label>
         <mat-icon class="search-icon" matPrefix>search</mat-icon>
-        <input matInput [(ngModel)]="inputProductName" name="inputProductName" (ngModelChange)="searchProduct($event)">
+        <input matInput [(ngModel)]="inputProductName" name="inputProductName" (ngModelChange)="searchProduct($event)" (keydown.enter)="onEnter(inputElement)" #inputElement>
         <button class="clear-btn" matSuffix matIconButton (click)="resetResults()">
             <mat-icon>close</mat-icon>
         </button>

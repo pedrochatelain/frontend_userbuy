@@ -73,4 +73,9 @@ export class SearchComponent {
     this.noProductsFound = false;
     this.loading = false;
   }
+
+  onEnter(input: HTMLInputElement) {
+    input.blur(); // Remove focus to hide the keyboard
+  }
+
 }
