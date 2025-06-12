@@ -1,7 +1,7 @@
 <div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }" [class.display-none]="disabled">
   <mat-form-field class="example-full-width">
     <mat-label>Username</mat-label>
-    <input matInput [(ngModel)]="username" name="username">
+    <input matInput [(ngModel)]="username" name="username" autocapitalize="none">
   </mat-form-field>
 
   <mat-form-field>
