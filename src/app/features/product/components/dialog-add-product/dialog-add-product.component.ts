@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { ProductService, Product } from '../../services/product.service';
+import { ChangeDetectorRef, Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogContent, MatDialogTitle, MatDialogRef } from '@angular/material/dialog';
+import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,10 +8,14 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ScreenService } from '../../../../shared/services/screen.service';
+
 
 @Component({
   selector: 'app-dialog-add-product',
   imports: [
+    MatDialogModule,
     MatDialogTitle,
     MatDialogContent, 
     MatInputModule,
@@ -20,7 +24,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     CommonModule,
     MatIconModule, 
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule
   ],
   templateUrl: './dialog-add-product.component.html',
   styleUrl: './dialog-add-product.component.css'
@@ -43,6 +48,25 @@ data = inject(MAT_DIALOG_DATA);
   product!: any;
   loading = false
   private productService = inject(ProductService);
+  readonly dialogRef = inject(MatDialogRef<DialogAddProductComponent>);
+  @ViewChild('dialogContent') dialogContent!: ElementRef;
+  isMobile = false;
+
+  constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService) {}
+
+  ngOnInit(): void {
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
+  }
+
+  scrollToError(): void {
+    this.cdr.detectChanges();
+    if (this.dialogContent) {
+      const element = this.dialogContent.nativeElement;
+      element.scrollTop = element.scrollHeight; // Scroll to the bottom
+    }
+  }
 
   addProduct(): void {
     this.loading = true
@@ -77,6 +101,7 @@ data = inject(MAT_DIALOG_DATA);
         this.errorCategory = error.error.issues?.category;
         this.btnTitle = 'Add Product';
         this.loading = false;
+        this.scrollToError()
       },
     });
   }
@@ -104,6 +129,10 @@ data = inject(MAT_DIALOG_DATA);
         this.uploadingImage = false
       },
     });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
 }

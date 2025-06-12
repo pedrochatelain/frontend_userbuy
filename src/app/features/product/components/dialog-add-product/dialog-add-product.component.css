@@ -1,11 +1,10 @@
 .container {
     display: grid;
+    width: 400px;
 }
 
 mat-dialog-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: min-content;
 }
 
 .container-btn-add-product {
@@ -14,15 +13,18 @@ mat-dialog-content {
     width: 50%;
 }
 
-.form-field-name, .form-field-stock {
-    margin-left: 20px;
-}
-
 .container-error, .success {
     padding-left: 30px;
     padding-right: 30px;
 }
 
+.container-error span {
+    font-weight: 500;
+}
+
+mat-error {
+    padding-bottom: 50px;
+}
 
 mat-error p {
     font-weight: 300;
@@ -101,4 +103,29 @@ mat-spinner {
 
 .loading-image p {
     margin-right: 30px;
+}
+
+button div mat-spinner {
+    scale: .3;
+}
+
+.adding-product {
+    justify-self: center;
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 20px 1fr;
+}
+
+.adding-product p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.adding-product mat-spinner {
+    scale: .2;
+}
+
+.container-adding-product {
+    width: 100%;
 }

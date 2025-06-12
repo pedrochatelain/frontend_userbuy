@@ -1,13 +1,12 @@
-<div class="container">
+<div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
 <h2 *ngIf=" ! productAdded" mat-dialog-title>Add Product</h2>
-	<mat-dialog-content *ngIf=" ! productAdded">
-
+	<mat-dialog-content *ngIf=" ! productAdded" #dialogContent >
 		<mat-form-field>
 			<mat-label>Category</mat-label>
 			<input matInput [(ngModel)]="category" name="category">
 		</mat-form-field>
 
-		<mat-form-field class="form-field-name">
+		<mat-form-field>
 			<mat-label>Name</mat-label>
 			<input matInput [(ngModel)]="name" name="nam">
 		</mat-form-field>
@@ -17,7 +16,7 @@
 			<input matInput [(ngModel)]="price" name="price">
 		</mat-form-field>
 
-		<mat-form-field class="form-field-stock">
+		<mat-form-field>
 			<mat-label>Stock quantity</mat-label>
 			<input 
 				inputmode="numeric"
@@ -37,18 +36,25 @@
 			<input matInput [(ngModel)]="currency" name="currency">
 		</mat-form-field>
 
+		<mat-error class="container-error" *ngIf="error">
+			<h4>{{error}}</h4>
+			<p *ngIf="errorCategory"> <span>Category: </span>{{errorCategory}}</p>
+			<p *ngIf="errorName"> <span>Name: </span> {{errorName}}</p>
+		</mat-error>
 		
 	</mat-dialog-content>
-	
-	<div class="container-btn-add-product" *ngIf="isBtnDisabled == false">
-		<mat-spinner *ngIf="loading"></mat-spinner>
-		<button *ngIf=" ! loading" mat-flat-button (click)="addProduct()">{{btnTitle}}</button>
-	</div>
-	<mat-error class="container-error" *ngIf=" ! productAdded">
-		<h4>{{error}}</h4>
-		<p>{{errorName}}</p>
-		<p>{{errorCategory}}</p>
-	</mat-error>
+	<mat-dialog-actions *ngIf=" ! productAdded">
+		<button *ngIf=" ! loading" matButton (click)="closeDialog()">Cancel</button>
+		<button *ngIf=" ! loading" matButton="filled" (click)="addProduct()">
+			<p>Add Product</p>
+		</button>
+		<div class="container-adding-product">
+			<div *ngIf="loading" class="adding-product">
+				<mat-spinner></mat-spinner>
+				<p> <span></span>Adding product</p>
+			</div>
+		</div>
+	</mat-dialog-actions>
 	<div class="success" *ngIf="productAdded">
 		<div class="message-product-added">
 			<div class="success-uploading-image" *ngIf="success">
