@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000' // Development API endpoint
+  // apiUrl: 'http://192.168.0.149:3000' // Development API endpoint
+  apiUrl: 'https://userbuy.onrender.com'
 };
