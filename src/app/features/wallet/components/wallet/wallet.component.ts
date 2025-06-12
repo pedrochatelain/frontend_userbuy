@@ -6,10 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogDepositMoneyComponent } from '../dialog-deposit-money/dialog-deposit-money.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-wallet',
-  imports: [ MatButtonModule, CommonModule ],
+  imports: [ MatButtonModule, CommonModule, MatProgressSpinner ],
   templateUrl: './wallet.component.html',
   styleUrl: './wallet.component.css'
 })
@@ -17,6 +18,7 @@ export class WalletComponent {
   balances = ""
   dialog = inject(MatDialog);
   isMobile = false
+  loading = false
 
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private userService: UserService, private screenService: ScreenService) {}
 
@@ -35,14 +37,17 @@ export class WalletComponent {
   }
 
   fetchBalances(): void {
+    this.loading = true
     let idUser = this.route.snapshot.paramMap.get('id_user');
     this.userService.getBalances(idUser!).subscribe({
       next: (response) => {
         this.balances = response.balances;
+        this.loading = false
       },
       error: (error) => {
         console.error('Error fetching products:', error);
         this.balances = error;
+        this.loading = false
       }
     });
   }
