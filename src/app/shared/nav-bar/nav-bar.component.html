@@ -37,7 +37,7 @@
       <p>My Wallet</p>
     </button>
     <button
-      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-bar-logout': ! isMobile}"
       [class.selected]="selectedButton === 'logout'"
       (click)="logout()"
       mat-flat-button
