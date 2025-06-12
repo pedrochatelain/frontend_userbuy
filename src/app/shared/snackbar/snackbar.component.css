@@ -4,6 +4,7 @@
     align-content: center;
     height: 30px;
     width: 340px;
+    z-index: 3;
 }
 
 mat-icon {
