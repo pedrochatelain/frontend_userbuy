@@ -1,10 +1,14 @@
 <div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
     <h1 class="title">My Wallet</h1>
+    <div *ngIf="updatingDeposit" class="updating-deposit">
+      <mat-spinner></mat-spinner>
+      <p>Updating deposit</p>
+    </div>
     <div *ngIf="loading" class="loading">
       <mat-spinner></mat-spinner>
       <p>Fetching balances</p>
     </div>
-    <div *ngIf=" ! loading" class="wallet">
+    <div *ngIf=" ! loading  && ! updatingDeposit" class="wallet">
       <h1 class="balances">
           <span>$</span>
           {{ balances | number: '1.2-2' }}

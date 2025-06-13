@@ -87,3 +87,17 @@ button {
     border-color: var(--mat-sys-on-primary) !important;
     color: var(--mat-sys-on-primary) !important;
 }
+
+.updating-deposit {
+    display: flex;
+    align-items: center;
+}
+
+.updating-deposit p {
+    font-size: medium;
+}
+
+.updating-deposit mat-spinner {
+    stroke: red !important;
+    scale: .3;
+}

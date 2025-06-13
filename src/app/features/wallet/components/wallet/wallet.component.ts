@@ -19,6 +19,7 @@ export class WalletComponent {
   dialog = inject(MatDialog);
   isMobile = false
   loading = false
+  updatingDeposit = false;
 
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private userService: UserService, private screenService: ScreenService) {}
 
@@ -30,6 +31,10 @@ export class WalletComponent {
       console.log("deposit", deposit)
       this.balances = deposit;
     });
+
+    this.userService.updatingDeposit.subscribe((updatingDeposit: any) => {
+      this.updatingDeposit = updatingDeposit;
+    })
     
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;

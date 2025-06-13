@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 })
 export class UserService {
   depositAdded = new EventEmitter<any>();
+  updatingDeposit = new EventEmitter<any>();
+
   private apiUrl = environment.apiUrl
 
   constructor(private http: HttpClient) {}
