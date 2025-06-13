@@ -25,10 +25,10 @@ export class WalletComponent {
   ngOnInit():void {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.fetchBalances()
-    // Listen for productAdded events
+
     this.userService.depositAdded.subscribe((deposit: any) => {
       console.log("deposit", deposit)
-      this.balances = deposit; // Add new product to the list
+      this.balances = deposit;
     });
     
     this.screenService.isMobile$.subscribe(isMobile => {
