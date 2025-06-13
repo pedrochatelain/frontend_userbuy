@@ -4,16 +4,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
-import { SnackbarComponent } from '../../../../shared/snackbar/snackbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-create-account-form',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, CommonModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, CommonModule, MatProgressSpinner],
   templateUrl: './create-account-form.component.html',
   styleUrl: './create-account-form.component.css'
 })
@@ -25,14 +25,13 @@ export class CreateAccountFormComponent {
   repeat_password = ""
   loading = false;
   loggedIn = false;
-  error = null
-  private _snackBar = inject(MatSnackBar);
+  error = ""
   hidePassword = true
   @Input() disabled = true
   private apiUrl = environment.apiUrl
   isMobile = false
 
-  constructor(private screenService: ScreenService) {}
+  constructor(private screenService: ScreenService, private snackbarService: SnackbarService) {}
 
   ngOnInit(): void {
     this.username = ""
@@ -55,7 +54,7 @@ export class CreateAccountFormComponent {
   createAccount(): void {
     if (this.password === this.repeat_password) {
       this.loading = true
-      this.error = null
+      this.error = ""
       const data = {
         "username": this.username,
         "password": this.password
@@ -65,35 +64,21 @@ export class CreateAccountFormComponent {
           this.username = ""
           this.password = ""
           this.repeat_password = ""
-          this.openSnackBar("User created successfully", "Close", false)
+          this.snackbarService.displaySuccess("User created successfully")
+          this.loading = false
         },
         error: error => {
           this.error = error.error.error
-          console.error('Errore:', error);
+          this.snackbarService.displayError("Error creating user")
+          this.loading = false
         },
         complete: () => {
-          console.log('Request complete');
+          this.loading = false
         }
       });
-      this.loading = false
     } else {
-      this.openSnackBar("Couldn't create user", "wdwdwdwd", true)
+        this.error = "Passwords don't match"
     }
-  }
-
-  openSnackBar(message: string, action: string, hasError: boolean) {
-    
-    let config = new MatSnackBarConfig();
-    config.announcementMessage = message
-    config.duration = 3000;
-    config.horizontalPosition = 'end';
-    config.verticalPosition = 'bottom'
-    config.panelClass = ['snackbar']
-    if (hasError) {
-      config.panelClass = ['red-snackbar']
-    }
-    // this._snackBar.open(message, action, config);
-    this._snackBar.openFromComponent(SnackbarComponent, config)
   }
 
 }
