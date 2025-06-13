@@ -3,17 +3,21 @@
     grid-auto-flow: column;
     align-content: center;
     height: 30px;
-    width: 340px;
     z-index: 3;
 }
 
-mat-icon {
-    border-radius: 100%;
-    background-color: green;
+.error-icon, .success-icon {
     padding: 3px;
     align-self: center;
-    color: var(--mat-sys-on-primary);
-    width: fit-content;
+    scale: 1.2;
+}
+
+.error-icon {
+    color: red;
+}
+
+.success-icon {
+    color: green;
 }
 
 p {

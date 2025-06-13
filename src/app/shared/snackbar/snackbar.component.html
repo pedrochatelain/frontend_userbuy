@@ -1,6 +1,5 @@
 <div class="container">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="check"></mat-icon>
-    <p>{{snackBarRef.containerInstance.snackBarConfig.announcementMessage}}</p>
-    
-    <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">close</button>
+  <mat-icon [fontIcon]="icon" [class.success-icon]=" ! hasError" [class.error-icon]="hasError"></mat-icon>
+  <p>{{ message }}</p>
+  <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">Close</button>
 </div>
