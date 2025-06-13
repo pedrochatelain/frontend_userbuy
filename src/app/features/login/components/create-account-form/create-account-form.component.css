@@ -15,7 +15,7 @@
 }
 
 button {
-    width: 40%;
+    width: fit-content;
 }
 
 mat-form-field button {
@@ -24,4 +24,19 @@ mat-form-field button {
 
 .display-none {
     display: none;
+}
+
+.btn-create-account mat-spinner {
+    position: absolute;
+    right: 80px;
+    scale: .2;
+}
+
+.btn-create-account div {
+    display: flex;
+    align-items: center;
+}
+
+.p-creating-account {
+    margin-left: 30px;
 }

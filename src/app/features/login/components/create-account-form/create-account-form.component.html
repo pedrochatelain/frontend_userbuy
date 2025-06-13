@@ -20,12 +20,12 @@
     </button>
   </mat-form-field>
   
-  <button class="btn-create-account" (click)="createAccount()" mat-flat-button>
-  @if (! loading) {
-      Create account
-  } @else {
-      Creating account
-  }        
+  <button class="btn-create-account" disabled="{{loading}}" (click)="createAccount()" mat-flat-button>
+    <p *ngIf=" ! loading">Create account</p>
+    <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+      <p class="p-creating-account">Creating account</p>
+    </div>
   </button>
   @if (error) {
   <mat-error>{{error}}</mat-error>
