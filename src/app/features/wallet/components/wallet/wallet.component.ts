@@ -41,7 +41,10 @@ export class WalletComponent {
     let idUser = this.route.snapshot.paramMap.get('id_user');
     this.userService.getBalances(idUser!).subscribe({
       next: (response) => {
-        this.balances = response.balances;
+        if ( ! response.balances)
+          this.balances = '0';
+        else
+          this.balances = response.balances
         this.loading = false
       },
       error: (error) => {
