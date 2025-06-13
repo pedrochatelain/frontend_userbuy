@@ -4,10 +4,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { environment } from '../../../../../environments/environment';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
 
 @Component({
   selector: 'app-card-product',
@@ -21,26 +21,16 @@ export class CardProductComponent {
   @Input() isBtnPurchaseDisabled: boolean = false
   private http = inject(HttpClient);
   isPurchased: boolean = false
-  private _snackBar = inject(MatSnackBar);
   private apiUrl = environment.apiUrl
   loading = false
   isMobile = false;
 
-  constructor(private screenService: ScreenService) {}
+  constructor(private screenService: ScreenService, private snackbarService: SnackbarService) {}
 
   ngOnInit(): void {
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
-  }
-
-  openSnackBar(message: string, action: string, hasError: boolean) {
-    let config = new MatSnackBarConfig();
-    config.duration = 5000;
-    if (hasError) {
-      config.panelClass = ['red-snackbar']
-    }
-    this._snackBar.open(message, action, config);
   }
 
   purchase(): void {
@@ -56,11 +46,11 @@ export class CardProductComponent {
       this.http.post<any>(`${this.apiUrl}/api/purchases`, data).subscribe({
         next: response => {
           this.isPurchased = true
-          this.openSnackBar(`You bought ${this.product.name}!`, "Close", false)
+          this.snackbarService.displaySuccess(`You bought ${this.product.name}!`)
           this.loading = false
         },
         error: error => {
-          this.openSnackBar("Error: " + error.error.error, "Close", true)
+          this.snackbarService.displayError("Error: " + error.error.error)
           this.loading = false
         },
         complete: () => {
