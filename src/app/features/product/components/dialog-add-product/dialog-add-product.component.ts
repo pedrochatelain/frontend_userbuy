@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
 
 
 @Component({
@@ -52,7 +53,7 @@ data = inject(MAT_DIALOG_DATA);
   @ViewChild('dialogContent') dialogContent!: ElementRef;
   isMobile = false;
 
-  constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService) {}
+  constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService, private snackbarService: SnackbarService) {}
 
   ngOnInit(): void {
     this.screenService.isMobile$.subscribe(isMobile => {
@@ -92,7 +93,7 @@ data = inject(MAT_DIALOG_DATA);
         this.loading = false;
         // Emit the added product
         this.productService.productAdded.emit(response.product);
-
+        this.snackbarService.displaySuccess(`${this.name} successfully added`)
       },
       error: (error) => {
         console.error('Error:', error);
@@ -101,6 +102,7 @@ data = inject(MAT_DIALOG_DATA);
         this.errorCategory = error.error.issues?.category;
         this.btnTitle = 'Add Product';
         this.loading = false;
+        this.snackbarService.displayError(`Error adding product`)
         this.scrollToError()
       },
     });
