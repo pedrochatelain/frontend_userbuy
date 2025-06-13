@@ -36,3 +36,13 @@ h1 {
 app-card-product {
     margin-bottom: 25px
 }
+
+
+.loading {
+    display: flex;
+    align-items: center;
+}
+
+.loading mat-spinner {
+    scale: .3;
+}

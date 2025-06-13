@@ -8,10 +8,11 @@ import { AuthGuard } from '../../../../auth/auth.guard';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
-  imports: [MatIconModule, CardProductComponent, CommonModule, MatButtonModule],
+  imports: [MatIconModule, CardProductComponent, CommonModule, MatButtonModule, MatProgressSpinner],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

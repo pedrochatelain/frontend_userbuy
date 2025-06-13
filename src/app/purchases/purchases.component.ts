@@ -5,10 +5,11 @@ import { CardProductComponent } from '../features/product/components/card-produc
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { ScreenService } from '../shared/services/screen.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-purchases',
-  imports: [CardProductComponent, CommonModule],
+  imports: [CardProductComponent, CommonModule, MatProgressSpinner],
   templateUrl: './purchases.component.html',
   styleUrl: './purchases.component.css'
 })
@@ -20,6 +21,7 @@ export class PurchasesComponent {
   private lastRenderedDate: string | null = null;
   private apiUrl = environment.apiUrl
   isMobile = false
+  loading = false;
 
   constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
 
@@ -30,17 +32,21 @@ export class PurchasesComponent {
       'Authorization': `Bearer ${token}`,
     });
     this.userId = this.route.snapshot.paramMap.get('id_user');
+    this.loading = true
     this.http.get<Purchase[]>(`${this.apiUrl}/api/users/${this.userId}/purchases`, { headers }).subscribe({
       next: (response) => {
         this.purchases = response.map(purchase => ({
           ...purchase,
           purchaseDate: new Date(purchase.purchaseDate), // Convert string to Date
-        }));      },
+        }));
+        this.loading = false
+      },
       error: (error) => {
         console.error('Error:', error);
+        this.loading = false
       },
       complete: () => {
-        console.log('Request complete');
+        this.loading = false
       },
     });
 

@@ -64,3 +64,13 @@ button {
     padding-left: 5px;
     /* margin-left: 1px; */
 }
+
+
+.loading {
+    display: flex;
+    align-items: center;
+}
+
+.loading mat-spinner {
+    scale: .3;
+}

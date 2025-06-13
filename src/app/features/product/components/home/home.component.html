@@ -1,8 +1,9 @@
 <div [ngClass]="{ 'mobile-container': isMobile, 'desktop-container': !isMobile }">
     <h1>Products</h1>
-    @if (loading) {
-        <div>Loading...</div>
-    }
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Fetching products</p>
+    </div>
     <div [ngClass]="{ 'mobile-products-container': isMobile, 'products-container': !isMobile }">
         @if (products) {
         

@@ -1,6 +1,10 @@
 <div [ngClass]="{ 'mobile-purchases-container': isMobile, 'container': !isMobile }">
     <h1>My Purchases</h1>
-    <div class="products-container">
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Fetching purchases</p>
+    </div>
+    <div *ngIf=" ! loading" class="products-container">
         <ng-container *ngIf="purchases?.length">
             <ng-container *ngFor="let purchase of purchases; trackBy: trackByPurchase">
                 <ng-container *ngIf="isNewDate(purchase.purchaseDate)">
