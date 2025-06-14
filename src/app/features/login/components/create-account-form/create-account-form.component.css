@@ -1,7 +1,6 @@
 .container {
     display: grid;
-    width: 400px;
-    margin-right: 90px;
+    width: 340px;
 }
 
 .mobile-container {

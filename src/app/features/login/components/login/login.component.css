@@ -7,19 +7,27 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.mobile-container .btn-toggle{
-  /* height: ; */
+.mobile-container {
+  display: grid;
+  align-content: start;
+  margin-top: 30px;
+  height: 100%;
+  background-color: var(--mat-sys-on-primary);
 }
 
 .mobile-container .left-content {
-  padding: 30px;
+  background-color: var(--mat-sys-on-primary);
+  padding-bottom: 0;
 }
 
-.mobile-container .btn-toggle {
-  margin-top: 40px;
-  margin-left: 0;
-  position: relative;
+.mobile-container .left-content h1, .mobile-container .left-content h1 span {
+  color: var(--mat-sys-primary);
+  font-weight: 600;
 }
+
+.mobile-container .left-content p {
+  display: none;
+} 
 
 h1 span {
   font-family: "Londrina Sketch", sans-serif;
@@ -32,17 +40,26 @@ h1 span {
 
 .left-content {
   display: grid;
-  justify-content: center;
+  justify-items: center;
+  padding-bottom: 100px;
+  text-align: center;
   align-content: center;
   background-color: var(--mat-sys-on-primary-container);
 }
 
 .left-content h1, .left-content p {
-  color: white;
+  color: var(--mat-sys-on-primary);
+}
+
+.left-content h1 {
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 .left-content p {
-  width: 80%;
+  font-size: large;
+  font-weight: lighter;
+  width: 60%;
 }
 
 .right-content {
@@ -70,8 +87,9 @@ app-create-account-form {
 }
 
 .btn-toggle {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 100px;
-  margin-left: 85px;
+  margin-top: 50px;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* margin-bottom: 100px; */
+  /* margin-left: 85px; */
 }
