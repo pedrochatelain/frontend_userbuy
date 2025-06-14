@@ -5,7 +5,7 @@
   </mat-form-field>
   <mat-form-field>
       <mat-label>Password</mat-label>
-      <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password">
+      <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password" (keydown.enter)="onEnter(inputPassword)" #inputPassword>
       <button matSuffix mat-icon-button aria-label="Toggle password visibility" tabindex="-1" (click)="togglePasswordVisibility()">
         <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>

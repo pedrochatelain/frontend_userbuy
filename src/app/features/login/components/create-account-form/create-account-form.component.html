@@ -14,7 +14,7 @@
 
   <mat-form-field>
     <mat-label>Repeat password</mat-label>
-    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="repeat_password" name="repeat_password">
+    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="repeat_password" name="repeat_password" (keydown.enter)="onEnter(inputRepeatPassword)" #inputRepeatPassword>
     <button matSuffix mat-icon-button aria-label="Toggle password visibility" tabindex="-1" (click)="togglePasswordVisibility()">
       <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
     </button>

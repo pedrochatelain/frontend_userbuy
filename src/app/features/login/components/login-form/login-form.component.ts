@@ -67,4 +67,9 @@ export class LoginFormComponent implements OnInit {
       }
     });
   }
+
+  onEnter(input: HTMLInputElement) {
+    input.blur(); // Remove focus to hide the keyboard
+  }
+  
 }

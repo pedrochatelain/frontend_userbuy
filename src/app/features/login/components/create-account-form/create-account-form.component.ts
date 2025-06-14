@@ -81,4 +81,8 @@ export class CreateAccountFormComponent {
     }
   }
 
+  onEnter(input: HTMLInputElement) {
+    input.blur(); // Remove focus to hide the keyboard
+  }
+
 }
