@@ -9,6 +9,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenService } from '../../../../shared/services/screen.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
   products: any[] = [];
   dialog = inject(MatDialog);
   isMobile = false;
+  private productAddedSubscription: Subscription | undefined;
 
   constructor(private productService: ProductService, private authGuard: AuthGuard, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
 
@@ -30,14 +32,21 @@ export class HomeComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.fetchProducts();
     // Listen for productAdded events
-    this.productService.productAdded.subscribe((newProduct) => {
-      this.products.push(newProduct); // Add new product to the list
+    this.productAddedSubscription = this.productService.productAdded.subscribe((newProduct) => {
+      this.products.push(newProduct);
     });
 
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
 
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to avoid duplicate subscriptions
+    if (this.productAddedSubscription) {
+      this.productAddedSubscription.unsubscribe();
+    }
   }
 
   fetchProducts(): void {
