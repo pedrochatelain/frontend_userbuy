@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../snackbar.component';
+import { ScreenService } from '../../services/screen.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnackbarService {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar, private screenService: ScreenService) {}
 
   displayError(message: string): void {
     const config = new MatSnackBarConfig();
@@ -16,6 +17,9 @@ export class SnackbarService {
       message: message,
       hasError: true
     };
+    if (this.screenService.isMobile()) {
+      config.verticalPosition = 'top'
+    }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
 
@@ -27,6 +31,9 @@ export class SnackbarService {
       message: message,
       hasError: false
     };
+    if (this.screenService.isMobile()) {
+      config.verticalPosition = 'top'
+    }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
 }
