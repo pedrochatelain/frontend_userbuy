@@ -12,7 +12,7 @@ mat-card-content {
 }
 
 mat-card-content button {
-    margin-top: 20%;
+    margin-top: 50px;
     border-color: var(--mat-sys-primary-fixed) !important;
 }
 
@@ -27,6 +27,7 @@ mat-card-title {
 }
 
 img {
+    object-fit: contain;
     border-radius: 6%;
     padding: 10px;
     height: 200px;
