@@ -1,17 +1,15 @@
 <div [ngClass]="{ 'mobile-container': isMobile, 'desktop-container': !isMobile }">
     <h1>Products</h1>
     <div *ngIf="loading" class="loading">
-      <mat-spinner></mat-spinner>
-      <p>Fetching products</p>
+        <mat-spinner></mat-spinner>
+        <p>Fetching products</p>
     </div>
     <div [ngClass]="{ 'mobile-products-container': isMobile, 'products-container': !isMobile }">
-        @if (products) {
-        
-            @for (product of products; track product.name) {
-                <app-card-product [product] = product></app-card-product>
-            }   
-        }
-
+        <ng-container *ngIf="products">
+            <ng-container *ngFor="let product of products; trackBy: trackById">
+                <app-card-product [product]="product"></app-card-product>
+            </ng-container>
+        </ng-container>
     </div>
 </div>
 <button *ngIf="isAdmin" [ngClass]="{ 'mobile-btn-add-product': isMobile }" mat-fab extended (click)="openDialog()">

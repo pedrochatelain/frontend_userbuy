@@ -62,4 +62,9 @@ export class HomeComponent implements OnInit {
     return this.authGuard.isAdmin();
   }
 
+  trackById(index: number, product: any): string {
+    return product._id;
+  }
+
+
 }
