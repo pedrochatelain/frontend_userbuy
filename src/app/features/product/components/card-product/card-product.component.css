@@ -4,16 +4,21 @@ mat-card {
     grid-auto-flow: column;
     grid-template-columns: 1fr 3fr;
     width: 80%;
+    height: 250px;
     background-color: transparent;
 }
 
 mat-card-content {
+    display: grid;
+}
+
+.product-details {
     padding: 20px;
 }
 
-mat-card-content button {
-    margin-top: 50px;
-    border-color: var(--mat-sys-primary-fixed) !important;
+.btn-purchase {
+    margin-left: 15px;
+    width: fit-content;
 }
 
 mat-card-title {
@@ -27,6 +32,7 @@ mat-card-title {
 }
 
 img {
+    align-self: center;
     object-fit: contain;
     border-radius: 6%;
     padding: 10px;
@@ -79,7 +85,18 @@ img {
     height: 150px;
 }
 
+.mobile-mat-card .category {
+    margin-top: 10px;
+}
+
+.mobile-mat-card .product-details {
+    display: grid;
+    height: fit-content;
+    padding: 10px;
+}
+
 .mobile-mat-card {
+    height: 200px;
     width: 100%;
 }
 
@@ -99,4 +116,8 @@ img {
 
 .mobile-purchasing mat-spinner {
     scale: .5;
+}
+
+.mobile-mat-card .btn-purchase {
+    margin-left: 0;
 }

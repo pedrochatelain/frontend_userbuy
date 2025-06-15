@@ -7,12 +7,14 @@
   </ng-template>
 
   <mat-card-content>
-    <div class="category">
-      {{ product.category }}
-    </div>
-    <mat-card-title [ngClass]="{ 'mobile-mat-card-title': isMobile}">{{ product.name }}</mat-card-title>
-    <div [ngClass]="{ 'mobile-price': isMobile, 'price': ! isMobile}">
-      {{ product.currency }} {{ product.price }}
+    <div class="product-details">
+      <div class="category">
+        {{ product.category }}
+      </div>
+      <mat-card-title [ngClass]="{ 'mobile-mat-card-title': isMobile}">{{ product.name }}</mat-card-title>
+      <div [ngClass]="{ 'mobile-price': isMobile, 'price': ! isMobile}">
+        {{ product.currency }} {{ product.price }}
+      </div>
     </div>
     <ng-container *ngIf=" ! isBtnPurchaseDisabled">
       <button class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" mat-raised-button>
