@@ -51,6 +51,11 @@ img {
     opacity: .5;
 }
 
+.cannot-buy {
+    color: red;
+    opacity: .5;
+}
+
 .purchasing {
     display: flex;
     align-items: center;

@@ -15,8 +15,9 @@
       {{ product.currency }} {{ product.price }}
     </div>
     <ng-container *ngIf=" ! isBtnPurchaseDisabled">
-      <button ng (click)="purchase()" [disabled]="isPurchased || loading" mat-raised-button>
-        <p *ngIf=" ! isPurchased && ! loading">Purchase</p>
+      <button class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" mat-raised-button>
+        <p *ngIf=" ! isPurchased && ! loading && ! insufficientFunds">Purchase</p>
+        <p *ngIf="insufficientFunds && ! loading" class="cannot-buy">Cannot Buy</p>
         <div *ngIf="loading" [ngClass]="{ 'mobile-purchasing': isMobile, 'purchasing': ! isMobile}">
           <mat-spinner></mat-spinner>  
           <p>Purchasing</p>

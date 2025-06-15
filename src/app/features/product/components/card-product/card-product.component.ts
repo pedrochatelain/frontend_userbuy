@@ -24,6 +24,7 @@ export class CardProductComponent {
   private apiUrl = environment.apiUrl
   loading = false
   isMobile = false;
+  insufficientFunds = false
 
   constructor(private screenService: ScreenService, private snackbarService: SnackbarService) {}
 
@@ -50,8 +51,11 @@ export class CardProductComponent {
           this.loading = false
         },
         error: error => {
-          this.snackbarService.displayError("Error: " + error.error.error)
+          const errorMessage = error.error.error
+          this.snackbarService.displayError("Error: " + errorMessage)
           this.loading = false
+          if (errorMessage === 'Insufficient funds')
+            this.insufficientFunds = true
         },
         complete: () => {
           this.loading = false
