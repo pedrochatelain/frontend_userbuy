@@ -11,6 +11,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../../shared/services/screen.service';
 import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -31,9 +32,13 @@ export class LoginFormComponent implements OnInit {
   isMobile = false
   
 
-  constructor(private router: Router, private screenService: ScreenService, private snackbarService: SnackbarService) {
-    console.log(this.apiUrl)
-  }
+  constructor(
+    private router: Router,
+    private screenService: ScreenService,
+    private snackbarService: SnackbarService,
+    private loginService: LoginService
+  ) {}
+
   ngOnInit(): void {
     this.username = ""
     this.password = ""
@@ -48,11 +53,7 @@ export class LoginFormComponent implements OnInit {
 
   login(): void {
     this.loading = true
-    const data = {
-      "username": this.username,
-      "password": this.password
-    }
-    this.http.post<any>(`${this.apiUrl}/api/login`, data).subscribe({
+    this.loginService.login(this.username, this.password).subscribe({
       next: response => {
         this.router.navigate(['home'])
         localStorage.setItem('token', response.token);

@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ScreenService } from '../services/screen.service';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../features/login/services/login.service';
+import { SnackbarService } from '../snackbar/services/snackbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,7 +17,12 @@ export class NavBarComponent {
   selectedButton: string = 'home';
   isMobile = false
 
-  constructor(private router: Router, private screenService: ScreenService) {}
+  constructor(
+    private router: Router, 
+    private screenService: ScreenService, 
+    private loginService: LoginService,
+    private snackbarService: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     // Set the initial button based on the current route
@@ -65,8 +72,12 @@ export class NavBarComponent {
   }
 
   logout() {
-    localStorage.removeItem('token'); // or sessionStorage
-    this.router.navigate(['/login']); // Redirect to login page
+    this.router.navigate(['/login']);
+    this.loginService.logout().subscribe({
+      next: (response) => {
+        this.snackbarService.displaySuccess(response.message)
+      }
+    })
   }  
 
   navigateToHome(): void {
