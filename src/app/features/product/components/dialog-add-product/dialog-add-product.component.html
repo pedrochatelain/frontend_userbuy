@@ -44,7 +44,7 @@
 		
 	</mat-dialog-content>
 	<mat-dialog-actions *ngIf=" ! productAdded">
-		<button *ngIf=" ! loading" matButton (click)="closeDialog()">Cancel</button>
+		<button *ngIf=" ! loading" matButton (click)="closeDialog()">Close</button>
 		<button *ngIf=" ! loading" matButton="filled" (click)="addProduct()">
 			<p>Add Product</p>
 		</button>
