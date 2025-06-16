@@ -36,4 +36,20 @@ export class SnackbarService {
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
+
+  displayErrorAddingProduct(message: string, error: any): void {
+    const config = new MatSnackBarConfig();
+    config.data = {
+      icon: 'error',
+      message: message,
+      hasError: true,
+      errorAddingProduct: true,
+      error: error
+    }
+    if (this.screenService.isMobile()) {
+      config.verticalPosition = 'top'
+    }
+    this.snackBar.openFromComponent(SnackbarComponent, config);
+  }
+
 }

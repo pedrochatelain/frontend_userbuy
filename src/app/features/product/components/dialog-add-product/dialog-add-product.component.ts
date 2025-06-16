@@ -102,7 +102,7 @@ data = inject(MAT_DIALOG_DATA);
         this.errorCategory = error.error.issues?.category;
         this.btnTitle = 'Add Product';
         this.loading = false;
-        this.snackbarService.displayError(`Error adding product`)
+        this.snackbarService.displayErrorAddingProduct("Error adding product", error)
         this.scrollToError()
       },
     });

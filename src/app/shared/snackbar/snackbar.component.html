@@ -1,5 +1,6 @@
 <div class="container">
   <mat-icon [fontIcon]="icon" [class.success-icon]=" ! hasError" [class.error-icon]="hasError"></mat-icon>
   <p>{{ message }}</p>
+  <button *ngIf="errorAddingProduct" mat-button matSnackBarAction (click)="displayErrorAddingProduct()">Details</button>
   <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">Close</button>
 </div>

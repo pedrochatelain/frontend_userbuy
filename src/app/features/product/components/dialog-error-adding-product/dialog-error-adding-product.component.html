@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Error adding product</h2>
+<mat-dialog-content>
+    <mat-error *ngIf="error">
+        <p *ngIf="errorCategory"> <span>Category: </span>{{errorCategory}}</p>
+        <p *ngIf="errorName"> <span>Name: </span> {{errorName}}</p>
+    </mat-error>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton (click)="closeDialog()">Done</button>
+</mat-dialog-actions>
