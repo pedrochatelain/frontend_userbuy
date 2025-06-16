@@ -25,8 +25,7 @@ import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.s
     MatButtonModule,
     CommonModule,
     MatIconModule, 
-    MatProgressSpinnerModule,
-    MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule
+    MatProgressSpinnerModule
   ],
   templateUrl: './dialog-add-product.component.html',
   styleUrl: './dialog-add-product.component.css'
