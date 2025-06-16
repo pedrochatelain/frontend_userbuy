@@ -72,12 +72,7 @@ export class NavBarComponent {
   }
 
   logout() {
-    this.router.navigate(['/login']);
-    this.loginService.logout().subscribe({
-      next: (response) => {
-        this.snackbarService.displaySuccess(response.message)
-      }
-    })
+    this.loginService.openLogoutDialog()
   }  
 
   navigateToHome(): void {
