@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
 
 @Component({
   selector: 'app-login-form',
@@ -30,7 +31,7 @@ export class LoginFormComponent implements OnInit {
   isMobile = false
   
 
-  constructor(private router: Router, private screenService: ScreenService) {
+  constructor(private router: Router, private screenService: ScreenService, private snackbarService: SnackbarService) {
     console.log(this.apiUrl)
   }
   ngOnInit(): void {
@@ -47,7 +48,6 @@ export class LoginFormComponent implements OnInit {
 
   login(): void {
     this.loading = true
-    this.error = null
     const data = {
       "username": this.username,
       "password": this.password
@@ -57,10 +57,12 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['home'])
         localStorage.setItem('token', response.token);
         this.loading = false
+        this.snackbarService.displaySuccess("Login successful")
       },
       error: error => {
-        this.error = error.error.error
+        const messageError = error.error.error
         this.loading = false
+        this.snackbarService.displayError(messageError)
       },
       complete: () => {
         this.loading = false
