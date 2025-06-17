@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardProductComponent } from '../features/product/components/card-product/card-product.component';
+import { CardProductComponent } from '../product/components/card-product/card-product.component'; 
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { environment } from '../../environments/environment';
-import { ScreenService } from '../shared/services/screen.service';
+import { environment } from '../../../environments/environment';
+import { ScreenService } from '../../shared/services/screen.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({

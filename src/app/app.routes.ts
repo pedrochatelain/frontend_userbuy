@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/product/components/home/home.component';
 import { LoginComponent } from './features/login/components/login/login.component';
-import { PurchasesComponent } from './purchases/purchases.component';
+import { PurchasesComponent } from './features/purchases/purchases.component';
 import { AuthGuard } from './auth/auth.guard';
 import { WalletComponent } from './features/wallet/components/wallet/wallet.component';
 import { SearchComponent } from './features/product/components/search/search.component';
