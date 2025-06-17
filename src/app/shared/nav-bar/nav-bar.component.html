@@ -37,6 +37,7 @@
       <p>My Wallet</p>
     </button>
     <button
+      *ngIf=" ! isMobile"
       [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-bar-logout': ! isMobile}"
       [class.selected]="selectedButton === 'logout'"
       (click)="logout()"
@@ -45,5 +46,28 @@
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
       <p>Logout</p>
     </button>
+    <button
+      *ngIf="isMobile"
+      mat-flat-button 
+      [matMenuTriggerFor]="menu"
+      [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="customize">
+      <button
+        mat-menu-item
+        [class.selected]="selectedButton === 'logout'"
+        (click)="logout()"
+      >
+        <mat-icon fontIcon="logout"></mat-icon>
+        <span>Logout</span>
+      </button>
+      <!-- <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button> -->
+    </mat-menu>
+      
   </div>
   

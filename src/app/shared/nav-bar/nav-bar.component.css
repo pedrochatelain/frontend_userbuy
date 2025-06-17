@@ -67,3 +67,16 @@ button {
 .selected {
     background-color: var(--mat-sys-on-primary-fixed) !important;
 }
+
+::ng-deep .customize {
+  background: var(--mat-sys-primary) !important;
+}
+
+::ng-deep .customize button {
+    color: var(--mat-sys-on-primary) !important;
+    background: var(--mat-sys-primary) !important;
+}
+
+::ng-deep .customize mat-icon {
+    color: var(--mat-sys-on-primary) !important;
+}

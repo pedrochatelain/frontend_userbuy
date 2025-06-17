@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ScreenService } from '../services/screen.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../features/login/services/login.service';
 import { SnackbarService } from '../snackbar/services/snackbar.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [MatIconModule, MatButtonModule, CommonModule],
+  imports: [MatIconModule, MatButtonModule, CommonModule, MatMenuModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
