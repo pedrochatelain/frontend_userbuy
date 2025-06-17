@@ -18,7 +18,6 @@ export class PurchasesComponent {
   private http = inject(HttpClient);
   purchases: Purchase[] = []; // Updated to an array
   userId: string | null = null;
-  private lastRenderedDate: string | null = null;
   private apiUrl = environment.apiUrl
   isMobile = false
   loading = false;
@@ -55,23 +54,9 @@ export class PurchasesComponent {
     });
   }
 
-  isNewDate(date: Date): boolean {
-    const formattedDate = date.toDateString(); // Ensure the parameter is a Date
-    if (formattedDate !== this.lastRenderedDate) {
-      this.lastRenderedDate = formattedDate;
-      return true;
-    }
-    return false;
-  }  
-
   trackByPurchase(index: number, purchase: any): string {
     return purchase._id;
   }
-
-  trackByProduct(index: number, product: any): string {
-    return product._id;
-  }
-
 
 }
 
