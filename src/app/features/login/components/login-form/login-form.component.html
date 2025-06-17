@@ -1,12 +1,12 @@
-<div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
+<form [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
   <h1 class="title-login">Login</h1>
   <mat-form-field>
     <mat-label>Username</mat-label>
-    <input matInput [(ngModel)]="username" name="username" autocapitalize="none" >
+    <input matInput [(ngModel)]="username" name="username" autocapitalize="none" autocomplete="username">
   </mat-form-field>
   <mat-form-field>
       <mat-label>Password</mat-label>
-      <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password" (keydown.enter)="onEnter(inputPassword)" #inputPassword>
+      <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password" (keydown.enter)="onEnter(inputPassword)" #inputPassword autocomplete="new-password">
       <button matSuffix mat-icon-button aria-label="Toggle password visibility" tabindex="-1" (click)="togglePasswordVisibility()">
         <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>
@@ -20,4 +20,4 @@
       <p class="p-login">Login</p>
     </div>
   </button> 
-</div>
+</form>

@@ -1,13 +1,13 @@
-<div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }" [class.display-none]="disabled">
+<form [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }" [class.display-none]="disabled">
   <h1 class="title-create-account">Create account</h1>
   <mat-form-field class="example-full-width">
     <mat-label>Username</mat-label>
-    <input matInput [(ngModel)]="username" name="username" autocapitalize="none">
+    <input matInput [(ngModel)]="username" name="username" autocapitalize="none" autocomplete="username">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password">
+    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="password" name="password" autocomplete="new-password">
     <button matSuffix mat-icon-button aria-label="Toggle password visibility" tabindex="-1" (click)="togglePasswordVisibility()">
       <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
     </button>
@@ -15,7 +15,7 @@
 
   <mat-form-field>
     <mat-label>Repeat password</mat-label>
-    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="repeat_password" name="repeat_password" (keydown.enter)="onEnter(inputRepeatPassword)" #inputRepeatPassword>
+    <input [type]="hidePassword ? 'password' : 'text'" matInput [(ngModel)]="repeat_password" name="repeat_password" (keydown.enter)="onEnter(inputRepeatPassword)" autocomplete="current-password" #inputRepeatPassword>
     <button matSuffix mat-icon-button aria-label="Toggle password visibility" tabindex="-1" (click)="togglePasswordVisibility()">
       <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
     </button>
@@ -31,4 +31,4 @@
   @if (error) {
   <mat-error>{{error}}</mat-error>
   }        
-</div>
+</form>
