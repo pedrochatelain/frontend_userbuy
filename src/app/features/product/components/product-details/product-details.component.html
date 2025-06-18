@@ -1,0 +1,23 @@
+<div class="container">
+    <img *ngIf="product.image; else noImage" [src]="product.image" [alt]="product.name" />
+    <ng-template #noImage>
+        <img src="assets/product_image_not_available.png" alt="Image not available" />
+    </ng-template>
+    <div class="product-details">
+        <p class="category">{{ product.category }}</p>
+        <h1 class="name">{{ product.name }}</h1>
+        <h1 class="price"> <span>$</span>{{ product.price }}</h1>
+        <ng-container *ngIf=" ! isBtnPurchaseDisabled">
+        <button class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" matButton="filled">
+            <p *ngIf=" ! isPurchased && ! loading && ! insufficientFunds">Purchase</p>
+            <p *ngIf="insufficientFunds && ! loading" class="cannot-buy">No Funds</p>
+            <div *ngIf="loading" [ngClass]="{ 'mobile-purchasing': isMobile, 'purchasing': ! isMobile}">
+            <mat-spinner></mat-spinner>  
+            <p>Purchasing</p>
+            </div>
+            <p *ngIf="isPurchased" class="purchased">Purchased</p>
+        </button>
+        </ng-container>
+    </div>
+    
+</div>

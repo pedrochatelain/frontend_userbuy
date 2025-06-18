@@ -1,0 +1,77 @@
+.container {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    margin-left: 300px;
+}
+
+.product-details {
+    margin-left: 60px;
+}
+
+.price {
+    font-weight: bolder;
+}
+
+.price span {
+    font-weight: lighter;
+    margin-right: 10px;
+}
+
+.category {
+    font-weight: lighter;
+}
+
+img {
+    align-self: center;
+    object-fit: contain;
+    border-radius: 6%;
+    padding: 10px;
+    height: 400px;
+    width: 400px;
+}
+
+.purchased {
+    color: green;
+    opacity: .5;
+}
+
+.cannot-buy {
+    color: red;
+    opacity: .5;
+}
+
+.purchasing {
+    display: flex;
+    align-items: center;
+    width: 120px;
+}
+
+.purchasing mat-spinner {
+    scale: .5;
+    justify-self: start;
+}
+
+.purchasing p {
+    margin-right: 10px;
+}
+
+
+.mobile-purchasing {
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+
+.mobile-purchasing mat-spinner {
+    scale: .5;
+}
+
+.mobile-mat-card .btn-purchase {
+    margin-left: 0;
+}
+
+.btn-purchase {
+    margin-top: 30px;
+    width: 300px;
+}

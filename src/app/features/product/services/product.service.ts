@@ -10,6 +10,7 @@ export class ProductService {
   private apiUrl = `${environment.apiUrl}/api/products`;
   productAdded = new EventEmitter<any>();
   cache: any
+  currentProduct: Product | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +29,14 @@ export class ProductService {
     });
 
     return this.http.post<any>(this.apiUrl, product, { headers });
+  }
+
+  getProduct(id_product: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.apiUrl}/${id_product}`, { headers });
   }
 
   uploadProductImage(productId: string, file: File) {
@@ -60,15 +69,21 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}?name=${product}`, { headers });
   }
 
+  setCurrentProduct(product: Product) {
+    this.currentProduct = product
+  }
+
 }
 
 /**
  * Interface for product details.
  */
 export interface Product {
+  _id: string;
   category: string;
   price: string;
   name: string;
   stock_quantity: string;
   currency: string;
+  image: string;
 }
