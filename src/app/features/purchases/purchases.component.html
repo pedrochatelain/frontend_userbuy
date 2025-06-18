@@ -12,9 +12,9 @@
                     <p class="date-purchase">{{ purchase.purchaseDate | date: 'fullDate' }}</p>
                 </ng-container>
                 <!-- Render product card -->
-                <app-card-product 
+                <app-card-product
                     [product]="purchase.product" 
-                    [isBtnPurchaseDisabled]="true">
+                >
                 </app-card-product>
             </ng-container>
         </ng-container>

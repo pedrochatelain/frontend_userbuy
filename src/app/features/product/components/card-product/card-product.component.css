@@ -1,11 +1,19 @@
+* {
+    cursor: pointer;
+}
+
 mat-card {
     border-color: var(--mat-sys-primary-fixed);
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: max-content 3fr;
     width: 80%;
-    height: 250px;
+    /* height: 250px; */
     background-color: transparent;
+}
+
+mat-card:hover {
+    background-color: var(--mat-sys-background);
 }
 
 mat-card-content {
@@ -36,8 +44,8 @@ img {
     object-fit: contain;
     border-radius: 6%;
     padding: 10px;
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
 }
 
 .mdc-card__media {
@@ -50,31 +58,6 @@ img {
     font-size: small;
     font-weight: lighter;
     margin-bottom: 10px;
-}
-
-.purchased {
-    color: green;
-    opacity: .5;
-}
-
-.cannot-buy {
-    color: red;
-    opacity: .5;
-}
-
-.purchasing {
-    display: flex;
-    align-items: center;
-    width: 120px;
-}
-
-.purchasing mat-spinner {
-    scale: .5;
-    justify-self: start;
-}
-
-.purchasing p {
-    margin-right: 10px;
 }
 
 /* mobile */
@@ -106,18 +89,4 @@ img {
 
 .mobile-price {
     font-weight: bold;
-}
-
-.mobile-purchasing {
-    display: flex;
-    align-items: center;
-    width: 100px;
-}
-
-.mobile-purchasing mat-spinner {
-    scale: .5;
-}
-
-.mobile-mat-card .btn-purchase {
-    margin-left: 0;
 }

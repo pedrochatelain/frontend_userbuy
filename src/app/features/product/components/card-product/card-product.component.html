@@ -1,4 +1,4 @@
-<mat-card [ngClass]="{ 'mobile-mat-card': isMobile}" appearance="outlined">
+<mat-card (click)="navigateToProduct()" [ngClass]="{ 'mobile-mat-card': isMobile}" appearance="outlined">
   <ng-container *ngIf="product.image; else noImage">
     <img [ngClass]="{ 'mobile-img': isMobile}" [src]="product.image" [alt]="product.name" />
   </ng-container>
@@ -16,17 +16,5 @@
         {{ product.currency }} {{ product.price }}
       </div>
     </div>
-    <ng-container *ngIf=" ! isBtnPurchaseDisabled">
-      <button class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" mat-raised-button>
-        <p *ngIf=" ! isPurchased && ! loading && ! insufficientFunds">Purchase</p>
-        <p *ngIf="insufficientFunds && ! loading" class="cannot-buy">Cannot Buy</p>
-        <div *ngIf="loading" [ngClass]="{ 'mobile-purchasing': isMobile, 'purchasing': ! isMobile}">
-          <mat-spinner></mat-spinner>  
-          <p>Purchasing</p>
-        </div>
-        <p *ngIf="isPurchased" class="purchased">Purchased</p>
-      </button>
-    </ng-container>
   </mat-card-content>
-
 </mat-card>
