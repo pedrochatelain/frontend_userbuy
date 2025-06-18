@@ -6,16 +6,21 @@
 }
 
 .product-details {
-    margin-left: 60px;
+    margin-left: 100px;
 }
 
 .price {
+    padding-top: 10px;
+    display: flex;
     font-weight: bolder;
 }
 
 .price span {
+    margin-top: 6px;
     font-weight: lighter;
+    font-size: medium;
     margin-right: 10px;
+    /* top: 0; */
 }
 
 .category {
@@ -25,6 +30,7 @@
 img {
     align-self: center;
     object-fit: contain;
+    object-position: top;
     border-radius: 6%;
     padding: 10px;
     height: 400px;
@@ -74,4 +80,21 @@ img {
 .btn-purchase {
     margin-top: 30px;
     width: 300px;
+}
+
+.mobile-container {
+    margin-top: 30px;
+    display: grid;
+    width: 100%;
+}
+
+.mobile-container .product-details {
+    margin-left: 30px;
+    margin-bottom: 120px;
+}
+
+.mobile-container img {
+    justify-self: center;
+    width: 320px;
+    height: fit-content;
 }

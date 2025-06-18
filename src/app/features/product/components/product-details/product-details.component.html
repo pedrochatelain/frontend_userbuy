@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="{ 'mobile-container': isMobile, 'container': ! isMobile}">
     <img *ngIf="product.image; else noImage" [src]="product.image" [alt]="product.name" />
     <ng-template #noImage>
         <img src="assets/product_image_not_available.png" alt="Image not available" />

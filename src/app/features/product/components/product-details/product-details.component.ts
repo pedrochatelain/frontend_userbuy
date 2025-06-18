@@ -37,6 +37,9 @@ export class ProductDetailsComponent {
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
+    this.screenService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
     this.product = this.productService.currentProduct!
     // Fetch product details if data isn't available
     if ( ! this.product) {
