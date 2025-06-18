@@ -51,6 +51,8 @@ data = inject(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<DialogAddProductComponent>);
   @ViewChild('dialogContent') dialogContent!: ElementRef;
   isMobile = false;
+  image: File | undefined;
+  imageName = ''
 
   constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService, private snackbarService: SnackbarService) {}
 
@@ -78,7 +80,7 @@ data = inject(MAT_DIALOG_DATA);
       "price": this.price,
       "name": this.name,
       "stock_quantity": this.stock,
-      "currency": this.currency
+      "image": this.image
     };
     this.productAdded = false
 
@@ -110,26 +112,9 @@ data = inject(MAT_DIALOG_DATA);
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.uploadImage(this.product._id, file);
+      this.image = input.files[0];
+      this.imageName = this.image.name
     }
-  }
-
-  uploadImage(productId: string, file: File): void {
-    this.success = ""
-    this.error = ""
-    this.uploadingImage = true
-    this.productService.uploadProductImage(productId, file).subscribe({
-      next: () => {
-        this.success = 'Image uploaded successfully!';
-        this.uploadingImage = false
-      },
-      error: (error) => {
-        console.error('Error uploading image:', error);
-        this.error = 'Failed to upload image.';
-        this.uploadingImage = false
-      },
-    });
   }
 
   closeDialog(): void {

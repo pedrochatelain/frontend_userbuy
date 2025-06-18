@@ -28,7 +28,15 @@ export class ProductService {
       Authorization: `Bearer ${token}`,
     });
 
-    return this.http.post<any>(this.apiUrl, product, { headers });
+    const formData = new FormData();
+
+    formData.append('category', product.category);
+    formData.append('name', product.name);
+    formData.append('price', product.price);
+    formData.append('stock_quantity', product.stock_quantity);
+    formData.append('image', product.image);
+
+    return this.http.post<any>(this.apiUrl, formData, { headers });
   }
 
   getProduct(id_product: string) {
@@ -84,6 +92,5 @@ export interface Product {
   price: string;
   name: string;
   stock_quantity: string;
-  currency: string;
   image: string;
 }

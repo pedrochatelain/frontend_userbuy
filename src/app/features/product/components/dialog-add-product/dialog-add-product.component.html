@@ -8,7 +8,7 @@
 
 		<mat-form-field>
 			<mat-label>Name</mat-label>
-			<input matInput [(ngModel)]="name" name="nam">
+			<input matInput [(ngModel)]="name" name="name">
 		</mat-form-field>
 
 		<mat-form-field>
@@ -31,9 +31,16 @@
 		</mat-form-field>
 
 
-		<mat-form-field>
-			<mat-label>Currency</mat-label>
-			<input matInput [(ngModel)]="currency" name="currency">
+		<mat-form-field (click)="fileInput.click()">
+			<mat-label>Image</mat-label>
+			<input matInput readonly [value]="imageName">
+			<input
+				type="file"
+				accept="image/*"
+				#fileInput
+				hidden
+				(change)="onImageSelected($event)"
+			/>
 		</mat-form-field>
 
 		<mat-error class="container-error" *ngIf="error">
@@ -65,39 +72,22 @@
 				<mat-icon class="error-icon" fontIcon="error"></mat-icon>
 				<p>{{error}}</p>
 			</div>
-			<div class="loading-image" *ngIf="uploadingImage">
-				<mat-spinner></mat-spinner>
-				<p>Uploading image...</p>
-			</div>
 		</div>
 		<div class="product-added">
 			<div class="keys">
 				<p>Category</p>
 				<p>Name</p>
 				<p>Price</p>
-				<p>Currency</p>
 				<p>Stock quantity</p>
+				<p>Image</p>
 			</div>
 			<div class="values">
 				<p>{{ product.category }}</p>
 				<p>{{ product.name }}</p>
 				<p>{{ product.price }}</p>
-				<p>{{ product.currency }}</p>
 				<p>{{ product.stock_quantity }}</p>
+				<p>{{ product.image }}</p>
 			</div>
 		</div>
-		<input
-			type="file"
-			accept="image/*"
-			#fileInput
-			hidden
-			(change)="onImageSelected($event)"
-		/>
-		<button
-			disabled="{{uploadingImage}}"
-			class="btn-add-image"
-			mat-flat-button
-			(click)="fileInput.click()"
-		>Add Image</button>
 	</div>
 </div>
