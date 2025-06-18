@@ -3,7 +3,8 @@
 }
 
 mat-card {
-    border-color: var(--mat-sys-primary-fixed);
+    border-color: transparent;
+    border-bottom: 1px solid var(--mat-sys-primary-fixed);
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: max-content 3fr;
