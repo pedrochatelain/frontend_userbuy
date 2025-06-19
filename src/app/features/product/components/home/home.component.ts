@@ -24,17 +24,34 @@ export class HomeComponent implements OnInit {
   products: any[] = [];
   dialog = inject(MatDialog);
   isMobile = false;
-  private productAddedSubscription: Subscription | undefined;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private productService: ProductService, private authGuard: AuthGuard, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
-    this.fetchProducts();
-    // Listen for productAdded events
-    this.productAddedSubscription = this.productService.productAdded.subscribe((newProduct) => {
-      this.products.push(newProduct);
-    });
+
+    // Use cached products or fetch them from the server
+    this.products = this.productService.getCachedProducts();
+    if (this.products.length === 0) {
+      this.productService.fetchProducts().subscribe({
+        next: (response) => {
+          this.products = response.products;
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+        }
+      })
+    } else {
+      this.loading = false;
+    }
+
+    this.subscriptions.add(
+      this.productService.productAdded.subscribe(() => {
+        this.products = this.productService.getCachedProducts();
+      })
+    );
 
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -43,24 +60,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe to avoid duplicate subscriptions
-    if (this.productAddedSubscription) {
-      this.productAddedSubscription.unsubscribe();
-    }
-  }
-
-  fetchProducts(): void {
-    this.loading = true;
-    this.productService.getProducts().subscribe({
-      next: (response) => {
-        this.products = response.products;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error fetching products:', error);
-        this.loading = false;
-      }
-    });
+    this.subscriptions.unsubscribe();
   }
 
   openDialog() {

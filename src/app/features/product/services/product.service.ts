@@ -11,6 +11,7 @@ export class ProductService {
   productAdded = new EventEmitter<any>();
   cache: any
   currentProduct: Product | undefined;
+  private products: any[] = []; // Persistent product list
 
   constructor(private http: HttpClient) {}
 
@@ -36,7 +37,16 @@ export class ProductService {
     formData.append('stock_quantity', product.stock_quantity);
     formData.append('image', product.image);
 
-    return this.http.post<any>(this.apiUrl, formData, { headers });
+    return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
+      tap((response) => {
+        this.products.push(response.product);
+        this.productAdded.emit(response.product); // Notify subscribers
+      })
+    );
+  }
+
+  getCachedProducts() {
+    return this.products;
   }
 
   getProduct(id_product: string) {
@@ -67,6 +77,18 @@ export class ProductService {
     return this.http.get<any>(this.apiUrl).pipe(
       tap(data => this.cache = data) // Cache the data
     );
+  }
+
+  // Fetch products from the API and cache them
+  fetchProducts() {
+    if (this.products.length === 0) {
+      return this.http.get<any>(this.apiUrl).pipe(
+        tap((response) => this.products = response.products) // Cache the products
+      );
+    } else {
+      // Return a simulated observable if products are already loaded
+      return of(this.products);
+    }
   }
 
   searchProduct(product: string): Observable<any> {
