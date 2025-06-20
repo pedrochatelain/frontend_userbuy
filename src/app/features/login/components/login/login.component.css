@@ -1,16 +1,13 @@
 .container {
-    position: absolute;
-    width: 100%;
+    justify-self: center;
     height: 100%;
     display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content max-content;
 }
 
 .mobile-container {
   display: grid;
   align-content: start;
-  margin-top: 30px;
   height: 100%;
   background-color: var(--mat-sys-on-primary);
 }
@@ -41,25 +38,8 @@ h1 span {
 .left-content {
   display: grid;
   justify-items: center;
-  padding-bottom: 100px;
   text-align: center;
   align-content: center;
-  background-color: var(--mat-sys-on-primary-container);
-}
-
-.left-content h1, .left-content p {
-  color: var(--mat-sys-on-primary);
-}
-
-.left-content h1 {
-  font-size: xx-large;
-  font-weight: bold;
-}
-
-.left-content p {
-  font-size: large;
-  font-weight: lighter;
-  width: 60%;
 }
 
 .right-content {
@@ -88,8 +68,9 @@ app-create-account-form {
 
 .btn-toggle {
   margin-top: 50px;
-  /* position: absolute; */
-  /* bottom: 0; */
-  /* margin-bottom: 100px; */
-  /* margin-left: 85px; */
+}
+
+.userbuy-logo {
+  width: 140px;
+  padding: 20px;
 }

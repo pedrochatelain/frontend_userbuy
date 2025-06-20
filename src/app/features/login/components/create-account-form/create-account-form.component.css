@@ -45,6 +45,7 @@ mat-form-field button {
 }
 
 .title-create-account {
-    color: var(--mat-sys-primary);
+    font-size: x-large;
     font-weight: normal;
+    color: var(--mat-sys-primary);
 }
