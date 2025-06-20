@@ -2,15 +2,14 @@
     margin-top: 50px;
     display: grid;
     grid-template-columns: max-content 1fr;
-    margin-left: 300px;
+    margin-left: 320px;
 }
 
 .product-details {
     border-left-style: dotted;
     border-left-color: var(--mat-sys-inverse-primary);
     border-left-width: 1px;
-    width: 400px;
-    margin-left: 50px;
+    margin-left: 80px;
     padding: 50px;
 }
 
@@ -32,10 +31,12 @@
 
 img {
     align-self: center;
+    object-position: left;
     object-fit: contain;
     border-radius: 6%;
     height: 400px;
-    width: 500px;
+    width: max-content;
+    max-width: 500px;
 }
 
 .name {
@@ -89,26 +90,51 @@ img {
 }
 
 .mobile-container {
-    margin-top: 30px;
+    margin-top: 10px;
     display: grid;
-    width: 100%;
 }
 
 .mobile-container .product-details {
     margin-left: 30px;
-    margin-bottom: 120px;
+    padding: 0;
+    width: 80%;
+    border: none;
+}
+
+.mobile-container .price {
+    margin: 0;
 }
 
 .mobile-container img {
+    margin-top: 20px;
     justify-self: center;
-    width: 320px;
-    height: fit-content;
+    width: 300px;
+    height: 400px;
+}
+
+.mobile-container .name {
+    margin: 0;
+    font-size: xx-large;
+}
+
+.mobile-description {
+    margin-top: 80px;
+    margin-left: 30px;
+    padding-bottom: 100px;
+    font-weight: lighter;
+    width: 80%;
+}
+
+.mobile-description h1 {
+    font-size: x-large;
 }
 
 .description {
+    font-weight: lighter;
+    width: 700px;
     margin-top: 100px;
     padding-bottom: 100px;
-    margin-left: 300px;
+    margin-left: 320px;
     grid-column-start: 1;
     grid-column-end: 3;
 }
