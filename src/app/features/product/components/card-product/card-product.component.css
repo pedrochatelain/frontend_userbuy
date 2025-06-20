@@ -18,6 +18,7 @@ mat-card:hover {
 }
 
 mat-card-content {
+    padding: 0 !important;
     display: grid;
 }
 
@@ -30,20 +31,16 @@ mat-card-content {
     width: fit-content;
 }
 
-mat-card-title {
-    font-weight: 100;
-}
-
-.price {
+.price, .mobile-price {
     padding-top: 10px;
-    font-weight: 500;
-    font-size: x-large;
+    font-weight: lighter;
+    font-size: large;
 }
 
 img {
     align-self: center;
     object-fit: contain;
-    border-radius: 6%;
+    border-radius: 20%;
     padding: 10px;
     height: 150px;
     width: 150px;
@@ -69,10 +66,6 @@ img {
     height: 150px;
 }
 
-.mobile-mat-card .category {
-    margin-top: 10px;
-}
-
 .mobile-mat-card .product-details {
     display: grid;
     height: fit-content;
@@ -82,12 +75,4 @@ img {
 .mobile-mat-card {
     height: 200px;
     width: 100%;
-}
-
-.mobile-mat-card-title {
-    font-size: medium;
-}
-
-.mobile-price {
-    font-weight: bold;
 }
