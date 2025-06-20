@@ -3,7 +3,7 @@ import { Component, inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../product/components/card-product/card-product.component'; 
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { environment } from '../../../environments/environment';
+import { Purchase, PurchaseService } from './services/purchase.service';
 import { ScreenService } from '../../shared/services/screen.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
@@ -15,24 +15,23 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 })
 @Injectable({ providedIn: 'root' })
 export class PurchasesComponent {
-  private http = inject(HttpClient);
-  purchases: Purchase[] = []; // Updated to an array
+  purchases: Purchase[] = [];
   userId: string | null = null;
-  private apiUrl = environment.apiUrl
   isMobile = false
   loading = false;
 
-  constructor(private route: ActivatedRoute, private viewportScroller: ViewportScroller, private screenService: ScreenService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private viewportScroller: ViewportScroller,
+    private screenService: ScreenService,
+    private purchaseService: PurchaseService
+  ) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token'); // Replace 'token' with the actual key used to store your token
     this.viewportScroller.scrollToPosition([0, 0]);
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-    });
     this.userId = this.route.snapshot.paramMap.get('id_user');
     this.loading = true
-    this.http.get<Purchase[]>(`${this.apiUrl}/api/users/${this.userId}/purchases`, { headers }).subscribe({
+    this.purchaseService.fetchPurchases(this.userId!).subscribe({
       next: (response) => {
         this.purchases = response.map(purchase => ({
           ...purchase,
@@ -58,18 +57,4 @@ export class PurchasesComponent {
     return purchase._id;
   }
 
-}
-
-
-
-interface Purchase {
-  _id: string;
-  product: Product;
-  purchaseDate: Date
-}
-
-interface Product {
-  _id: string;
-  name: string;
-  price: number;
 }
