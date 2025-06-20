@@ -25,6 +25,7 @@ export class SearchComponent {
   noProductsFound = false;
   private searchSubject = new Subject<string>();
   isMobile = false
+  numberOfProducts = ''
 
   constructor(private productService: ProductService, private viewportScroller: ViewportScroller, private renderer: Renderer2, private screenService: ScreenService) {
     // Subscribe to searchSubject to handle debounced and switched search requests
@@ -51,6 +52,8 @@ export class SearchComponent {
         this.loading = false;
         if (response && response.products) {
           this.products = response.products;
+          this.numberOfProducts = response.numberOfProducts
+          console.log(this.numberOfProducts)
           this.noProductsFound = this.products.length === 0;
         }
       });
@@ -70,6 +73,8 @@ export class SearchComponent {
   }
 
   searchProduct(product: string): void {
+    this.numberOfProducts = ''
+    this.products = [];
     this.searchSubject.next(product);
   }
 
@@ -78,6 +83,7 @@ export class SearchComponent {
     this.products = [];
     this.noProductsFound = false;
     this.loading = false;
+    this.numberOfProducts = ''
   }
 
   onEnter(input: HTMLInputElement) {

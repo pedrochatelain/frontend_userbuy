@@ -70,3 +70,12 @@ mat-icon {
 .clear-btn {
     margin-right: 10px;
 }
+
+.number-of-products {
+    color: var(--mat-sys-primary);
+    margin-left: 20px;
+}
+
+.number-of-products span {
+    font-weight: bold;
+}
