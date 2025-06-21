@@ -6,7 +6,7 @@
     <app-login-form *ngIf="isCreateUserHidden"></app-login-form>
     <app-create-account-form [disabled]="isCreateUserHidden"></app-create-account-form>
     @if (showLoginForm) {
-      <button class="btn-toggle" mat-button (click)="toggleForms()">I don't have an account</button>
+      <button *ngIf=" ! loggingIn" class="btn-toggle" mat-button (click)="toggleForms()">I don't have an account</button>
     } @else {
       <button class="btn-toggle" mat-button (click)="toggleForms()">Go back to Login</button>
     }

@@ -53,20 +53,24 @@ export class LoginFormComponent implements OnInit {
 
   login(): void {
     this.loading = true
+    this.loginService.loggingIn.emit(true)
     this.loginService.login(this.username, this.password).subscribe({
       next: response => {
         this.router.navigate(['home'])
         localStorage.setItem('token', response.token);
         this.loading = false
+        this.loginService.loggingIn.emit(false)
         this.snackbarService.displaySuccess("Login successful")
       },
       error: error => {
         const messageError = error.error.error
         this.loading = false
         this.snackbarService.displayError(messageError)
+        this.loginService.loggingIn.emit(false)
       },
       complete: () => {
         this.loading = false
+        this.loginService.loggingIn.emit(false)
       }
     });
   }

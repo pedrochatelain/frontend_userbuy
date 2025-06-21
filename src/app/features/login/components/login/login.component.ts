@@ -4,6 +4,7 @@ import { CreateAccountFormComponent } from '../create-account-form/create-accoun
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { LoginService } from '../../services/login.service';
 
 /**
  * @title Basic Inputs
@@ -20,13 +21,15 @@ export class LoginComponent {
   isCreateUserHidden: boolean = true;
   @ViewChild(CreateAccountFormComponent) createAccountComponent!: CreateAccountFormComponent;
   isMobile = false;
+  loggingIn: boolean = false;
   
-  constructor(private screenService: ScreenService) {}
+  constructor(private screenService: ScreenService, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+    this.loginService.loggingIn.subscribe((value) => this.loggingIn = value)
   }
 
   toggleForms() {

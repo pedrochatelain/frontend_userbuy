@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLogoutComponent } from '../components/dialog-logout/dialog-logout.component';
@@ -12,6 +12,7 @@ export class LoginService {
 
   private urlLogout = `${environment.apiUrl}/api/logout`;
   private urlLogin = `${environment.apiUrl}/api/login`;
+  loggingIn = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
