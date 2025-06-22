@@ -23,12 +23,13 @@ export class DialogErrorAddingProductComponent {
   errorName: string = ""
   errorCategory: string = ""
   readonly dialogRef = inject(MatDialogRef<DialogErrorAddingProductComponent>);
+  errorImage: string = "";
 
   ngOnInit():void {
     this.error = this.data.error;
     this.errorName = this.error.error.issues?.name;
     this.errorCategory = this.error.error.issues?.category;
-
+    this.errorImage = this.error.error.details?.geminiResponse
   }
 
   closeDialog(): void {
