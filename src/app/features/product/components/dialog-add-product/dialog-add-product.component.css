@@ -13,96 +13,9 @@ mat-dialog-content {
     width: 50%;
 }
 
-.container-error, .success {
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.container-error span {
-    font-weight: 500;
-}
-
-mat-error {
-    padding-bottom: 50px;
-}
-
-mat-error p {
-    font-weight: 300;
-}
-
-.success {
-    display: grid;
-    padding: 20px;
-}
-
-.check-icon {
-    scale: .8;
-    color: white;
-    background-color: green;
-    border-radius: 100%;
-    padding: 6px;
-    margin-right: 10px;
-}
-
-.error-icon {
-    scale: .8;
-    color: white;
-    background-color: red;
-    border-radius: 100%;
-    padding: 6px;
-    margin-right: 10px;
-}
-
-.message-product-added {
-    display: flex;
-    align-items: center;
-    font-size: large;
-}
-
-.product-added {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    font-size: medium;
-}
-
-.product-added .keys {
-    font-weight: 300;
-}
-
-.product-added .keys p, .product-added .values p{
-    margin: 10px;
-}
-
-.btn-add-image {
-    width: 80%;
-    justify-self: center;
-    margin-top: 30px;
-}
-
 mat-spinner {
     justify-self: center;
     scale: .4;
-}
-
-.success-uploading-image, .error-uploading-image, .loading-image {
-    display: flex;
-    align-items: center;
-}
-
-.success-uploading-image {
-    color: green;
-}
-
-.error-uploading-image {
-    color: red;
-}
-
-.loading-image mat-spinner {
-    scale: .3;
-}
-
-.loading-image p {
-    margin-right: 30px;
 }
 
 button div mat-spinner {

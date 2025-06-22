@@ -42,13 +42,6 @@
 				(change)="onImageSelected($event)"
 			/>
 		</mat-form-field>
-
-		<mat-error class="container-error" *ngIf="error">
-			<h4>{{error}}</h4>
-			<p *ngIf="errorCategory"> <span>Category: </span>{{errorCategory}}</p>
-			<p *ngIf="errorName"> <span>Name: </span> {{errorName}}</p>
-		</mat-error>
-		
 	</mat-dialog-content>
 	<mat-dialog-actions *ngIf=" ! productAdded">
 		<button *ngIf=" ! loading" matButton (click)="closeDialog()">Close</button>
@@ -62,32 +55,4 @@
 			</div>
 		</div>
 	</mat-dialog-actions>
-	<div class="success" *ngIf="productAdded">
-		<div class="message-product-added">
-			<div class="success-uploading-image" *ngIf="success">
-				<mat-icon class="check-icon" fontIcon="check"></mat-icon>
-				<p>{{success}}</p>
-			</div>
-			<div class="error-uploading-image" *ngIf="error">
-				<mat-icon class="error-icon" fontIcon="error"></mat-icon>
-				<p>{{error}}</p>
-			</div>
-		</div>
-		<div class="product-added">
-			<div class="keys">
-				<p>Category</p>
-				<p>Name</p>
-				<p>Price</p>
-				<p>Stock quantity</p>
-				<p>Image</p>
-			</div>
-			<div class="values">
-				<p>{{ product.category }}</p>
-				<p>{{ product.name }}</p>
-				<p>{{ product.price  | number: '1.2-2' }}</p>
-				<p>{{ product.stock_quantity }}</p>
-				<p>{{ product.image }}</p>
-			</div>
-		</div>
-	</div>
 </div>
