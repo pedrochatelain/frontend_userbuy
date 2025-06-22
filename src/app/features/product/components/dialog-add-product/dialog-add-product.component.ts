@@ -92,7 +92,8 @@ data = inject(MAT_DIALOG_DATA);
         this.btnTitle = 'Add Product';
         this.isBtnDisabled = true;
         this.loading = false;
-        this.snackbarService.displaySuccess(`${this.name} successfully added`)
+        this.closeDialog()
+        this.snackbarService.displayProductAdded(this.product)
       },
       error: (error) => {
         console.error('Error:', error);

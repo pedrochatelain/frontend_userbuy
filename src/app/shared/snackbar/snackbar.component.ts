@@ -6,6 +6,8 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogErrorAddingProductComponent } from '../../features/product/components/dialog-error-adding-product/dialog-error-adding-product.component';
+import { ProductService } from '../../features/product/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-snackbar',
@@ -16,16 +18,20 @@ import { DialogErrorAddingProductComponent } from '../../features/product/compon
 export class SnackbarComponent {
   @Input() icon: string = 'task_alt';
   @Input() hasError: boolean = false;
+  @Input() productAdded: boolean = false;
   @Input() message: string = '';
+  @Input() product: any | undefined;
   @Input() errorAddingProduct: boolean = false;
   @Input() error: any
   dialog = inject(MatDialog);
   snackBarRef = inject(MatSnackBarRef);  
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private productService: ProductService, private router: Router) {
     this.icon = data.icon || this.icon;
     this.message = data.message || this.message;
     this.hasError = data.hasError || this.hasError
+    this.productAdded = data.productAdded || this.productAdded
+    this.product = data.product || this.product
     this.errorAddingProduct = data.errorAddingProduct || this.errorAddingProduct
     this.error = data.error || this.error
   }
@@ -34,7 +40,17 @@ export class SnackbarComponent {
     this.dialog.open(DialogErrorAddingProductComponent, {
       data: { error: this.error }
     });
+  }
 
+  navigateToProduct(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.productService.setCurrentProduct(this.product)
+      this.router.navigate([`products/${this.product._id}`]);
+    } else {
+      console.error('No token found in localStorage.');
+      this.router.navigate(['/login']);
+    }
   }
 
 }
