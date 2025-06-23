@@ -40,11 +40,15 @@ export class ProductDetailsComponent {
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
-    this.product = this.productService.currentProduct!
-    // Fetch product details if data isn't available
-    if ( ! this.product) {
-      this.fetchProduct()
-    }
+    this.route.paramMap.subscribe(() => {
+      const currentProduct = this.productService.currentProduct
+      const idProductUrl = this.route.snapshot.paramMap.get('id_product')
+      if ( ! currentProduct || currentProduct._id != idProductUrl) {
+        this.fetchProduct()
+        this.productService.currentProduct = this.product
+      }
+      this.product = this.productService.currentProduct!
+    });
   }
 
 
