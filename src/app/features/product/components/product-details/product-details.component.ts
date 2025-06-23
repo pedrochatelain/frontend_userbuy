@@ -23,6 +23,7 @@ export class ProductDetailsComponent {
   insufficientFunds = false
   isMobile = false;
   isBtnPurchaseDisabled = false
+  loadingPage: boolean = false;
 
   
   constructor(
@@ -53,16 +54,16 @@ export class ProductDetailsComponent {
 
 
   fetchProduct(): void {
-    this.loading = true
+    this.loadingPage = true
     let idProduct = this.route.snapshot.paramMap.get('id_product');
     this.productService.getProduct(idProduct!).subscribe({
       next: (response) => {
         this.product = response.product
-        this.loading = false
+        this.loadingPage = false
       },
       error: (error) => {
         console.error('Error fetching products:', error);
-        this.loading = false
+        this.loadingPage = false
       }
     });
   }

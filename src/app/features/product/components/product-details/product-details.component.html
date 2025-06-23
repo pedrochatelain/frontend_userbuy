@@ -1,4 +1,8 @@
-<div [ngClass]="{ 'mobile-container': isMobile, 'container': ! isMobile}">
+<div *ngIf="loadingPage" class="loading-page">
+    <mat-spinner></mat-spinner>
+    <p>Fetching product</p>
+</div>
+<div *ngIf=" ! loadingPage && product" [ngClass]="{ 'mobile-container': isMobile, 'container': ! isMobile}">
     <img *ngIf="product.image; else noImage" [src]="product.image" [alt]="product.name" />
     <ng-template #noImage>
         <img src="assets/product_image_not_available.png" alt="Image not available" />
@@ -21,7 +25,7 @@
     </div>
     
 </div>
-<div [ngClass]="{ 'mobile-description': isMobile, 'description': ! isMobile}">
+<div *ngIf=" ! loadingPage" [ngClass]="{ 'mobile-description': isMobile, 'description': ! isMobile}">
     <h1>Description</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quasi, alias animi accusantium eos provident asperiores sapiente quas necessitatibus quod iusto rerum sit soluta dicta delectus illo! Eligendi, maxime fugit.</p>
 </div>
