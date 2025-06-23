@@ -1,4 +1,4 @@
-<div *ngIf="loadingPage" class="loading-page">
+<div *ngIf="loadingPage" [ngClass]="{ 'mobile-loading-page': isMobile, 'loading-page': ! isMobile}">
     <mat-spinner></mat-spinner>
     <p>Fetching product</p>
 </div>

@@ -140,12 +140,15 @@ img {
 }
 
 .loading-page {
-    margin-top: 30px;
     margin-left: 300px;
+}
+
+.mobile-loading-page, .loading-page {
+    margin-top: 30px;
     display: flex;
     align-items: center;
 }
 
-.loading-page mat-spinner {
+.loading-page mat-spinner, .mobile-loading-page mat-spinner {
     scale: .3;
 }
