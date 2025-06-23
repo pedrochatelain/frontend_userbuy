@@ -31,7 +31,7 @@
 		</mat-form-field>
 
 
-		<mat-form-field (click)="fileInput.click()">
+		<mat-form-field (click)="fileInput.click()" (keydown.enter)="fileInput.click()">
 			<mat-label>Image</mat-label>
 			<input matInput readonly [value]="imageName">
 			<input
