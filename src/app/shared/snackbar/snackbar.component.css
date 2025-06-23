@@ -1,13 +1,10 @@
 .container {
     display: grid;
     grid-auto-flow: column;
-    align-content: center;
-    height: 30px;
-    z-index: 3;
+    grid-template-columns: min-content;
 }
 
 .error-icon, .success-icon {
-    padding: 3px;
     align-self: center;
     scale: 1.2;
 }
@@ -21,7 +18,11 @@
 }
 
 p {
-    margin-bottom: 13px;
+    font-weight: lighter;
+    align-self: center;
+    margin: 0;
+    margin-left: 14px;
+    margin-right: 10px;
 }
 
 button {

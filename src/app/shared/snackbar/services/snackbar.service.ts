@@ -40,7 +40,7 @@ export class SnackbarService {
   }
   
   displayProductAdded(product: Product) {
-    const message = `${product.name} successfully added`
+    const message = 'Product added successfully'
     const config = new MatSnackBarConfig();
     config.duration = 5000;
     config.data = {
@@ -56,7 +56,8 @@ export class SnackbarService {
 
   }
 
-  displayErrorAddingProduct(message: string, error: any): void {
+  displayErrorAddingProduct(error: any): void {
+    const message = "Error adding product"
     const config = new MatSnackBarConfig();
     config.data = {
       icon: 'error',
