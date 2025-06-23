@@ -64,7 +64,9 @@ export class HomeComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DialogAddProductComponent);
+    this.dialog.open(DialogAddProductComponent, {
+      autoFocus: false
+    });
   }
 
   get isAdmin(): boolean {
