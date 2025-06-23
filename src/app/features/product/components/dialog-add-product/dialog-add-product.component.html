@@ -19,6 +19,8 @@
 		<mat-form-field>
 			<mat-label>Stock quantity</mat-label>
 			<input 
+				#inputStockQuantity
+				(keydown.enter)=unfocus(inputStockQuantity)
 				inputmode="numeric"
 				matInput 
 				[(ngModel)]="stock" 

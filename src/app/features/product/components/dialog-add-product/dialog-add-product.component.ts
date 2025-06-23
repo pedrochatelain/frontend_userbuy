@@ -120,4 +120,8 @@ data = inject(MAT_DIALOG_DATA);
     this.dialogRef.close();
   }
 
+  unfocus(inputStockQuantity: HTMLInputElement): void {
+    inputStockQuantity.blur()
+  }
+
 }
