@@ -34,7 +34,6 @@ export class DialogAddProductComponent {
 data = inject(MAT_DIALOG_DATA);
   name = ""
   category = ""
-  stock = ""
   currency = ""
   price = ""
   btnTitle = "Add Product"
@@ -79,7 +78,6 @@ data = inject(MAT_DIALOG_DATA);
       "category": this.category,
       "price": this.price,
       "name": this.name,
-      "stock_quantity": this.stock,
       "image": this.image
     };
     this.productAdded = false
@@ -118,10 +116,6 @@ data = inject(MAT_DIALOG_DATA);
 
   closeDialog(): void {
     this.dialogRef.close();
-  }
-
-  unfocus(inputStockQuantity: HTMLInputElement): void {
-    inputStockQuantity.blur()
   }
 
 }

@@ -34,7 +34,6 @@ export class ProductService {
     formData.append('category', product.category);
     formData.append('name', product.name);
     formData.append('price', product.price);
-    formData.append('stock_quantity', product.stock_quantity);
     formData.append('image', product.image);
 
     return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
@@ -113,6 +112,5 @@ export interface Product {
   category: string;
   price: string;
   name: string;
-  stock_quantity: string;
   image: string;
 }

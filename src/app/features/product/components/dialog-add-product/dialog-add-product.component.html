@@ -16,22 +16,6 @@
 			<input matInput [(ngModel)]="price" name="price">
 		</mat-form-field>
 
-		<mat-form-field>
-			<mat-label>Stock quantity</mat-label>
-			<input 
-				#inputStockQuantity
-				(keydown.enter)=unfocus(inputStockQuantity)
-				inputmode="numeric"
-				matInput 
-				[(ngModel)]="stock" 
-				name="stock" 
-				#stockCtrl="ngModel" 
-				required 
-				pattern="^[1-9]\d*$">
-			<mat-error *ngIf="stockCtrl.errors?.['required']">Stock is required</mat-error>
-			<mat-error *ngIf="stockCtrl.errors?.['pattern']">Stock must be a <strong>positive integer</strong></mat-error>
-		</mat-form-field>
-
 
 		<mat-form-field (click)="fileInput.click()" (keydown.enter)="fileInput.click()">
 			<mat-label>Image</mat-label>
