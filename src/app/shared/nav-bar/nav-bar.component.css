@@ -31,11 +31,11 @@
 }
 
 h1 {
-    font-family: "Londrina Sketch", sans-serif;
+    font-size: x-large;
     color: var(--mat-sys-on-primary);
     justify-self: center;
-    margin-top: 0;
-    margin-bottom: 40px;
+    margin-top: 5px;
+    margin-bottom: 60px;
 }
 
 button {
