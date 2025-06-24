@@ -72,4 +72,17 @@ export class SnackbarService {
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
 
+  displayAddingProduct(): void {
+    const message = "Adding product"
+    const config = new MatSnackBarConfig();
+    config.data = {
+      message: message,
+      addingProduct: true
+    }
+    if (this.screenService.isMobile()) {
+      config.verticalPosition = 'top'
+    }
+    this.snackBar.openFromComponent(SnackbarComponent, config);
+  }
+
 }

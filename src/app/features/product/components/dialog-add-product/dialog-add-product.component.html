@@ -30,15 +30,9 @@
 		</mat-form-field>
 	</mat-dialog-content>
 	<mat-dialog-actions *ngIf=" ! productAdded">
-		<button *ngIf=" ! loading" matButton (click)="closeDialog()">Close</button>
-		<button *ngIf=" ! loading" matButton="filled" (click)="addProduct()">
+		<button matButton (click)="closeDialog()">Close</button>
+		<button [disabled]="isBtnDisabled" matButton="filled" (click)="addProduct()">
 			<p>Add Product</p>
 		</button>
-		<div class="container-adding-product">
-			<div *ngIf="loading" class="adding-product">
-				<mat-spinner></mat-spinner>
-				<p> <span></span>Adding product</p>
-			</div>
-		</div>
 	</mat-dialog-actions>
 </div>

@@ -4,6 +4,23 @@
     grid-template-columns: min-content;
 }
 
+.adding-product {
+    display: grid;
+    grid-auto-flow: column;
+    align-content: center;
+}
+
+.adding-product p {
+    justify-self: start;
+    width: 100px;
+    margin-left: 20px;
+}
+
+.adding-product mat-spinner {
+    height: 25px !important;
+    width: 25px !important;
+}
+
 .error-icon, .success-icon {
     align-self: center;
     scale: 1.2;

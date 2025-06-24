@@ -8,10 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogErrorAddingProductComponent } from '../../features/product/components/dialog-error-adding-product/dialog-error-adding-product.component';
 import { ProductService } from '../../features/product/services/product.service';
 import { Router } from '@angular/router';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-snackbar',
-  imports: [MatIconModule, MatButtonModule, CommonModule],
+  imports: [MatIconModule, MatButtonModule, CommonModule, MatProgressSpinner],
   templateUrl: './snackbar.component.html',
   styleUrl: './snackbar.component.css'
 })
@@ -25,6 +26,7 @@ export class SnackbarComponent {
   @Input() error: any
   dialog = inject(MatDialog);
   snackBarRef = inject(MatSnackBarRef);  
+  @Input() addingProduct: any;
 
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private productService: ProductService, private router: Router) {
     this.icon = data.icon || this.icon;
@@ -34,6 +36,7 @@ export class SnackbarComponent {
     this.product = data.product || this.product
     this.errorAddingProduct = data.errorAddingProduct || this.errorAddingProduct
     this.error = data.error || this.error
+    this.addingProduct = data.addingProduct || this.addingProduct
   }
 
   displayErrorAddingProduct(): void {

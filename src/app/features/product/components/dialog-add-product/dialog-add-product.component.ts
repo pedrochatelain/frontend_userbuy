@@ -45,7 +45,6 @@ data = inject(MAT_DIALOG_DATA);
   isBtnDisabled = false
   productAdded = false;
   product!: any;
-  loading = false
   private productService = inject(ProductService);
   readonly dialogRef = inject(MatDialogRef<DialogAddProductComponent>);
   @ViewChild('dialogContent') dialogContent!: ElementRef;
@@ -70,7 +69,8 @@ data = inject(MAT_DIALOG_DATA);
   }
 
   addProduct(): void {
-    this.loading = true
+    this.snackbarService.displayAddingProduct()
+    this.isBtnDisabled = true;
     this.error = ""
     this.errorName = ""
     this.errorCategory = ""
@@ -84,22 +84,21 @@ data = inject(MAT_DIALOG_DATA);
 
     this.productService.addProduct(product).subscribe({
       next: (response) => {
+        this.isBtnDisabled = false
         this.product = response.product;
         this.productAdded = true;
         this.success = 'Product added successfully';
         this.btnTitle = 'Add Product';
-        this.isBtnDisabled = true;
-        this.loading = false;
         this.closeDialog()
         this.snackbarService.displayProductAdded(this.product)
       },
       error: (error) => {
         console.error('Error:', error);
+        this.isBtnDisabled = false
         this.error = error.error.error;
         this.errorName = error.error.issues?.name;
         this.errorCategory = error.error.issues?.category;
         this.btnTitle = 'Add Product';
-        this.loading = false;
         this.snackbarService.displayErrorAddingProduct(error)
         this.scrollToError()
       },

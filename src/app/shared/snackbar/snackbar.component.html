@@ -1,6 +1,10 @@
 <div class="container">
-  <mat-icon [fontIcon]="icon" [class.success-icon]=" ! hasError" [class.error-icon]="hasError"></mat-icon>
-  <p>{{ message }}</p>
+  <div *ngIf="addingProduct" class="adding-product">
+    <mat-spinner></mat-spinner>
+    <p>{{ message }}</p>
+  </div>
+  <mat-icon *ngIf=" ! addingProduct" [fontIcon]="icon" [class.success-icon]=" ! hasError" [class.error-icon]="hasError"></mat-icon>
+  <p *ngIf=" ! addingProduct">{{ message }}</p>
   <button *ngIf="errorAddingProduct" mat-button matSnackBarAction (click)="displayErrorAddingProduct()">Details</button>
   <button *ngIf="productAdded" mat-button matSnackBarAction (click)="navigateToProduct()">Open</button>
   <button *ngIf="errorAddingProduct" mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">Close</button>

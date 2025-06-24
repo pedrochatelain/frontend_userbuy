@@ -13,32 +13,6 @@ mat-dialog-content {
     width: 50%;
 }
 
-mat-spinner {
-    justify-self: center;
-    scale: .4;
-}
-
 button div mat-spinner {
     scale: .3;
-}
-
-.adding-product {
-    justify-self: center;
-    align-items: center;
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 20px 1fr;
-}
-
-.adding-product p {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.adding-product mat-spinner {
-    scale: .2;
-}
-
-.container-adding-product {
-    width: 100%;
 }
