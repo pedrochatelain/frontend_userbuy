@@ -15,4 +15,5 @@ export const routes: Routes = [
     { path: 'purchases/:id_user', component: PurchasesComponent, canActivate: [AuthGuard] },
     { path: 'wallet/:id_user', component: WalletComponent, canActivate: [AuthGuard] },
     { path: 'products/:id_product', component: ProductDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'search/:term', component: SearchComponent, canActivate: [AuthGuard] },
 ];

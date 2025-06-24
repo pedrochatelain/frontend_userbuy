@@ -91,11 +91,21 @@ export class ProductService {
   }
 
   searchProduct(product: string): Observable<any> {
+    if (!this.cache) {
+      this.cache = {}; // Initialize the cache if it doesn't exist
+    }
+    if (this.cache[product]) {
+      return of(this.cache[product]); // Return cached data as an Observable
+    }
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`${this.apiUrl}?name=${product}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}?name=${product}`, { headers }).pipe(
+      tap((response) => {
+        this.cache[product] = response;
+      })
+    );
   }
 
   setCurrentProduct(product: Product) {

@@ -11,6 +11,7 @@ import { of } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ScreenService } from '../../../../shared/services/screen.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -27,7 +28,14 @@ export class SearchComponent {
   isMobile = false
   numberOfProducts = ''
 
-  constructor(private productService: ProductService, private viewportScroller: ViewportScroller, private renderer: Renderer2, private screenService: ScreenService) {
+  constructor(
+    private productService: ProductService,
+    private viewportScroller: ViewportScroller,
+    private renderer: Renderer2,
+    private screenService: ScreenService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     // Subscribe to searchSubject to handle debounced and switched search requests
     this.searchSubject
       .pipe(
@@ -65,25 +73,55 @@ export class SearchComponent {
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+
+    // Read search term from route params
+    this.route.params.subscribe(params => {
+      const searchTerm = params['term'];
+      if (searchTerm) {
+        this.inputProductName = searchTerm;
+
+        // Check if the term exists in the cache
+        const cachedResult = this.productService['cache'][searchTerm];
+        if (cachedResult) {
+          this.products = cachedResult.products;
+          this.numberOfProducts = cachedResult.numberOfProducts;
+          this.noProductsFound = this.products.length === 0;
+        } else {
+          this.searchSubject.next(searchTerm); // Trigger a new search
+        }
+      }
+    });
+  }
+
+  searchProduct(product: string): void {
+    this.numberOfProducts = '';
+    this.products = [];
+    this.searchSubject.next(product);
+
+    // Update the URL without triggering navigation
+    if (product) {
+      history.replaceState(null, '', `/search/${product}`);
+    } else {
+      history.replaceState(null, '', '/search');
+    }
   }
 
   ngAfterViewInit(): void {
     const inputElement = this.renderer.selectRootElement('input[matInput]');
-    inputElement.focus();
+    if ( ! this.inputProductName)
+      inputElement.focus();
   }
 
-  searchProduct(product: string): void {
-    this.numberOfProducts = ''
-    this.products = [];
-    this.searchSubject.next(product);
-  }
 
   resetResults(): void {
     this.inputProductName = ""
     this.products = [];
     this.noProductsFound = false;
     this.loading = false;
-    this.numberOfProducts = ''
+    this.numberOfProducts = '';
+
+    // Reset the URL
+    this.router.navigate(['/search']);
   }
 
   onEnter(input: HTMLInputElement) {
