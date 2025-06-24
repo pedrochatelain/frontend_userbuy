@@ -19,11 +19,11 @@
                 Deposit is mandatory
             </mat-error>
             <mat-error *ngIf="depositCtrl.errors?.['pattern']">
-                Deposit must be a <strong>positive number</strong> and use a <strong>. (dot)</strong> as the decimal separator
+                Deposit must be a <strong>positive number</strong>
             </mat-error>
         </mat-form-field>
     </mat-dialog-content>	
-    <button mat-flat-button class="button-deposit" (click)="depositMoney()">
+    <button [disabled]="depositCtrl.errors" mat-flat-button class="button-deposit" (click)="depositMoney()">
       <p>Deposit Money</p>
     </button>
 </div>
