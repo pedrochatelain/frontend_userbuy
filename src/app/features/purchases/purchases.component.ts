@@ -1,5 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, inject, Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from '../product/components/card-product/card-product.component'; 
 import { CommonModule, ViewportScroller } from '@angular/common';
@@ -30,23 +29,23 @@ export class PurchasesComponent {
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.userId = this.route.snapshot.paramMap.get('id_user');
-    this.loading = true
-    this.purchaseService.fetchPurchases(this.userId!).subscribe({
-      next: (response) => {
-        this.purchases = response.map(purchase => ({
-          ...purchase,
-          purchaseDate: new Date(purchase.purchaseDate), // Convert string to Date
-        }));
-        this.loading = false
-      },
-      error: (error) => {
-        console.error('Error:', error);
-        this.loading = false
-      },
-      complete: () => {
-        this.loading = false
-      },
-    });
+    this.purchases = this.purchaseService.purchases
+    if (this.purchases.length == 0) {
+      this.loading = true
+      this.purchaseService.fetchPurchases(this.userId!).subscribe({
+        next: (response) => {
+          this.purchases = response
+          this.loading = false
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.loading = false
+        },
+        complete: () => {
+          this.loading = false
+        },
+      });
+    }
 
     this.screenService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
