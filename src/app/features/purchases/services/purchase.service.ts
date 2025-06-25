@@ -33,6 +33,9 @@ export class PurchaseService {
   );
 }
 
+  clearCache(): void {
+    this.purchases = [];
+  }
 
 }
 

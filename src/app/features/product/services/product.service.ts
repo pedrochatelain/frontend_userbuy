@@ -112,6 +112,10 @@ export class ProductService {
     this.currentProduct = product
   }
 
+  clearCache(): void {
+    this.products = [];
+  }
+
 }
 
 /**
