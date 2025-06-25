@@ -3,8 +3,10 @@
 }
 
 mat-card {
-    border-color: transparent;
-    border-bottom: 1px solid var(--mat-sys-primary-fixed);
+    border: none;
+    border-bottom: .3px solid var(--mat-sys-primary-fixed);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: max-content 3fr;
@@ -46,16 +48,14 @@ img {
     width: 150px;
 }
 
-.mdc-card__media {
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 5%;
-
-}
-
 .category {
     font-size: small;
     font-weight: lighter;
     margin-bottom: 10px;
+}
+
+.mobile-mat-card .category {
+    margin-top: 20px;
 }
 
 /* mobile */

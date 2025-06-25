@@ -9,7 +9,6 @@
 }
 
 .mobile-purchases-container .date-purchase {
-    font-size: medium;
     margin-left: 30px;
 }
 
@@ -23,14 +22,17 @@ h1 {
 
 .products-container {
     display: grid;
-    /* gap: 25px; */
 }
 
 .date-purchase {
-    margin-top: 20px;
-    font-size: larger;
+    width: fit-content;
     font-weight: 500;
-    /* margin-bottom: 40px; */
+    margin-top: 70px;
+    font-size: larger;
+}
+
+.date-purchase:first-child {
+    margin-top: 30px;
 }
 
 .loading {
