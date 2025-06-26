@@ -10,10 +10,12 @@
     </div>
     <div *ngIf=" ! loading  && ! updatingDeposit" class="wallet">
       <h1 class="balances">
-          <span>$</span>
-          {{ balances | number: '1.2-2' }}
+        <span class="dollar-sign">$</span>
+        <span class="integer">{{ balances | number: '1.2-2' | slice:0:-3 }}</span>
+        <span class="decimal">.{{ balances | number: '1.2-2' | slice:-2 }}</span>
       </h1>
-      <button matButton="outlined" (click)="openDialog()">
+
+      <button matButton="filled" (click)="openDialog()">
         <p>Deposit Money</p>
       </button>
     </div>
