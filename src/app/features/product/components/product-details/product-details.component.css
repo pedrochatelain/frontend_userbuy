@@ -152,3 +152,22 @@ img {
 .loading-page mat-spinner, .mobile-loading-page mat-spinner {
     scale: .3;
 }
+
+.btn-more-options {
+    margin-top: 10px;
+    width: 300px;
+}
+
+::ng-deep .menu {
+  background: var(--mat-sys-on-primary) !important;
+}
+
+::ng-deep .menu button {
+    width: 250px;
+    color: var(--mat-sys-primary) !important;
+    background: var(--mat-sys-on-primary) !important;
+}
+
+::ng-deep .menu .btn-delete-product, ::ng-deep .menu .btn-delete-product mat-icon {
+    color: var(--mat-sys-error) !important;
+}

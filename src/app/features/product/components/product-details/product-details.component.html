@@ -22,6 +22,27 @@
             <p *ngIf="isPurchased" class="purchased">Purchased</p>
         </button>
         </ng-container>
+        <div class="buttons">
+            <button
+                matButton="outlined"
+                [matMenuTriggerFor]="menu"
+                class="btn-more-options"
+            >
+                <p>More Options</p>
+                <!-- <mat-icon>more_vert</mat-icon> -->
+            </button>
+            <mat-menu #menu="matMenu" class="menu">
+            <button
+                class="btn-delete-product"
+                mat-menu-item
+                (click)="deleteProduct()"
+            >
+                <mat-icon fontIcon="delete"></mat-icon>
+                <span>Delete product</span>
+            </button>
+            </mat-menu>
+        </div>
+        
     </div>
     
 </div>

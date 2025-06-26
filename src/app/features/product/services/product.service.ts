@@ -115,6 +115,15 @@ export class ProductService {
   clearCache(): void {
     this.products = [];
   }
+  
+  deleteProduct(id_product: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<any>(`${this.apiUrl}/${id_product}`, { headers });
+
+  }
 
 }
 

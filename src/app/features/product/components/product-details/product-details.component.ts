@@ -8,10 +8,12 @@ import { environment } from '../../../../../environments/environment';
 import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-details',
-  imports: [ CommonModule, MatButtonModule, MatProgressSpinner ],
+  imports: [ CommonModule, MatButtonModule, MatProgressSpinner, MatMenuModule, MatIconModule ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
@@ -64,6 +66,18 @@ export class ProductDetailsComponent {
       error: (error) => {
         console.error('Error fetching products:', error);
         this.loadingPage = false
+      }
+    });
+  }
+
+  deleteProduct(): void {
+    let idProduct = this.route.snapshot.paramMap.get('id_product');
+    this.productService.deleteProduct(idProduct!).subscribe({
+      next: (response) => {
+        this.snackbarService.displaySuccess(response.message)
+      },
+      error: (error) => {
+        this.snackbarService.displayError(error.error.error)
       }
     });
   }
