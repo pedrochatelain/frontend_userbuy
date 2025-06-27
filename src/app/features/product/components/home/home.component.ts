@@ -31,32 +31,28 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
 
-    // Use cached products or fetch them from the server
-    this.products = this.productService.getCachedProducts();
-    if (this.products.length === 0) {
-      this.productService.fetchProducts().subscribe({
-        next: (response) => {
-          this.products = response.products;
-          this.loading = false;
-        },
-        error: () => {
-          this.loading = false;
-        }
-      })
-    } else {
-      this.loading = false;
-    }
-
     this.subscriptions.add(
-      this.productService.productAdded.subscribe(() => {
-        this.products = this.productService.getCachedProducts();
+      this.productService.products$.subscribe((products) => {
+        this.products = products;
+        this.loading = false;
       })
     );
 
-    this.screenService.isMobile$.subscribe(isMobile => {
-      this.isMobile = isMobile;
-    });
+    if (this.products.length === 0) {
+      this.loading = true;
+      this.subscriptions.add(
+        this.productService.fetchProducts().subscribe({
+          next: () => this.loading = false,
+          error: () => this.loading = false,
+        })
+      );
+    }
 
+    this.subscriptions.add(
+      this.screenService.isMobile$.subscribe(isMobile => {
+        this.isMobile = isMobile;
+      })
+    );
   }
 
   ngOnDestroy(): void {

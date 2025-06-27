@@ -1,6 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment'
 
 @Injectable({
@@ -8,44 +8,31 @@ import { environment } from '../../../../environments/environment'
 })
 export class ProductService {
   private apiUrl = `${environment.apiUrl}/api/products`;
-  productAdded = new EventEmitter<any>();
   cache: any
   currentProduct: Product | undefined;
-  private products: any[] = []; // Persistent product list
+  private productsSubject = new BehaviorSubject<Product[]>([]); // Hold the product list
+  products$ = this.productsSubject.asObservable(); // Expose as observable for components
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Adds a new product to the server.
-   * @param product The product details to add.
-   * @returns An Observable of the server response.
-   */
   addProduct(product: any): Observable<any> {
-    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-
-    // Set up headers with the token
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-
     const formData = new FormData();
-
     formData.append('category', product.category);
     formData.append('name', product.name);
     formData.append('price', product.price);
     formData.append('image', product.image);
-
     return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
       tap((response) => {
-        this.products.push(response.product);
-        this.productAdded.emit(response.product); // Notify subscribers
+        // Update the BehaviorSubject with the new product list
+        const currentProducts = this.productsSubject.value; // Get the current product list
+        const updatedProducts = [...currentProducts, response.product]; // Add the new product
+        this.productsSubject.next(updatedProducts); // Push the updated list
       })
     );
-  }
-
-  getCachedProducts() {
-    return this.products;
   }
 
   getProduct(id_product: string) {
@@ -69,25 +56,12 @@ export class ProductService {
     );
   }
 
-  getProducts(): Observable<any> {
-    if (this.cache) {
-      return of(this.cache); // Wrap the cached data in an Observable
-    }
+  fetchProducts(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(
-      tap(data => this.cache = data) // Cache the data
+      tap((response) => {
+        this.productsSubject.next(response.products); // Update the product list
+      })
     );
-  }
-
-  // Fetch products from the API and cache them
-  fetchProducts() {
-    if (this.products.length === 0) {
-      return this.http.get<any>(this.apiUrl).pipe(
-        tap((response) => this.products = response.products) // Cache the products
-      );
-    } else {
-      // Return a simulated observable if products are already loaded
-      return of(this.products);
-    }
   }
 
   searchProduct(product: string): Observable<any> {
@@ -113,16 +87,20 @@ export class ProductService {
   }
 
   clearCache(): void {
-    this.products = [];
+    this.productsSubject.next([]); // Clear the product list
   }
   
-  deleteProduct(id_product: string) {
+  deleteProduct(idProduct: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.delete<any>(`${this.apiUrl}/${id_product}`, { headers });
-
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return this.http.delete<any>(`${this.apiUrl}/${idProduct}`, { headers }).pipe(
+      tap(() => {
+        const updatedProducts = this.productsSubject.value.filter(
+          (product) => product._id !== idProduct
+        );
+        this.productsSubject.next(updatedProducts); // Update the list after deletion
+      })
+    );
   }
 
 }
