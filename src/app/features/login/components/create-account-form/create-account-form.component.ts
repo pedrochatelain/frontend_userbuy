@@ -69,7 +69,7 @@ export class CreateAccountFormComponent {
         },
         error: error => {
           this.error = error.error.error
-          this.snackbarService.displayError("Error creating user")
+          this.snackbarService.displayError(this.error)
           this.loading = false
         },
         complete: () => {
@@ -77,7 +77,7 @@ export class CreateAccountFormComponent {
         }
       });
     } else {
-        this.error = "Passwords don't match"
+        this.snackbarService.displayError("Passwords don't match")
     }
   }
 
