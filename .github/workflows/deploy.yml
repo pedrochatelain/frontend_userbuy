@@ -1,3 +1,10 @@
+name: Build and DeployAdd commentMore actions
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if differentAdd comment
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
