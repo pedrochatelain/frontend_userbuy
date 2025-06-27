@@ -28,4 +28,4 @@ jobs:
         run: ng build --configuration=production --base-href "https://pedrochatelain.github.io/frontend_userbuy/"
 
       - name: Deploy to GitHub Pages
-        run: npx ngh --dir=dist/frontend_userbuy --no-ci
+        run: npx ngh --dir=/home/runner/work/frontend_userbuy/frontend_userbuy/dist/frontend_userbuy/browser --token ${{ secrets.GH_TOKEN }}
