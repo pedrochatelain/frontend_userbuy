@@ -29,5 +29,3 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: npx ngh --dir=dist/frontend_userbuy --no-ci
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
