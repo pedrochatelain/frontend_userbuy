@@ -31,11 +31,11 @@
 
 img {
     align-self: center;
-    object-position: left;
+    object-position: center;
     object-fit: contain;
     border-radius: 6%;
-    height: 400px;
-    width: max-content;
+    height: 350px;
+    width: 400px;
     max-width: 500px;
 }
 
@@ -108,13 +108,13 @@ img {
 .mobile-container img {
     margin-top: 20px;
     justify-self: center;
-    width: 300px;
-    height: 400px;
+    width: 320px;
+    height: 420px;
 }
 
 .mobile-container .name {
     margin: 0;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 .mobile-description {
