@@ -57,7 +57,7 @@ export class LoginFormComponent implements OnInit {
     this.loginService.login(this.username, this.password).subscribe({
       next: response => {
         this.router.navigate(['home'])
-        localStorage.setItem('token', response.token);
+        this.loginService.setToken(response.token)
         this.loading = false
         this.loginService.loggingIn.emit(false)
         this.snackbarService.displaySuccess("Login successful")
