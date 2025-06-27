@@ -10,8 +10,6 @@ mat-card {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: max-content 3fr;
-    width: 80%;
-    /* height: 250px; */
     background-color: transparent;
 }
 
@@ -28,10 +26,6 @@ mat-card-content {
     padding: 20px;
 }
 
-.btn-purchase {
-    margin-left: 15px;
-    width: fit-content;
-}
 
 .price, .mobile-price {
     padding-top: 10px;
@@ -75,4 +69,9 @@ img {
 .mobile-mat-card {
     height: 200px;
     width: 100%;
+}
+
+.mobile-mat-card-title {
+    font-size: large;
+    padding-right: 15px;
 }
