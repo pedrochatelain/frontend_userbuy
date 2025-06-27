@@ -1,9 +1,9 @@
-name: Build and DeployAdd commentMore actions
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - main # Change this to your default branch if differentAdd comment
+      - main
 
 jobs:
   build-and-deploy:
@@ -28,6 +28,6 @@ jobs:
         run: ng build --configuration=production --base-href "https://pedrochatelain.github.io/frontend_userbuy/"
 
       - name: Deploy to GitHub Pages
-        run: npx ngh --dir=dist/frontend_userbuy --no-ci # <<< Changed this line
+        run: npx ngh --dir=dist/frontend_userbuy --no-ci
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
