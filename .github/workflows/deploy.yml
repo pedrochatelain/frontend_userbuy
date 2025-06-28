@@ -28,10 +28,10 @@ jobs:
         run: ng build --configuration=production --base-href "https://pedrochatelain.github.io/frontend_userbuy/"
 
       - name: Copy index.html to 404.html
-        run: cp dist/frontend_userbuy/browser/index.html dist/frontend_userbuy/browser/404.html
+        run: cp dist/frontend_userbuy/index.html dist/frontend_userbuy/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: dist/frontend_userbuy/browser
+          publish_dir: dist/frontend_userbuy
