@@ -22,10 +22,10 @@ jobs:
         run: npm ci
 
       - name: Build Project
-        run: npm run build -- --configuration=production --output-path=dist/frontend_userbuy/browser --base-href "https://pedrochatelain.github.io/frontend_userbuy/"
+        run: npm run build -- --configuration=production --output-path=dist/frontend_userbuy --base-href "/frontend_userbuy/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: dist/frontend_userbuy/browser
+          publish_dir: dist/frontend_userbuy
