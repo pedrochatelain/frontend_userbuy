@@ -32,14 +32,11 @@ export class CardProductComponent {
   }
 
   navigateToProduct(): void {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.productService.setCurrentProduct(this.product)
-      this.router.navigate([`products/${this.product._id}`]);
-    } else {
-      console.error('No token found in localStorage.');
-      this.router.navigate(['/login']);
-    }
+    if (this.isPurchase)
+      this.productService.setCurrentProduct(undefined)
+    else
+      this.productService.setCurrentProduct(this.product)      
+    this.router.navigate([`products/${this.product._id}`]);
   }
 
 }

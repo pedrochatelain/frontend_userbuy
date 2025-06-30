@@ -82,7 +82,7 @@ export class ProductService {
     );
   }
 
-  setCurrentProduct(product: Product) {
+  setCurrentProduct(product: Product | undefined) {
     this.currentProduct = product
   }
 
