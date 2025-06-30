@@ -13,6 +13,7 @@
       </div>
       <mat-card-title [ngClass]="{ 'mobile-mat-card-title': isMobile}">{{ product.name }}</mat-card-title>
       <div [ngClass]="{ 'mobile-price': isMobile, 'price': ! isMobile}">
+        <span *ngIf="isPurchase">You paid</span>
         $ {{ product.price  | number: '1.2-2' }}
       </div>
     </div>

@@ -15,6 +15,7 @@ import { ProductService } from '../../services/product.service';
 @Injectable({providedIn: 'root'})
 export class CardProductComponent {
   @Input() product!: any
+  @Input() isPurchase: boolean = false
   loading = false
   isMobile = false;
 
