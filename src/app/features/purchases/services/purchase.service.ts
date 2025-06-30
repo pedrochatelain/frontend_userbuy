@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class PurchaseService {
   private apiUrl = environment.apiUrl
-  purchases: Purchase[] = [];
+  private purchasesSubject = new BehaviorSubject<Purchase[]>([]);
+  purchases$ = this.purchasesSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -28,13 +29,13 @@ export class PurchaseService {
     ),
     tap(transformedResponse => {
       // Store the transformed data in the service for reuse
-      this.purchases = transformedResponse;
+      this.purchasesSubject.next(transformedResponse);
     })
   );
 }
 
   clearCache(): void {
-    this.purchases = [];
+    this.purchasesSubject.next([])
   }
 
 }

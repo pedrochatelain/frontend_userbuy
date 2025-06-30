@@ -5,6 +5,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Purchase, PurchaseService } from './services/purchase.service';
 import { ScreenService } from '../../shared/services/screen.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-purchases',
@@ -18,6 +19,7 @@ export class PurchasesComponent {
   userId: string | null = null;
   isMobile = false
   loading = false;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute, 
@@ -29,7 +31,9 @@ export class PurchasesComponent {
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.userId = this.route.snapshot.paramMap.get('id_user');
-    this.purchases = this.purchaseService.purchases
+    this.subscriptions.add(
+      this.purchaseService.purchases$.subscribe(purchases => this.purchases = purchases)
+    )
     if (this.purchases.length == 0) {
       this.loading = true
       this.purchaseService.fetchPurchases(this.userId!).subscribe({
