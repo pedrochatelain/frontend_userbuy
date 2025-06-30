@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product, ProductService } from '../../services/product.service';
 import { ScreenService } from '../../../../shared/services/screen.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
 import { SnackbarService } from '../../../../shared/snackbar/services/snackbar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { PurchaseService } from '../../../purchases/services/purchase.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,21 +20,19 @@ export class ProductDetailsComponent {
   loading = false
   product!: Product;
   isPurchased: boolean = false
-  private apiUrl = environment.apiUrl
   insufficientFunds = false
   isMobile = false;
   isBtnPurchaseDisabled = false
   loadingPage: boolean = false;
 
-  
+
   constructor(
     private viewportScroller: ViewportScroller, 
     private route: ActivatedRoute,
     private productService: ProductService,
     private screenService: ScreenService,
-    private http: HttpClient,
     private snackbarService: SnackbarService,
-    private router: Router
+    private purchaseService: PurchaseService
   ) {}
 
   ngOnInit(): void {
@@ -84,32 +81,23 @@ export class ProductDetailsComponent {
 
   purchase(): void {
     this.loading = true
-    const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
-    if (token) {
-      const decodedToken = decodeToken(token);
-      const userId = decodedToken?.id; // Replace 'user_id' with the actual key in the payload.
-      const data = {
-        "idUser": userId,
-        "idProduct": this.product._id
+    this.purchaseService.addPurchase(this.product._id).subscribe({
+      next: response => {
+        this.isPurchased = true
+        this.snackbarService.displaySuccess(`You bought ${this.product.name}!`)
+        this.loading = false
+      },
+      error: error => {
+        const errorMessage = error.error.error
+        this.snackbarService.displayError("Error: " + errorMessage)
+        this.loading = false
+        if (errorMessage === 'Insufficient funds')
+          this.insufficientFunds = true
+      },
+      complete: () => {
+        this.loading = false
       }
-      this.http.post<any>(`${this.apiUrl}/api/purchases`, data).subscribe({
-        next: response => {
-          this.isPurchased = true
-          this.snackbarService.displaySuccess(`You bought ${this.product.name}!`)
-          this.loading = false
-        },
-        error: error => {
-          const errorMessage = error.error.error
-          this.snackbarService.displayError("Error: " + errorMessage)
-          this.loading = false
-          if (errorMessage === 'Insufficient funds')
-            this.insufficientFunds = true
-        },
-        complete: () => {
-          this.loading = false
-        }
-      });
-    }
+    });
   }
 
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { decodeToken } from '../../../utils/decodeToken';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,17 @@ export class PurchaseService {
     })
   );
 }
+
+  addPurchase(idProduct: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const decodedToken = decodeToken(token!);
+    const idUser = decodedToken.id;
+    const data = {
+      "idUser": idUser,
+      "idProduct": idProduct
+    }
+    return this.http.post<any>(`${this.apiUrl}/api/purchases`, data)
+  }
 
   clearCache(): void {
     this.purchasesSubject.next([])
