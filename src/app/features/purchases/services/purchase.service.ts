@@ -43,7 +43,16 @@ export class PurchaseService {
       "idUser": idUser,
       "idProduct": idProduct
     }
-    return this.http.post<any>(`${this.apiUrl}/api/purchases`, data)
+    return this.http.post<any>(`${this.apiUrl}/api/purchases`, data).pipe(
+      tap((response) => {
+        let purchase = response.purchase;
+        purchase = { ...purchase, purchaseDate: new Date(purchase.purchaseDate) };
+        const currentPurchases = this.purchasesSubject.value;
+        const updatedPurchases = [purchase, ...currentPurchases];
+        this.purchasesSubject.next(updatedPurchases);
+      })
+    );
+
   }
 
   clearCache(): void {
