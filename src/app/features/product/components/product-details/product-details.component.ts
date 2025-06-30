@@ -86,7 +86,7 @@ export class ProductDetailsComponent {
     this.loading = true
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
     if (token) {
-      const decodedToken = this.decodeToken(token);
+      const decodedToken = decodeToken(token);
       const userId = decodedToken?.id; // Replace 'user_id' with the actual key in the payload.
       const data = {
         "idUser": userId,
@@ -112,14 +112,4 @@ export class ProductDetailsComponent {
     }
   }
 
-
-  decodeToken(token: string): any {
-    try {
-      const payload = token.split('.')[1];
-      return JSON.parse(atob(payload));
-    } catch (error) {
-      console.error('Failed to decode token:', error);
-      return null;
-    }
-  }
 }

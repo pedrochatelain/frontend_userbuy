@@ -58,7 +58,7 @@ export class NavBarComponent {
   navigateToPurchases(): void {
     const token = localStorage.getItem('token'); // Replace 'token' with the actual key you use.
     if (token) {
-      const decodedToken = this.decodeToken(token);
+      const decodedToken = decodeToken(token);
       const userId = decodedToken?.id; // Replace 'user_id' with the actual key in the payload.
       if (userId) {
         this.selectedButton = 'purchases'; // Set the selected button.
@@ -101,7 +101,7 @@ export class NavBarComponent {
   navigateToWallet(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = this.decodeToken(token);
+      const decodedToken = decodeToken(token);
       const userId = decodedToken?.id;
       this.selectedButton = 'wallet';
       this.router.navigate([`wallet/${userId}`]);
@@ -115,13 +115,4 @@ export class NavBarComponent {
     this.selectedButton = button;
   }
 
-  decodeToken(token: string): any {
-    try {
-      const payload = token.split('.')[1];
-      return JSON.parse(atob(payload));
-    } catch (error) {
-      console.error('Failed to decode token:', error);
-      return null;
-    }
-  }
 }
