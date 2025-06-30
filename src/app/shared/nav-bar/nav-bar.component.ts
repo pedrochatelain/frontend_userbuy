@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../features/login/services/login.service';
 import { SnackbarService } from '../snackbar/services/snackbar.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { decodeToken } from '../../utils/decodeToken';
 
 @Component({
   selector: 'app-nav-bar',

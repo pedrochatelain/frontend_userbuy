@@ -1,4 +1,4 @@
-function decodeToken(token: string): any {
+export function decodeToken(token: string): any {
     try {
         const payload = token.split('.')[1];
         return JSON.parse(atob(payload));
@@ -7,5 +7,3 @@ function decodeToken(token: string): any {
         return null;
     }
 }
-
-module.exports = decodeToken
