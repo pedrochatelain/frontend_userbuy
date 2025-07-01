@@ -12,7 +12,7 @@
         <h1 class="name">{{ product.name }}</h1>
         <h1 class="price"> <span>$</span>{{ product.price | number: '1.2-2'}}</h1>
         <ng-container *ngIf=" ! isBtnPurchaseDisabled">
-        <button class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" matButton="filled">
+        <button *ngIf=" ! isProductDeleted" class="btn-purchase" ng (click)="purchase()" [disabled]="isPurchased || loading || insufficientFunds" matButton="filled">
             <p *ngIf=" ! isPurchased && ! loading && ! insufficientFunds">Purchase</p>
             <p *ngIf="insufficientFunds && ! loading" class="cannot-buy">No Funds</p>
             <div *ngIf="loading" [ngClass]="{ 'mobile-purchasing': isMobile, 'purchasing': ! isMobile}">
@@ -22,7 +22,7 @@
             <p *ngIf="isPurchased" class="purchased">Purchased</p>
         </button>
         </ng-container>
-        <div class="buttons">
+        <div *ngIf=" ! isProductDeleted" class="buttons">
             <button
                 matButton="outlined"
                 [matMenuTriggerFor]="menu"
@@ -42,7 +42,9 @@
             </button>
             </mat-menu>
         </div>
-        
+        <div *ngIf="isProductDeleted" class="message-product-deleted">
+            <p>Product was deleted</p>
+        </div>
     </div>
     
 </div>

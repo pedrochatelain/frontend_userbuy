@@ -24,6 +24,7 @@ export class ProductDetailsComponent {
   isMobile = false;
   isBtnPurchaseDisabled = false
   loadingPage: boolean = false;
+  isProductDeleted: boolean = false;
 
 
   constructor(
@@ -58,6 +59,7 @@ export class ProductDetailsComponent {
     this.productService.getProduct(idProduct!).subscribe({
       next: (response) => {
         this.product = response.product
+        this.isProductDeleted = this.product.deleted
         this.loadingPage = false
       },
       error: (error) => {

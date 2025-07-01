@@ -171,3 +171,9 @@ img {
 ::ng-deep .menu .btn-delete-product, ::ng-deep .menu .btn-delete-product mat-icon {
     color: var(--mat-sys-error) !important;
 }
+
+.message-product-deleted {
+    font-weight: bold;
+    color: var(--mat-sys-error);
+    margin-top: 30px;
+}
