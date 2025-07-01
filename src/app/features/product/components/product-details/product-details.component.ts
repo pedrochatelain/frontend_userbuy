@@ -25,6 +25,7 @@ export class ProductDetailsComponent {
   isBtnPurchaseDisabled = false
   loadingPage: boolean = false;
   isProductDeleted: boolean = false;
+  isDeleting:boolean = false;
 
 
   constructor(
@@ -71,12 +72,17 @@ export class ProductDetailsComponent {
 
   deleteProduct(): void {
     let idProduct = this.route.snapshot.paramMap.get('id_product');
+    this.isDeleting = true
+    this.snackbarService.displayDeletingProduct()
     this.productService.deleteProduct(idProduct!).subscribe({
       next: (response) => {
         this.snackbarService.displaySuccess(response.message)
+        this.isProductDeleted = true
+        this.isDeleting = false
       },
       error: (error) => {
         this.snackbarService.displayError(error.error.error)
+        this.isDeleting = false
       }
     });
   }

@@ -12,7 +12,7 @@
 
 .adding-product p {
     justify-self: start;
-    width: 100px;
+    width: max-content;
     margin-left: 20px;
 }
 
