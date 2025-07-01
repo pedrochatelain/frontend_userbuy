@@ -87,7 +87,7 @@ export class ProductService {
   }
 
   clearCache(): void {
-    this.productsSubject.next([]); // Clear the product list
+    this.cache = {}
   }
   
   deleteProduct(idProduct: string): Observable<any> {
@@ -98,6 +98,7 @@ export class ProductService {
         const updatedProducts = this.productsSubject.value.filter(
           (product) => product._id !== idProduct
         );
+        this.clearCache()
         this.productsSubject.next(updatedProducts); // Update the list after deletion
       })
     );
