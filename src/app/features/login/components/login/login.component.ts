@@ -1,6 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { LoginFormComponent } from '../login-form/login-form.component';
-import { CreateAccountFormComponent } from '../create-account-form/create-account-form.component';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../../shared/services/screen.service';
@@ -16,7 +14,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   selector: 'app-login',
   styleUrl: 'login.component.css',
   templateUrl: 'login.component.html',
-  imports: [LoginFormComponent, CreateAccountFormComponent, MatButtonModule, CommonModule, MatProgressSpinner],
+  imports: [MatButtonModule, CommonModule, MatProgressSpinner],
 })
 export class LoginComponent {
   isMobile = false;
