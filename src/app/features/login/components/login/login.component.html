@@ -1,14 +1,16 @@
 <div [ngClass]="{ 'mobile-container': isMobile, 'container': !isMobile }">
   <div class="left-content">
-    <!-- <img class="userbuy-logo" src="assets/userbuy.png" alt="Image not available" /> -->
+    <img class="userbuy-logo" src="assets/userbuy.png" alt="Image not available" />
   </div>
-  <div class="right-content">
-    <app-login-form *ngIf="isCreateUserHidden"></app-login-form>
-    <app-create-account-form [disabled]="isCreateUserHidden"></app-create-account-form>
-    @if (showLoginForm) {
-      <button *ngIf=" ! loggingIn" class="btn-toggle" mat-button (click)="toggleForms()">I don't have an account</button>
-    } @else {
-      <button class="btn-toggle" mat-button (click)="toggleForms()">Go back to Login</button>
-    }
+  <div class="container-buttons">
+    <button (click)="loginAsAdmin()" matButton="filled" [disabled]="loggingIn">
+      <p *ngIf=" ! loggingIn">Login as Admin</p>
+      <div *ngIf="loggingIn" class="logging-in">
+        <mat-spinner></mat-spinner>
+        <p>Logging as Admin</p>      
+      </div>
+    </button>
+    <button *ngIf=" ! loggingIn" (click)="navigateToLoginWithMyAccount()" matButton="outlined">Login with my account</button>
+    <button *ngIf=" ! loggingIn" (click)="navigateToCreateAccount()" matButton="text">Create account</button>
   </div>
 </div>

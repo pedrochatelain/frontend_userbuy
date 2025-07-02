@@ -42,16 +42,6 @@ h1 span {
   align-content: center;
 }
 
-.right-content {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-}
-
-app-login-form, app-create-account-form {
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
 
 .hidden {
   opacity: 0;
@@ -59,18 +49,29 @@ app-login-form, app-create-account-form {
   transition: opacity 0.5s ease-out;
 }
 
-app-login-form,
-app-create-account-form {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 1s ease-in-out;
-}
-
-.btn-toggle {
-  margin-top: 50px;
-}
 
 .userbuy-logo {
   width: 140px;
   padding: 20px;
+}
+
+.logging-in {
+  display: flex;
+  align-items: center;
+}
+
+.logging-in mat-spinner {
+  width: 20px !important;
+}
+
+.logging-in p {
+  margin-left: 10px;
+}
+
+.container-buttons {
+  margin-top: 40px;
+  display: grid;
+  row-gap: 20px;
+  width: fit-content;
+  justify-self: center;
 }
