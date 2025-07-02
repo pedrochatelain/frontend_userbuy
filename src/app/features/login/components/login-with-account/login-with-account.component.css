@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+}
+
+.icon-go-back {
+    scale: 1.6;
+    color: var(--mat-sys-primary);
+}
+
+.btn-back-to-login-options {
+    font-size: large;
+    justify-self: left;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.btn-back-to-login-options p {
+    margin-left: 10px;
+}
+
+app-login-form {
+    justify-self: center;
+}
