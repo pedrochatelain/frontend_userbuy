@@ -1,28 +1,18 @@
 .container {
     display: grid;
+    justify-self: center;
     width: 340px;
 }
 
 .mobile-container {
+    margin-top: 40px;
     display: grid;
-    padding-top: 40px;
-}
-
-.mobile-container .btn-create-account {
-    width: 200px;
     justify-self: center;
-}
-
-button {
     width: fit-content;
 }
 
-mat-form-field button {
-    width: auto;
-}
-
-.display-none {
-    display: none;
+.btn-create-account {
+    width: fit-content;
 }
 
 .btn-create-account mat-spinner {

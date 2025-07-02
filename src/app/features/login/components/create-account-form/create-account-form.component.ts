@@ -27,7 +27,6 @@ export class CreateAccountFormComponent {
   loggedIn = false;
   error = ""
   hidePassword = true
-  @Input() disabled = true
   private apiUrl = environment.apiUrl
   isMobile = false
 
