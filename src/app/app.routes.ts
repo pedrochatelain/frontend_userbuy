@@ -6,6 +6,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { WalletComponent } from './features/wallet/components/wallet/wallet.component';
 import { SearchComponent } from './features/product/components/search/search.component';
 import { ProductDetailsComponent } from './features/product/components/product-details/product-details.component';
+import { CreateAccountComponent } from './features/login/components/create-account/create-account.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route redirects to login
@@ -16,4 +17,5 @@ export const routes: Routes = [
     { path: 'wallet/:id_user', component: WalletComponent, canActivate: [AuthGuard] },
     { path: 'products/:id_product', component: ProductDetailsComponent, canActivate: [AuthGuard] },
     { path: 'search/:term', component: SearchComponent, canActivate: [AuthGuard] },
+    { path: 'create-account', component: CreateAccountComponent },
 ];
