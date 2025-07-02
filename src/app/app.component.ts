@@ -17,7 +17,7 @@ export class AppComponent {
     // Subscribe to route changes to show/hide the nav-bar
     this.router.events.subscribe(() => {
       const currentRoute = this.router.url;
-      this.showNavBar = currentRoute !== '/login'; // Hide nav-bar on login page
+      this.showNavBar = currentRoute !== '/login' && currentRoute !== '/login-with-account' && currentRoute != '/create-account';
     });
   }
 
