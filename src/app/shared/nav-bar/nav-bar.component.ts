@@ -50,6 +50,8 @@ export class NavBarComponent {
       this.selectedButton = 'wallet';
     } else if (url.includes('/search')) {
       this.selectedButton = 'search';
+    } else if (url.includes('/add-product')) {
+      this.selectedButton = 'add_product';
     }
     else {
       this.selectedButton = ''; // Default or no selection
@@ -106,6 +108,18 @@ export class NavBarComponent {
       const userId = decodedToken?.id;
       this.selectedButton = 'wallet';
       this.router.navigate([`wallet/${userId}`]);
+    } else {
+      console.error('No token found in localStorage.');
+      this.router.navigate(['/login']);
+    }
+  }
+
+  navigateToAddProduct(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = decodeToken(token);
+      this.selectedButton = 'add_product';
+      this.router.navigate(['/add-product']);
     } else {
       console.error('No token found in localStorage.');
       this.router.navigate(['/login']);

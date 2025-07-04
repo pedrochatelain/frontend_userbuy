@@ -8,6 +8,7 @@ import { SearchComponent } from './features/product/components/search/search.com
 import { ProductDetailsComponent } from './features/product/components/product-details/product-details.component';
 import { LoginWithAccountComponent } from './features/login/components/login-with-account/login-with-account.component';
 import { CreateAccountComponent } from './features/login/components/create-account/create-account.component';
+import { AddProductComponent } from './features/product/components/add-product/add-product.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route redirects to login
@@ -20,4 +21,5 @@ export const routes: Routes = [
     { path: 'search/:term', component: SearchComponent, canActivate: [AuthGuard] },
     { path: 'login-with-account', component: LoginWithAccountComponent },
     { path: 'create-account', component: CreateAccountComponent },
+    { path: 'add-product', component: AddProductComponent },
 ];
