@@ -59,6 +59,7 @@ export class PurchaseService {
 
   clearCache(): void {
     this.purchasesSubject.next([])
+    this.fetchedPurchases = false
   }
 
   get hasFetchedPurchases(): boolean {

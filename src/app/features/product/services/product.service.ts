@@ -87,7 +87,7 @@ export class ProductService {
   }
 
   clearCache(): void {
-    this.cache = {}
+    this.productsSubject.next([])
   }
   
   deleteProduct(idProduct: string): Observable<any> {
