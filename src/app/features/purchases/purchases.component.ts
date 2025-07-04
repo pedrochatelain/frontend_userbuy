@@ -34,7 +34,7 @@ export class PurchasesComponent {
     this.subscriptions.add(
       this.purchaseService.purchases$.subscribe(purchases => this.purchases = purchases)
     )
-    if (this.purchases.length == 0) {
+    if ( ! this.purchaseService.hasFetchedPurchases) {
       this.loading = true
       this.purchaseService.fetchPurchases(this.userId!).subscribe({
         next: (response) => {

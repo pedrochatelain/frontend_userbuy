@@ -11,6 +11,7 @@ export class PurchaseService {
   private apiUrl = environment.apiUrl
   private purchasesSubject = new BehaviorSubject<Purchase[]>([]);
   purchases$ = this.purchasesSubject.asObservable();
+  private fetchedPurchases: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +32,7 @@ export class PurchaseService {
     tap(transformedResponse => {
       // Store the transformed data in the service for reuse
       this.purchasesSubject.next(transformedResponse);
+      this.fetchedPurchases = true
     })
   );
 }
@@ -57,6 +59,10 @@ export class PurchaseService {
 
   clearCache(): void {
     this.purchasesSubject.next([])
+  }
+
+  get hasFetchedPurchases(): boolean {
+    return this.fetchedPurchases;
   }
 
 }
