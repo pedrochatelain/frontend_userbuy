@@ -1,6 +1,6 @@
 .nav-bar {
     display: grid;
-    grid-auto-rows: 1fr 1fr 1fr 1fr 7fr;
+    grid-auto-rows: max-content max-content;
     position: fixed;
     top: 0;
     left: 0;
@@ -10,6 +10,13 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     background-color: var(--mat-sys-primary);
     padding-top: 30px;
+}
+
+.buttons {
+    display: grid;
+    justify-items: left;
+    gap: 10px;
+    margin-top: 40px;
 }
 
 .mobile-nav-bar {
@@ -35,14 +42,14 @@ h1 {
     color: var(--mat-sys-on-primary);
     justify-self: center;
     margin-top: 5px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
 }
 
 button {
-    background-color: var(--mat-sys-on-primary);
-    margin-bottom: 10px;
-    justify-self: center;
-    width: 170px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .mobile-btn-nav-bar {
