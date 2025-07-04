@@ -11,7 +11,8 @@
       <p>Products</p>
     </button>
     <button
-        [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-nar': ! isMobile}"
+        *ngIf=" ! isMobile"
+        [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-bar-logout': ! isMobile}"
         [class.selected]="selectedButton === 'add_product'"
         (click)="navigateToAddProduct()"
         mat-flat-button
@@ -65,6 +66,14 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="customize">
+      <button
+        mat-menu-item
+        [class.selected]="selectedButton === 'add_product'"
+        (click)="navigateToAddProduct()"
+      >
+        <mat-icon fontIcon="add"></mat-icon>
+        <span>Add Product</span>
+      </button>
       <button
         mat-menu-item
         [class.selected]="selectedButton === 'logout'"
