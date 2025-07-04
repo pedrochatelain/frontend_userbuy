@@ -11,7 +11,7 @@
       <p>Products</p>
     </button>
     <button
-        *ngIf=" ! isMobile"
+        *ngIf=" ! isMobile && isAdmin"
         [ngClass]="{ 'mobile-btn-nav-bar': isMobile, 'btn-nav-bar-logout': ! isMobile}"
         [class.selected]="selectedButton === 'add_product'"
         (click)="navigateToAddProduct()"
@@ -67,6 +67,7 @@
     </button>
     <mat-menu #menu="matMenu" class="customize">
       <button
+        *ngIf="isAdmin"
         mat-menu-item
         [class.selected]="selectedButton === 'add_product'"
         (click)="navigateToAddProduct()"

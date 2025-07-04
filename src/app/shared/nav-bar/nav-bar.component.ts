@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { ScreenService } from '../services/screen.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../features/login/services/login.service';
-import { SnackbarService } from '../snackbar/services/snackbar.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { decodeToken } from '../../utils/decodeToken';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,7 +23,7 @@ export class NavBarComponent {
     private router: Router, 
     private screenService: ScreenService, 
     private loginService: LoginService,
-    private snackbarService: SnackbarService
+    private authGuard: AuthGuard
   ) {}
 
   ngOnInit(): void {
@@ -128,6 +128,10 @@ export class NavBarComponent {
 
   selectButton(button: string): void {
     this.selectedButton = button;
+  }
+
+  get isAdmin(): boolean {
+    return this.authGuard.isAdmin();
   }
 
 }
