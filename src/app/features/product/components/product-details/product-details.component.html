@@ -47,9 +47,8 @@
             <p>Product was deleted</p>
         </div>
     </div>
-    
-</div>
-<div *ngIf=" ! loadingPage && product.description" [ngClass]="{ 'mobile-description': isMobile, 'description': ! isMobile}">
-    <h1>Description</h1>
-    <p>{{ product.description }}</p>
+    <div *ngIf=" ! loadingPage && product.description" [ngClass]="{ 'mobile-description': isMobile, 'description': ! isMobile}">
+        <h1>Description</h1>
+        <p>{{ product.description }}</p>
+    </div>
 </div>
