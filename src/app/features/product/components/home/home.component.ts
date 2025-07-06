@@ -1,19 +1,16 @@
 import { Component, inject, Injectable, OnInit } from '@angular/core';
 import { CardProductComponent } from '../card-product/card-product.component'
 import { ProductService } from '../../services/product.service';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAddProductComponent } from '../dialog-add-product/dialog-add-product.component';
 import { AuthGuard } from '../../../../auth/auth.guard';
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
 import { ScreenService } from '../../../../shared/services/screen.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [MatIconModule, CardProductComponent, CommonModule, MatButtonModule, MatProgressSpinner],
+  imports: [CardProductComponent, CommonModule, MatProgressSpinner],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -57,16 +54,6 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-  }
-
-  openDialog() {
-    this.dialog.open(DialogAddProductComponent, {
-      autoFocus: false
-    });
-  }
-
-  get isAdmin(): boolean {
-    return this.authGuard.isAdmin();
   }
 
   trackById(index: number, product: any): string {
