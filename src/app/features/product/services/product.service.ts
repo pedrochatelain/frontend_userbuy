@@ -21,9 +21,9 @@ export class ProductService {
       Authorization: `Bearer ${token}`,
     });
     const formData = new FormData();
-    formData.append('category', product.category);
     formData.append('name', product.name);
     formData.append('price', product.price);
+    formData.append('description', product.description);
     formData.append('image', product.image);
     return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
       tap((response) => {
@@ -112,6 +112,7 @@ export class ProductService {
 export interface Product {
   _id: string;
   category: string;
+  description: string;
   price: string;
   name: string;
   image: string;
