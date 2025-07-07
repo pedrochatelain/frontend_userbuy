@@ -1,10 +1,12 @@
 <mat-card (click)="navigateToProduct()" [ngClass]="{ 'mobile-mat-card': isMobile}" appearance="outlined">
-  <ng-container *ngIf="product.image; else noImage">
-    <img [ngClass]="{ 'mobile-img': isMobile}" [src]="product.image" [alt]="product.name" />
-  </ng-container>
-  <ng-template #noImage>
-    <img [ngClass]="{ 'mobile-img': isMobile}" src="assets/product_image_not_available.png" alt="Image not available" />
-  </ng-template>
+  <div class="image-wrapper">
+    <ng-container *ngIf="product.image; else noImage">
+      <img [ngClass]="{ 'mobile-img': isMobile}" [src]="product.image" [alt]="product.name" />
+    </ng-container>
+    <ng-template #noImage>
+      <img [ngClass]="{ 'mobile-img': isMobile}" src="assets/product_image_not_available.png" alt="Image not available" />
+    </ng-template>
+  </div>
 
   <mat-card-content>
     <div class="product-details">
