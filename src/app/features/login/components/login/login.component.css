@@ -16,6 +16,11 @@
   width: 80%;
 }
 
+.mobile-container {
+  align-content: center;
+  padding-bottom: 100px;
+}
+
 .mobile-container .left-content {
   background-color: var(--mat-sys-on-primary);
   color: var(--mat-sys-primary);
