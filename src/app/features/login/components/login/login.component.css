@@ -1,58 +1,60 @@
-.container {
-    justify-self: center;
-    height: 100%;
-    display: grid;
-    grid-template-rows: max-content max-content;
+.wrapper {
+  display: grid;
+  height: 100%;
 }
 
-.mobile-container {
+.container {
   display: grid;
-  align-content: start;
-  height: 100%;
-  background-color: var(--mat-sys-on-primary);
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  padding: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.left-content p {
+  width: 80%;
 }
 
 .mobile-container .left-content {
   background-color: var(--mat-sys-on-primary);
-  padding-bottom: 0;
-}
-
-.mobile-container .left-content h1, .mobile-container .left-content h1 span {
   color: var(--mat-sys-primary);
-  font-weight: 600;
 }
 
 .mobile-container .left-content p {
-  display: none;
+  width: 80%;
 } 
 
+.mobile-container .container-buttons {
+  border: none;
+}
+
 h1 span {
-  font-family: "Londrina Sketch", sans-serif;
-  color: var(--mat-sys-on-primary);
+  font-weight: bold;
   justify-self: center;
-  margin-top: 0;
-  margin-bottom: 40px;
-  font-size: larger;
 }
 
 .left-content {
   display: grid;
+  border-top-left-radius: 70px;
+  border-bottom-left-radius: 70px;
+  padding-bottom: 50px;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
   justify-items: center;
   text-align: center;
   align-content: center;
 }
 
+.welcome {
+  display: grid;
+  justify-items: center;
+}
 
 .hidden {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease-out;
-}
-
-
-.userbuy-logo {
-  width: 140px;
-  padding: 20px;
 }
 
 .logging-in {
@@ -69,9 +71,19 @@ h1 span {
 }
 
 .container-buttons {
-  margin-top: 40px;
   display: grid;
-  row-gap: 20px;
-  width: fit-content;
+  gap: 20px;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
   justify-self: center;
+  border-top-right-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--mat-sys-primary);
+}
+
+button {
+  width: 200px;
 }
