@@ -20,7 +20,7 @@ export class SnackbarService {
       hasError: true
     };
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
@@ -34,7 +34,7 @@ export class SnackbarService {
       hasError: false
     };
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
@@ -50,7 +50,7 @@ export class SnackbarService {
       product: product
     };
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
 
@@ -67,7 +67,7 @@ export class SnackbarService {
       error: error
     }
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
@@ -80,7 +80,7 @@ export class SnackbarService {
       addingProduct: true
     }
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }
@@ -93,7 +93,7 @@ export class SnackbarService {
       addingProduct: true
     }
     if (this.screenService.isMobile()) {
-      config.verticalPosition = 'top'
+      config.panelClass = ['mobile-snackbar']
     }
     this.snackBar.openFromComponent(SnackbarComponent, config);
   }

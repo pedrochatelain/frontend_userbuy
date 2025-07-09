@@ -23,3 +23,10 @@ input[type="number"] {
 h1 {
   font-weight: 300;
 }
+
+.mobile-snackbar {
+  position: fixed ;
+  bottom: 9vh;
+  right: 0;
+  width: 93vw !important;
+}
