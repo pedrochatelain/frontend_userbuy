@@ -23,7 +23,8 @@ export class ProductService {
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price);
-    formData.append('description', product.description);
+    if (product.description && product.description.trim() != '')
+      formData.append('description', product.description);
     formData.append('image', product.image);
     return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
       tap((response) => {
