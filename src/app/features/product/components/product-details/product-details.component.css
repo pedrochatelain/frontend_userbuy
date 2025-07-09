@@ -81,9 +81,21 @@ img {
     scale: .5;
 }
 
+.btn-purchase, .btn-delete-product {
+    width: 300px;
+}
+
+.deleting {
+    color: var(--mat-sys-error-container) !important;
+}
+
+.btn-delete-product {
+    margin-top: 10px;
+    color: var(--mat-sys-error);    
+}
+
 .btn-purchase {
     margin-top: 30px;
-    width: 300px;
 }
 
 .mobile-container {
@@ -152,20 +164,6 @@ img {
 .btn-more-options {
     margin-top: 10px;
     width: 300px;
-}
-
-::ng-deep .menu {
-  background: var(--mat-sys-on-primary) !important;
-}
-
-::ng-deep .menu button {
-    width: 250px;
-    color: var(--mat-sys-primary) !important;
-    background: var(--mat-sys-on-primary) !important;
-}
-
-::ng-deep .menu .btn-delete-product, ::ng-deep .menu .btn-delete-product mat-icon {
-    color: var(--mat-sys-error) !important;
 }
 
 .message-product-deleted {

@@ -22,27 +22,17 @@
             <p *ngIf="isPurchased" class="purchased">Purchased</p>
         </button>
         </ng-container>
-        <div *ngIf=" ! isProductDeleted" class="buttons">
-            <button
+        <button
+                *ngIf=" ! isProductDeleted"
                 [disabled]="isDeleting"
-                matButton="outlined"
-                [matMenuTriggerFor]="menu"
-                class="btn-more-options"
-            >
-                <p>More Options</p>
-                <!-- <mat-icon>more_vert</mat-icon> -->
-            </button>
-            <mat-menu #menu="matMenu" class="menu">
-            <button
+                [ngClass]="{ 'deleting': isDeleting}"
                 class="btn-delete-product"
-                mat-menu-item
+                matButton="outlined"
                 (click)="deleteProduct()"
             >
                 <mat-icon fontIcon="delete"></mat-icon>
                 <span>Delete product</span>
             </button>
-            </mat-menu>
-        </div>
         <div *ngIf="isProductDeleted" class="message-product-deleted">
             <p>Product was deleted</p>
         </div>
