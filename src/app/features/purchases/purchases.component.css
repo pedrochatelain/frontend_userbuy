@@ -8,11 +8,9 @@
     padding-bottom: 100px;
 }
 
-.mobile-purchases-container .date-purchase {
-    margin-left: 30px;
-}
-
-.mobile-purchases-container h1 {
+.mobile-purchases-container .date-purchase,
+.mobile-purchases-container h1,
+.mobile-purchases-container .loading {
     margin-left: 30px;
 }
 
@@ -41,5 +39,6 @@ h1 {
 }
 
 .loading mat-spinner {
-    scale: .3;
+    width: 25px !important;
+    margin-right: 20px;
 }

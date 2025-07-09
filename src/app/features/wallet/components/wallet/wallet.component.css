@@ -22,7 +22,8 @@
 }
 
 .loading mat-spinner {
-    scale: .3;
+    width: 25px !important;
+    margin-right: 20px;
 }
 
 .mobile-container{
