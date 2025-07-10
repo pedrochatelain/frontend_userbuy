@@ -10,6 +10,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { PurchaseService } from '../../../purchases/services/purchase.service';
 import { AuthGuard } from '../../../../auth/auth.guard';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageModalComponent } from '../../../../shared/image-modal/image-modal.component';
 
 @Component({
   selector: 'app-product-details',
@@ -37,6 +39,7 @@ export class ProductDetailsComponent {
     private snackbarService: SnackbarService,
     private purchaseService: PurchaseService,
     private authGuard: AuthGuard,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -114,6 +117,12 @@ export class ProductDetailsComponent {
     return this.authGuard.isAdmin();
   }
 
-
+  openImageModal(imageUrl: string): void {
+    this.dialog.open(ImageModalComponent, {
+      data: { imageUrl },
+      panelClass: 'custom-modal',
+      maxWidth: '90vw'
+    });
+  }
 
 }

@@ -40,6 +40,10 @@ img {
     max-width: 500px;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 .name {
     font-weight: bold;
     font-size: xxx-large;

@@ -1,0 +1,32 @@
+.modal-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+img {
+  height: 90vh;
+}
+
+img, button {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+}
+
+mat-icon {
+    border-radius: 5px;
+    opacity: .7;
+    background-color: var(--mat-sys-on-primary);
+    padding: 8px;
+    position: fixed;
+    margin-right: 15px;
+    margin-top: 15px;    
+    justify-self: right;
+    align-self: flex-start;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+    color: var(--mat-sys-primary);
+}
+
+mat-icon:hover {
+    cursor: pointer;
+}
