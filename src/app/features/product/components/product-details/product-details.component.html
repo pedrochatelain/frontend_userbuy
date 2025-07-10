@@ -23,7 +23,7 @@
         </button>
         </ng-container>
         <button
-                *ngIf=" ! isProductDeleted"
+                *ngIf=" ! isProductDeleted && isAdmin"
                 [disabled]="isDeleting"
                 [ngClass]="{ 'deleting': isDeleting}"
                 class="btn-delete-product"

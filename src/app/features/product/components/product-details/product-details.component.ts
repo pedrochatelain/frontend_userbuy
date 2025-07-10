@@ -9,6 +9,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { PurchaseService } from '../../../purchases/services/purchase.service';
+import { AuthGuard } from '../../../../auth/auth.guard';
 
 @Component({
   selector: 'app-product-details',
@@ -34,7 +35,8 @@ export class ProductDetailsComponent {
     private productService: ProductService,
     private screenService: ScreenService,
     private snackbarService: SnackbarService,
-    private purchaseService: PurchaseService
+    private purchaseService: PurchaseService,
+    private authGuard: AuthGuard,
   ) {}
 
   ngOnInit(): void {
@@ -107,5 +109,11 @@ export class ProductDetailsComponent {
       }
     });
   }
+
+  get isAdmin(): boolean {
+    return this.authGuard.isAdmin();
+  }
+
+
 
 }
